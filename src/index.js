@@ -9,12 +9,11 @@ import morgan from 'morgan';
 import { engine } from 'express-handlebars';
 import methodOverride from 'method-override';
 
-const port = 3000;
+const port = 3001;
 import route from './routes/index.js'
 import Connect from './config/db/index.js';
 import SortMiddleware from './app/middlewares/SortMiddleware.js';
 import icons from './public/icons/index.js';
-import getIcon from './public/icons/index.js';
 const app = express();
 
 // Method POST Override

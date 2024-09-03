@@ -33,8 +33,8 @@ class CoursesController {
 
     // [POST] /courses/store
     async store(req, res, next) {
-        const session = await mongoose.startSession()
-        session.startTransaction()
+        // const session = await mongoose.startSession()
+        // session.startTransaction()
 
         try {
             const course = req.body;
@@ -43,14 +43,15 @@ class CoursesController {
                 course.images = undefined;
             }
 
-            const newCourse = await Course.create([course], { session });
-            await session.commitTransaction()
+            // const newCourse = await Course.create([course], { session });
+            const newCourse = await Course.create(course);
+            // await session.commitTransaction()
             res.redirect('/me/courses');
         } catch (error) {
-            await session.abortTransaction()
+            // await session.abortTransaction()
             next(error);
         } finally {
-            session.endSession()
+            // session.endSession()
         }
     }
 
