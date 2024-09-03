@@ -1,0 +1,212 @@
+<form name="container-form" method="POST" action="/courses/handle-form-action">
+  <table class="table">
+    <h1>Khoá học</h1>
+    <h1>
+      <a href="/me/courses/trash">
+        Thùng rác ({{deletedCount}})
+      </a>
+    </h1>
+    <div class="actionFrom w-full flex items-center justify-between gap-2 h-[32px]">
+      <div class="">
+        <input type="checkbox" id="checkbox-all" />
+        <label for="checkbox-all" class="flex-none">Chọn tất cả</label>
+        <select name="action" id="" class="ring-1 ring-inset ring-black rounded-md p-1" required>
+          <option value="">-- Chọn hành động --</option>
+          <option value="delete">Xoá</option>
+        </select>
+      </div>
+      <button class="actionBtn opacity-50 justify-items-end bg-red-600 rounded-md text-white px-1 py-0.5">Thực
+        hiện</button>
+    </div>
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">#</th>
+        <th scope="col">
+          <div class="flex items-center gap-2"> <!-- Sử dụng Flex trên phần tử bao quanh -->
+            Tên
+            {{{sortable 'name' _sort }}}
+          </div>
+        </th>
+        <th scope="col">
+          <div class="flex items-center gap-2"> <!-- Sử dụng Flex trên phần tử bao quanh -->
+            Mô tả
+            {{{sortable 'description' _sort }}}
+          </div>
+        </th>
+        <th scope="col">
+          <div class="flex items-center gap-2"> <!-- Sử dụng Flex trên phần tử bao quanh -->
+            Ngày tạo
+            {{{sortable 'createdAt' _sort }}}
+          </div>
+        </th>
+        <th scope="col">Avatar</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each courses}}
+      <tr>
+        <td>
+          <input type="checkbox" name="courseIds[]" value="{{this._id}}" />
+        </td>
+        <th scope="row">{{this._id}}</th>
+        <td>{{this.name}}</td>
+        <td>{{this.description}}</td>
+        <td>{{this.createdAt}}</td>
+        <td><img src="{{this.images}}" alt="Avatar" style="width: 100px; height: auto;" /></td>
+        <td>
+          <a href="/me/courses/edit/{{this._id}}">
+            Edit
+          </a>
+          <a class="btn-delete" data-id="{{this._id}}">
+            Remove
+          </a>
+        </td>
+      </tr>
+      {{else}}
+      <tr>
+        <td colspan="6">
+          <h1>Bạn chưa đăng khoá học nào. </h1>
+          <a href="/courses/create">Đăng khoá học</a>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+</form>
+
+{{!-- hidden form delete --}}
+<form name="deleteForm"></form>
+
+{{!-- Delete Modal --}}
+<div id="deleteModal" class="relative z-10 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+  <!--
+    Background backdrop, show/hide based on modal state.
+
+    Entering: "ease-out duration-300"
+      From: "opacity-0"
+      To: "opacity-100"
+    Leaving: "ease-in duration-200"
+      From: "opacity-100"
+      To: "opacity-0"
+  -->
+  <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+
+  <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+    <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+      <!--
+        Modal panel, show/hide based on modal state.
+
+        Entering: "ease-out duration-300"
+          From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+          To: "opacity-100 translate-y-0 sm:scale-100"
+        Leaving: "ease-in duration-200"
+          From: "opacity-100 translate-y-0 sm:scale-100"
+          To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+      -->
+      <div
+        class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+        <div class="bg-white px-4 pb-4 pt-4 sm:p-6 sm:pb-4">
+          <div class="flex flex-col justify-center">
+            <div
+              class="flex self-center h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+              <svg class="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+              </svg>
+            </div>
+            <div class="mt-2 text-center sm:mt-0 sm:text-left">
+              <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Xác nhận xoá</h3>
+              <div class="mt-2">
+                <p class="text-sm text-gray-500"><span id="spanComfirmDelete">Bạn có chắc muốn xoá khoá học ID:
+                  </span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex bg-gray-50 px-4 py-3 justify-end gap-1">
+          <button type="button" class="bg-white ring-1 ring-inset ring-gray-300 px-3 font-semibold rounded-md h-[40px]"
+            onclick="closeModal()">Huỷ</button>
+          <button type="button" class="bg-red-500 text-white px-3 py-2 font-semibold rounded-md h-[40px]"
+            onclick="submitDelete()">Xoá</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const btnDelete = document.querySelectorAll('.btn-delete');
+  const deleteModal = document.getElementById('deleteModal');
+  const spanComfirmDelete = document.getElementById('spanComfirmDelete');
+  const deleteForm = document.forms['deleteForm'];
+  const checkboxAll = document.getElementById('checkbox-all');
+  const courseItemCheckBox = document.querySelectorAll('input[name="courseIds[]"]');
+  const actionBtn = document.querySelector('.actionBtn')
+
+  var dataId;
+
+  btnDelete.forEach(button => {
+    button.addEventListener('click', function (event) {
+      //toggle modal
+      deleteModal.classList.remove('hidden');
+
+      //get id course
+      dataId = event.target.getAttribute('data-id');
+
+      //update span comfirm delete
+      spanComfirmDelete.textContent = `Are you sure you want to delete course ${dataId}?`;
+    });
+  });
+
+  function closeModal() {
+    const modalDelete = document.getElementById('deleteModal');
+    modalDelete.classList.add('hidden');
+  }
+
+  function submitDelete() {
+    deleteForm.action = `/me/courses/delete/${dataId}?_method=DELETE`;
+    deleteForm.method = 'POST';
+    deleteForm.submit();
+  }
+
+  //When click check all
+  checkboxAll.addEventListener('click', e => {
+    courseItemCheckBox.forEach(item => item.checked = e.target.checked);
+    renderSubmitActionBtn()
+  });
+
+  //When all item checked
+  courseItemCheckBox.forEach(item => {
+    item.addEventListener('click', e => {
+      var isCheckedAll = courseItemCheckBox.length === document.querySelectorAll('input[name="courseIds[]"]:checked').length;
+
+      checkboxAll.checked = isCheckedAll
+      renderSubmitActionBtn()
+    })
+  })
+
+  function renderSubmitActionBtn() {
+    var checkCount = document.querySelectorAll('input[name="courseIds[]"]:checked').length
+
+    if (checkCount > 0) {
+      actionBtn.classList.remove('opacity-50')
+    } else {
+      actionBtn.classList.add('opacity-50')
+    }
+  }
+
+  actionBtn.addEventListener('click', e => {
+    var checkCount = document.querySelectorAll('input[name="courseIds[]"]:checked').length
+
+    if (!checkCount) {
+      e.preventDefault()
+    }
+  })
+
+
+
+</script>

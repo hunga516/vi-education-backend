@@ -1,0 +1,42 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Header Example</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="bg-blue-600 p-4 flex justify-between items-center">
+      <div class="text-white font-bold text-lg">Ngọc Lộc</div>
+      <a href="/courses/create" class="text-white font-bold text-lg">Create</a>
+      <div class="relative">
+        <button
+          id="menuButton"
+          class="text-white font-bold py-2 px-4 rounded"
+        >Menu</button>
+        <ul
+          id="dropdownMenu"
+          class="absolute right-0 mt-2 bg-white text-black shadow-lg hidden"
+        >
+          <li><a href="/courses" class="block px-4 py-2">Tất cả khóa học</a></li>
+          <li><a href="/me/courses" class="block px-4 py-2">Khóa học của tôi</a></li>
+          <li><a href="/logout" class="block px-4 py-2">Đăng xuất</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <script>
+      const menuButton = document.getElementById('menuButton'); const
+      dropdownMenu = document.getElementById('dropdownMenu');
+      menuButton.addEventListener('click', () => {
+      dropdownMenu.classList.toggle('hidden'); });
+      document.addEventListener('click', (event) => { if
+      (!menuButton.contains(event.target) &&
+      !dropdownMenu.contains(event.target)) {
+      dropdownMenu.classList.add('hidden'); } });
+    </script>
+  </body>
+</html>
