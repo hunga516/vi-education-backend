@@ -14,12 +14,10 @@ class PostsController {
 
     async create(req, res, next) {
         try {
-            let { author, ...postData } = req.body;
-            author = new mongoose.Types.ObjectId(author);
+            req.body.author = new mongoose.Types.ObjectId(req.body.author);
 
             const post = new Posts({
-                ...postData,
-                author
+                ...req.body
             })
 
             await post.save()

@@ -14,7 +14,11 @@ import route from './routes/index.js'
 import Connect from './config/db/index.js';
 import SortMiddleware from './app/middlewares/SortMiddleware.js';
 import icons from './public/icons/index.js';
+import cors from 'cors';
 const app = express();
+
+// Enable CORS
+app.use(cors());
 
 // Method POST Override
 app.use(methodOverride('_method'));
