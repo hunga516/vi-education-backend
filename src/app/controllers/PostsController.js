@@ -14,7 +14,7 @@ class PostsController {
 
     async create(req, res, next) {
         try {
-            req.body.author = new mongoose.Types.ObjectId(req.body.author);
+            req.body.author = new mongoose.Types.ObjectId(req.body.author); //performance
 
             const post = new Posts({
                 ...req.body

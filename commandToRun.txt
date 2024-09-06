@@ -1,0 +1,1 @@
+mongod --dbpath "C:\Users\Admin\Downloads\cloud-cache\vi-education-backend\data\db"
