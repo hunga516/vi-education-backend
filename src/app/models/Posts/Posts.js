@@ -5,6 +5,7 @@ const PostsSchema = new Schema({
     title: { type: String, required: true },
     content: { type: String, required: true },
     author: { type: Schema.Types.ObjectId, ref: 'Users', required: true },
+    comments: [{ type: Schema.Types.ObjectId, ref: 'Comments' }],
     status: { type: String, default: "Ðang mở" },
     // usersJoin: { type: Schema.Types.ObjectId, ref: 'users' },
     upvote: { type: Number, default: 0 },

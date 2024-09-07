@@ -1,18 +1,32 @@
-import mongoose from 'mongoose';
-import Posts from "../models/Posts.js";
-import User from "../models/Users.js";  // Giả sử bạn có model User
+import mongoose, { Types } from 'mongoose';
+import Posts from "../models/Posts/Posts.js";
+import Comments from "../models/Posts/Comments.js";
 
 class PostsController {
-    async index(req, res, next) {
+
+    // GET /posts
+    async showAllPost(req, res, next) {
         try {
-            const posts = await Posts.find({}).populate('author', 'username');
+            const posts = await Posts.find({}).populate('author', 'username').populate('comments');
             res.json(posts);
         } catch (error) {
             next(error);
         }
     }
 
-    async create(req, res, next) {
+    // GET /posts/comments
+    async showAllComments(req, res, next) {
+        try {
+            const comments = await Comments.find({}).populate('post').populate('author').lean()
+            res.json(comments)
+        } catch (error) {
+            next(error)
+
+        }
+    }
+
+    // POST /posts/create-post
+    async createPost(req, res, next) {
         try {
             req.body.author = new mongoose.Types.ObjectId(req.body.author); //performance
 
@@ -26,6 +40,23 @@ class PostsController {
             next(error);
         }
     }
+
+    // POST /posts/create-comment
+    async createComment(req, res, next) {
+        try {
+            const comment = new Comments({
+                content: req.body.content,
+                author: new Types.ObjectId(req.body.author),
+                post: new Types.ObjectId(req.body.postId)
+            })
+
+            await comment.save();
+            res.json(comment);
+        } catch (error) {
+            next(error);
+        }
+    }
+
 }
 
 export default new PostsController();
