@@ -1,4 +1,4 @@
-import Course from '../models/Course.js'; // Đổi extension sang .js nếu cần
+import Course from '../models/Course/Course.js'; // Đổi extension sang .js nếu cần
 import { mutipleMongooseToObject, singleMongooseToObject } from '../../utils/mongoose.js'; // Đổi extension sang .js nếu cần
 import mongoose from 'mongoose';
 

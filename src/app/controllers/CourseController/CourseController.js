@@ -1,15 +1,12 @@
-import Course from '../models/Course.js'; // Đổi extension sang .js nếu cần
-import { mutipleMongooseToObject, singleMongooseToObject } from '../../utils/mongoose.js'; // Đổi extension sang .js nếu cần
-import mongoose from 'mongoose';
+import Course from '../../models/Course/Course.js'; // Đổi extension sang .js nếu cần
+import { mutipleMongooseToObject, singleMongooseToObject } from '../../../utils/mongoose.js'; // Đổi extension sang .js nếu cần
 
-class CoursesController {
+class CourseController {
     // [GET] /courses
     async index(req, res, next) {
         try {
-            const courses = await Course.find({});
-            res.render("courses/courses", {
-                courses: mutipleMongooseToObject(courses),
-            });
+            const courses = await Course.find({}).populate('chapter');
+            res.json(courses);
         } catch (error) {
             next(error);
         }
@@ -80,4 +77,4 @@ class CoursesController {
     }
 }
 
-export default new CoursesController();
+export default new CourseController();

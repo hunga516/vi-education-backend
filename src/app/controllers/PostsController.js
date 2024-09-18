@@ -48,9 +48,13 @@ class PostsController {
                 content: req.body.content,
                 author: new Types.ObjectId(req.body.author),
                 post: new Types.ObjectId(req.body.postId)
-            })
+            });
 
             await comment.save();
+
+            // Cập nhật bài viết để thêm ID của bình luận vào mảng comments
+            await Posts.findByIdAndUpdate(req.body.postId, { $push: { comments: comment._id } });
+
             res.json(comment);
         } catch (error) {
             next(error);
