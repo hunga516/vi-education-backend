@@ -1,9 +1,9 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import mongooseSequence from 'mongoose-sequence';
 
 
 const ChapterSchema = new mongoose.Schema({
-    course: { type: Number, ref: "Course" },
+    course: { type: Schema.Types.ObjectId, ref: "Course" },
     title: { type: String },
     description: { type: String },
     lessons: [{ type: Number, ref: "Lessons" }]

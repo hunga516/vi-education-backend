@@ -5,7 +5,7 @@ import Course from '../../models/Course/Course.js';
 
 class ChapterController {
     // [GET] /courses/chapters
-    async index(req, res, next) {
+    async getAllChapters(req, res, next) {
         try {
             // Lấy danh sách chapter
             const chapters = await Chapters.find({});
@@ -26,25 +26,37 @@ class ChapterController {
         }
     }
 
+    // [GET] /courses/:courseId/chapters
+    async getChaptersByCourseId(req, res, next) {
+        try {
+            const chapters = await Chapter.find({ course: req.params.courseId })
+            res.json(chapters)
+        } catch (error) {
+            next(error);
+        }
+    }
 
-    // [GET] /chapters/create
-    create(req, res) {
+
+    // [GET] /chapters/show-add-chapter
+    showAddChapter(req, res) {
         res.render("courses/createCourse");
     }
 
-    // [POST] /course/chapter/store
-    async store(req, res, next) {
+    // [POST] /courses/:courseId/chapters
+    async addChapter(req, res, next) {
         try {
             const chapter = req.body;
 
             const newChapter = new Chapter({
                 course: Number(chapter.course),
                 ...chapter
-            })
+            });
 
-            newChapter.save()
+            await newChapter.save();
 
-            res.json(chapter)
+            await Course.findByIdAndUpdate(req.params.courseId, { $push: { chapters: newChapter._id } })
+
+            res.json(chapter);
         } catch (error) {
             // await session.abortTransaction()
             next(error);

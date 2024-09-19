@@ -3,7 +3,7 @@ import { mutipleMongooseToObject, singleMongooseToObject } from '../../../utils/
 
 class CourseController {
     // [GET] /courses
-    async index(req, res, next) {
+    async getAllCourses(req, res, next) {
         try {
             const courses = await Course.find({}).populate('chapter');
             res.json(courses);
@@ -12,10 +12,10 @@ class CourseController {
         }
     }
 
-    // [GET] /courses/:slug
-    async detail(req, res, next) {
+    // [GET] /courses/:courseId
+    async getCourseByCourseId(req, res, next) {
         try {
-            const course = await Course.findOne({ slug: req.params.slug });
+            const course = await Course.findOne({ slug: req.params.courseId });
             res.render('courses/detailCourse', { course: singleMongooseToObject(course) });
             console.log(course);
         } catch (error) {
@@ -23,13 +23,13 @@ class CourseController {
         }
     }
 
-    // [GET] /courses/create
-    create(req, res) {
+    // [GET] /courses/show-add-course
+    showAddCourse(req, res) {
         res.render("courses/createCourse");
     }
 
-    // [POST] /courses/store
-    async store(req, res, next) {
+    // [POST] /courses
+    async addCourse(req, res, next) {
         // const session = await mongoose.startSession()
         // session.startTransaction()
 

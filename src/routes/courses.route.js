@@ -4,14 +4,16 @@ import chapterController from '../app/controllers/CourseController/ChapterContro
 
 const router = express.Router();
 
-router.get('/create', courseController.create);
+router.get('/show-add-course', courseController.showAddCourse);
 router.post('/handle-form-action', courseController.handleFormAction);
-router.post('/create/store', courseController.store);
-router.get('/detail/:slug', courseController.detail);
+router.get('/:courseId', courseController.getCourseByCourseId);
+router.post('/', courseController.addCourse);
+router.get('/', courseController.getAllCourses);
 
-router.get('/chapter', chapterController.index);
-router.post('/chapter/store', chapterController.store);
 
-router.get('/', courseController.index);
+router.get('/chapters', chapterController.getAllChapters);
+router.get('/:courseId/chapters', chapterController.getChaptersByCourseId); ///
+router.post('/:courseId/chapters', chapterController.addChapter);
+
 
 export default router;
