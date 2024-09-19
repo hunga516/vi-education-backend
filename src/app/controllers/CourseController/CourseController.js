@@ -5,7 +5,8 @@ class CourseController {
     // [GET] /courses
     async getAllCourses(req, res, next) {
         try {
-            const courses = await Course.find({}).populate('chapter');
+            const courses = await Course.find({}).populate('chapters').populate('author', 'displayName photoURL');
+            console.log(courses);
             res.json(courses);
         } catch (error) {
             next(error);

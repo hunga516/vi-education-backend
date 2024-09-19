@@ -4,9 +4,9 @@ import chapterController from '../app/controllers/CourseController/ChapterContro
 
 const router = express.Router();
 
-router.get('/show-add-course', courseController.showAddCourse);
 router.post('/handle-form-action', courseController.handleFormAction);
 router.get('/:courseId', courseController.getCourseByCourseId);
+router.get('/show-add-course', courseController.showAddCourse);
 router.post('/', courseController.addCourse);
 router.get('/', courseController.getAllCourses);
 
