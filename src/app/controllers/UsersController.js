@@ -11,7 +11,7 @@ class UsersController {
             const isUserExist = await Users.findOne({ email: req.body.email })
 
             if (isUserExist) {
-                return
+                return res.status(400).json({ message: "Người dùng đã tồn tại" }); // Thêm phản hồi
             }
 
             const user = await Users.create({
@@ -21,6 +21,19 @@ class UsersController {
                 password: req.body.email,
                 photoURL: req.body.photoURL,
             });
+            res.json(user);
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    // [GET] /users/email/:email
+    async getUserByEmail(req, res, next) {
+        try {
+            const user = await Users.findOne({ email: req.params.email }) // Sửa thành findOne
+            if (!user) {
+                return res.status(404).json({ message: "Người dùng không tìm thấy" }); // Thêm phản hồi nếu không tìm thấy
+            }
             res.json(user);
         } catch (error) {
             next(error)

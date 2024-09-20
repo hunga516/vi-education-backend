@@ -7,7 +7,9 @@ const router = express.Router();
 // router.post('/handle-form-action', usersController.handleFormAction);
 // router.post('/create/store', usersController.store);
 // router.get('/detail/:slug', usersController.detail);
-router.get('/', usersController.index);
 router.post('/create', usersController.create);
+router.get('/email/:email', usersController.getUserByEmail);
+router.get('/', usersController.index);
+
 
 export default router;
