@@ -15,7 +15,29 @@ import Connect from './config/db/index.js';
 import SortMiddleware from './app/middlewares/SortMiddleware.js';
 import icons from './public/icons/index.js';
 import cors from 'cors';
+
+import { Server } from "socket.io";
+import { createServer } from 'node:http';
+
+
 const app = express();
+
+//Use socket.io
+const server = createServer(app);
+const io = new Server(server)
+
+io.on('connection', (socket) => {
+    console.log('a user connected');
+
+    socket.on('disconnect', () => {
+        console.log('user disconnected');
+    });
+
+    socket.on('chat message', (msg) => {
+        io.emit('chat message', msg);
+    });
+});
+
 
 // Enable CORS
 app.use(cors());
@@ -82,7 +104,7 @@ app.set('views', path.join(__dirname, 'resource', 'views'));
 // Routes init
 route(app)
 
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 });
 

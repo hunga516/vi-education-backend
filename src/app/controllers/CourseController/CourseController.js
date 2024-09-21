@@ -16,7 +16,7 @@ class CourseController {
     // [GET] /courses/:courseId
     async getCourseByCourseId(req, res, next) {
         try {
-            const course = await Course.findOne({ slug: req.params.courseId });
+            const course = await Course.findOne({ courseId: req.params.courseId });
             res.render('courses/detailCourse', { course: singleMongooseToObject(course) });
             console.log(course);
         } catch (error) {
@@ -30,10 +30,7 @@ class CourseController {
     }
 
     // [POST] /courses
-    async addCourse(req, res, next) {
-        // const session = await mongoose.startSession()
-        // session.startTransaction()
-
+    async addCourse(req, res, next, io) {
         try {
             const course = req.body;
 
@@ -41,17 +38,13 @@ class CourseController {
                 course.images = undefined;
             }
 
-            // const newCourse = await Course.create([course], { session });
             const newCourse = await Course.create(course);
-            // await session.commitTransaction()
             res.redirect('/me/courses');
         } catch (error) {
-            // await session.abortTransaction()
             next(error);
-        } finally {
-            // session.endSession()
         }
     }
+
 
     async handleFormAction(req, res, next) {
         try {

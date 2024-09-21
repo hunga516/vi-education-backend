@@ -12,7 +12,7 @@ const CourseSchema = new mongoose.Schema({
     images: { type: String, default: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s" },
     chapters: [{ type: Schema.Types.ObjectId, ref: "Chapter" }],
     author: { type: Schema.Types.ObjectId, ref: "Users" },
-    slug: { type: String, slug: 'name', unique: true },
+    slug: { type: String, slug: 'title', parse: true },
     registrationCount: { type: Number, default: 0 },
     deleted: { type: Boolean, default: false },
 }, {
