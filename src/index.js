@@ -27,14 +27,14 @@ const server = createServer(app);
 const io = new Server(server)
 
 io.on('connection', (socket) => {
-    console.log('a user connected');
+
+    // Khi có khóa học mới được thêm
+    socket.on('new_course', (newCourse) => {
+        io.emit('course_added', newCourse); // Gửi dữ liệu khóa học mới đến tất cả client
+    });
 
     socket.on('disconnect', () => {
         console.log('user disconnected');
-    });
-
-    socket.on('chat message', (msg) => {
-        io.emit('chat message', msg);
     });
 });
 

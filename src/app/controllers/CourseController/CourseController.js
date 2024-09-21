@@ -30,7 +30,7 @@ class CourseController {
     }
 
     // [POST] /courses
-    async addCourse(req, res, next, io) {
+    async addCourse(req, res, next) {
         try {
             const course = req.body;
 
@@ -38,13 +38,14 @@ class CourseController {
                 course.images = undefined;
             }
 
-            const newCourse = await Course.create(course);
-            res.redirect('/me/courses');
+            const newCourse = new Course(course)
+            await newCourse.save()
+            res.json(newCourse)
         } catch (error) {
             next(error);
+        } finally {
         }
     }
-
 
     async handleFormAction(req, res, next) {
         try {
