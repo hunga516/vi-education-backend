@@ -50,6 +50,16 @@ class CourseController {
         }
     }
 
+    // [PUT] /courses/:courseId
+    async editCourse(req, res, next) {
+        try {
+            const response = await Course.findOneAndUpdate({ courseId: req.params.courseId }, req.body, { new: true })
+            res.json(response)
+        } catch (error) {
+            next(error)
+        }
+    }
+
     async handleFormAction(req, res, next) {
         try {
             switch (req.body.action) {

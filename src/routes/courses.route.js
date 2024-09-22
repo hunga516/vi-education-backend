@@ -7,6 +7,7 @@ const router = express.Router();
 router.post('/handle-form-action', courseController.handleFormAction);
 router.get('/:courseId', courseController.getCourseByCourseId);
 router.get('/show-add-course', courseController.showAddCourse);
+router.put('/:courseId', courseController.editCourse);
 router.post('/', courseController.addCourse);
 router.get('/', courseController.getAllCourses);
 
