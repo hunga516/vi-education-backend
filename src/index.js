@@ -24,20 +24,29 @@ const app = express();
 
 //Use socket.io
 const server = createServer(app);
-const io = new Server(server)
+const io = new Server(server, {
+    cors: {
+        origin: 'http://localhost:3000',
+        methods: ['GET', 'POST']
+    }
+})
 
 io.on('connection', (socket) => {
 
-    // Khi có khóa học mới được thêm
-    socket.on('new_course', (newCourse) => {
-        io.emit('course_added', newCourse); // Gửi dữ liệu khóa học mới đến tất cả client
-    });
+    // // Khi có khóa học mới được thêm
+    // socket.on('new_course', (newCourse) => {
+    //     io.emit('course_added', newCourse); // Gửi dữ liệu khóa học mới đến tất cả client
+    // });
 
     socket.on('disconnect', () => {
         console.log('user disconnected');
     });
 });
 
+app.use((req, res, next) => {
+    req.io = io
+    next()
+})
 
 // Enable CORS
 app.use(cors());

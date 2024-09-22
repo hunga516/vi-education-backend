@@ -11,7 +11,7 @@ class UsersController {
             const isUserExist = await Users.findOne({ email: req.body.email })
 
             if (isUserExist) {
-                return res.status(400).json({ message: "Người dùng đã tồn tại" }); // Thêm phản hồi
+                res.json({ message: "Người dùng đã tồn tại" })
             }
 
             const user = await Users.create({

@@ -40,6 +40,9 @@ class CourseController {
 
             const newCourse = new Course(course)
             await newCourse.save()
+
+            const savedCourse = await Course.findById(newCourse._id).populate('author', 'displayName photoURL');
+            req.io.emit('course_added', savedCourse);
             res.json(newCourse)
         } catch (error) {
             next(error);
