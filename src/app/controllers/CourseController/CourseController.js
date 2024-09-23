@@ -39,7 +39,7 @@ class CourseController {
             }
 
             const newCourse = new Course(course)
-            await newCourse.save()
+            await newCourse.save() //xem lai khuc nay, co can asign savedCourse khong
 
             const savedCourse = await Course.findById(newCourse._id).populate('author', 'displayName photoURL');
             req.io.emit('course_added', savedCourse);
@@ -53,7 +53,8 @@ class CourseController {
     // [PUT] /courses/:courseId
     async editCourse(req, res, next) {
         try {
-            const response = await Course.findOneAndUpdate({ courseId: req.params.courseId }, req.body, { new: true })
+            const response = await Course.findOneAndUpdate({ courseId: req.params.courseId }, req.body, { new: true }).populate('author')
+            req.io.emit('course_edited', response)
             res.json(response)
         } catch (error) {
             next(error)
