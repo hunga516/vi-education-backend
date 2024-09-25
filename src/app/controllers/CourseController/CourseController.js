@@ -5,7 +5,20 @@ class CourseController {
     // [GET] /courses
     async getAllCourses(req, res, next) {
         try {
-            const courses = await Course.find({}).populate('chapters').populate('author', 'displayName photoURL');
+            const { sort, order } = req.query
+
+            const courses = await Course.find({ isDeleted: false }).populate('chapters').populate('author', 'displayName photoURL').sort({ [sort]: order || -1 })
+            console.log(courses);
+            res.json(courses);
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    // [GET] /courses/trash
+    async getAllTrashCourses(req, res, next) {
+        try {
+            const courses = await Course.find({ isDeleted: true }).populate('chapters').populate('author', 'displayName photoURL');
             console.log(courses);
             res.json(courses);
         } catch (error) {
@@ -47,6 +60,38 @@ class CourseController {
         } catch (error) {
             next(error);
         } finally {
+        }
+    }
+
+    //[DELETE] /courses/:courseId
+    async softDeleteCourse(req, res, next) {
+        try {
+            const courseDeleted = await Course.findOneAndUpdate({ courseId: req.params.courseId }, {
+                isDeleted: true,
+                deletedBy: req.body.userId,
+                deletedAt: new Date()
+            })
+
+            req.io.emit('course_soft_deleted', courseDeleted)
+            res.json(courseDeleted)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    // [POST] /courses/restore/:courseId
+    async restoreCourse(req, res, next) {
+        try {
+            const courseRestored = await Course.findOneAndUpdate({ courseId: req.params.courseId }, {
+                isDeleted: false,
+                deletedAt: null,
+                deletedBy: null
+            })
+
+            req.io.emit('course_restored', courseRestored)
+            res.json(courseRestored)
+        } catch (error) {
+            next(error)
         }
     }
 

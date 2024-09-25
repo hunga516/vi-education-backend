@@ -5,9 +5,12 @@ import chapterController from '../app/controllers/CourseController/ChapterContro
 const router = express.Router();
 
 router.post('/handle-form-action', courseController.handleFormAction);
-router.get('/:courseId', courseController.getCourseByCourseId);
-router.get('/show-add-course', courseController.showAddCourse);
+router.delete('/:courseId', courseController.softDeleteCourse);
+router.get('/trash', courseController.getAllTrashCourses);
+router.post('/restore/:courseId', courseController.restoreCourse);
+router.delete('/:courseId', courseController.softDeleteCourse);
 router.put('/:courseId', courseController.editCourse);
+router.get('/:courseId', courseController.getCourseByCourseId);
 router.post('/', courseController.addCourse);
 router.get('/', courseController.getAllCourses);
 
