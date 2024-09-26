@@ -1,13 +1,22 @@
 import Course from '../../models/Course/Course.js'; // Đổi extension sang .js nếu cần
 import { mutipleMongooseToObject, singleMongooseToObject } from '../../../utils/mongoose.js'; // Đổi extension sang .js nếu cần
+import { query } from 'express';
 
 class CourseController {
     // [GET] /courses
     async getAllCourses(req, res, next) {
         try {
-            const { sort, order } = req.query
+            const { sort, order, title, description } = req.query
 
-            const courses = await Course.find({ isDeleted: false }).populate('chapters').populate('author', 'displayName photoURL').sort({ [sort]: order || -1 })
+            let query = { isDeleted: false }
+            if (title) {
+                query.title = new RegExp(title, 'i');
+            }
+            if (description) {
+                query.description = description;
+            }
+
+            const courses = await Course.find(query).populate('chapters').populate('author', 'displayName photoURL').sort({ [sort]: order || -1 })
             console.log(courses);
             res.json(courses);
         } catch (error) {
