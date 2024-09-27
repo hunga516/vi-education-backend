@@ -2,7 +2,6 @@ import mongoose, { Schema } from 'mongoose';
 import slug from 'mongoose-slug-updater';
 import mongooseSequence from 'mongoose-sequence';
 
-
 const CourseSchema = new mongoose.Schema({
     courseId: { type: Number },
     role: { type: String, default: 'User' },
@@ -19,6 +18,17 @@ const CourseSchema = new mongoose.Schema({
     deletedAt: { type: Date }
 }, {
     timestamps: true,
+});
+
+// Định dạng lại ngày tháng trước khi lưu
+CourseSchema.pre('save', function (next) {
+    if (this.createdAt) {
+        this.createdAt = new Date(this.createdAt).toLocaleDateString('vi-VN'); // Định dạng theo kiểu Việt Nam
+    }
+    if (this.updatedAt) {
+        this.updatedAt = new Date(this.updatedAt).toLocaleDateString('vi-VN'); // Định dạng theo kiểu Việt Nam
+    }
+    next();
 });
 
 // Generate slug
