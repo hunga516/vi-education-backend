@@ -3,7 +3,7 @@ import mongooseSequence from 'mongoose-sequence';
 
 
 const ChapterSchema = new mongoose.Schema({
-    course: { type: Schema.Types.ObjectId, ref: "Course" },
+    courseId: { type: Schema.Types.ObjectId, ref: "Course" },
     title: { type: String },
     description: { type: String },
     lessons: [{ type: Number, ref: "Lessons" }]

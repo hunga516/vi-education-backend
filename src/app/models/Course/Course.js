@@ -1,6 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 import slug from 'mongoose-slug-updater';
 import mongooseSequence from 'mongoose-sequence';
+import moment from 'moment';
 
 const CourseSchema = new mongoose.Schema({
     courseId: { type: Number },
@@ -13,26 +14,37 @@ const CourseSchema = new mongoose.Schema({
     slug: { type: String, slug: 'title', parse: true },
     registrationCount: { type: Number, default: 0 },
     isDeleted: { type: Boolean, default: false },
-    deletedBy: { type: Schema.Types.ObjectId, ref: 'User' },
+    deletedBy: { type: Schema.Types.ObjectId, ref: 'Users' },
     deletedReason: { type: String },
     deletedAt: { type: Date }
 }, {
     timestamps: true,
 });
 
-// Định dạng lại ngày tháng trước khi lưu
-CourseSchema.pre('save', function (next) {
-    if (this.createdAt) {
-        this.createdAt = new Date(this.createdAt).toLocaleDateString('vi-VN'); // Định dạng theo kiểu Việt Nam
-    }
-    if (this.updatedAt) {
-        this.updatedAt = new Date(this.updatedAt).toLocaleDateString('vi-VN'); // Định dạng theo kiểu Việt Nam
-    }
-    next();
-});
+CourseSchema.methods.toJSON = function () {
+    const course = this.toObject();
 
+    if (course.createdAt) {
+        course.createdAt = moment(course.createdAt).format('DD-MM-YYYY');
+    }
+    if (course.updatedAt) {
+        course.updatedAt = moment(course.updatedAt).format('DD-MM-YYYY');
+    }
+    if (course.deletedAt) {
+        course.deletedAt = moment(course.deletedAt).format('DD-MM-YYYY');
+    }
+
+    return course;
+};
+
+CourseSchema.virtual('chapter', {
+    ref: 'Chapter',
+    localField: 'courseId', // Sử dụng courseId
+    foreignField: 'courseId', // Trường trong Chapter tham chiếu đến
+});
 // Generate slug
 mongoose.plugin(slug);
+
 // Auto incre
 const AutoIncrement = mongooseSequence(mongoose);
 CourseSchema.plugin(AutoIncrement, { inc_field: 'courseId' });

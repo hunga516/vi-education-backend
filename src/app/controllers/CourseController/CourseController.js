@@ -17,7 +17,6 @@ class CourseController {
             }
 
             const courses = await Course.find(query).populate('chapters').populate('author', 'displayName photoURL').sort({ [sort]: order || -1 })
-            console.log(courses);
             res.json(courses);
         } catch (error) {
             next(error);
@@ -28,7 +27,6 @@ class CourseController {
     async getAllTrashCourses(req, res, next) {
         try {
             const courses = await Course.find({ isDeleted: true }).populate('chapters').populate('author', 'displayName photoURL');
-            console.log(courses);
             res.json(courses);
         } catch (error) {
             next(error);
@@ -40,7 +38,6 @@ class CourseController {
         try {
             const course = await Course.findOne({ courseId: req.params.courseId });
             res.render('courses/detailCourse', { course: singleMongooseToObject(course) });
-            console.log(course);
         } catch (error) {
             next(error);
         }

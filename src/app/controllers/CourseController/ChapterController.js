@@ -48,7 +48,6 @@ class ChapterController {
             const chapter = req.body;
 
             const newChapter = new Chapter({
-                course: Number(chapter.course),
                 ...chapter
             });
 

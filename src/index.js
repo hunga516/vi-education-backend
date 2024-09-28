@@ -28,7 +28,9 @@ const io = new Server(server, {
     cors: {
         origin: 'http://localhost:3000',
         methods: ['GET', 'POST']
-    }
+    },
+    pingTimeout: 60000, // Thay đổi thời gian timeout (60 giây)
+    pingInterval: 25000 // Thay đổi thời gian ping (25 giây)
 })
 
 io.on('connection', (socket) => {
