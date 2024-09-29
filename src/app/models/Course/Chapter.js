@@ -6,6 +6,7 @@ const ChapterSchema = new mongoose.Schema({
     courseId: { type: Schema.Types.ObjectId, ref: "Course" },
     title: { type: String },
     description: { type: String },
+    course: { type: Schema.Types.ObjectId, ref: "Course" },
     lessons: [{ type: Number, ref: "Lessons" }]
 });
 

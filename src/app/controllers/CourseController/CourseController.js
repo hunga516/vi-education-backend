@@ -1,12 +1,10 @@
-import Course from '../../models/Course/Course.js'; // Đổi extension sang .js nếu cần
-import { mutipleMongooseToObject, singleMongooseToObject } from '../../../utils/mongoose.js'; // Đổi extension sang .js nếu cần
-import { query } from 'express';
+import Course from '../../models/Course/Course.js';
 
 class CourseController {
     // [GET] /courses
     async getAllCourses(req, res, next) {
         try {
-            const { sort, order, title, description } = req.query
+            const { _id, sort, order, title, description } = req.query
 
             let query = { isDeleted: false }
             if (title) {
@@ -15,8 +13,11 @@ class CourseController {
             if (description) {
                 query.description = description;
             }
+            if (_id) {
+                query._id = _id
+            }
 
-            const courses = await Course.find(query).populate('chapters').populate('author', 'displayName photoURL').sort({ [sort]: order || -1 })
+            const courses = await Course.find(query).populate('chapters').populate('author', 'displayName photoURL email').sort({ [sort]: order || -1 })
             res.json(courses);
         } catch (error) {
             next(error);
@@ -33,11 +34,11 @@ class CourseController {
         }
     }
 
-    // [GET] /courses/:courseId
+    // [GET] /courses/:id
     async getCourseByCourseId(req, res, next) {
         try {
-            const course = await Course.findOne({ courseId: req.params.courseId });
-            res.render('courses/detailCourse', { course: singleMongooseToObject(course) });
+            const course = await Course.findOne({ _id: req.params.id }).populate('chapters', 'title').populate('author', 'displayName photoURL email');
+            res.json(course)
         } catch (error) {
             next(error);
         }
@@ -69,10 +70,10 @@ class CourseController {
         }
     }
 
-    //[DELETE] /courses/:courseId
+    //[DELETE] /courses/:id
     async softDeleteCourse(req, res, next) {
         try {
-            const courseDeleted = await Course.findOneAndUpdate({ courseId: req.params.courseId }, {
+            const courseDeleted = await Course.findOneAndUpdate({ _id: req.params.id }, {
                 isDeleted: true,
                 deletedBy: req.body.userId,
                 deletedAt: new Date()
@@ -85,10 +86,10 @@ class CourseController {
         }
     }
 
-    // [POST] /courses/restore/:courseId
+    // [POST] /courses/restore/:id
     async restoreCourse(req, res, next) {
         try {
-            const courseRestored = await Course.findOneAndUpdate({ courseId: req.params.courseId }, {
+            const courseRestored = await Course.findOneAndUpdate({ _id: req.params.id }, {
                 isDeleted: false,
                 deletedAt: null,
                 deletedBy: null
@@ -101,10 +102,10 @@ class CourseController {
         }
     }
 
-    // [PUT] /courses/:courseId
+    // [PUT] /courses/:id
     async editCourse(req, res, next) {
         try {
-            const response = await Course.findOneAndUpdate({ courseId: req.params.courseId }, req.body, { new: true }).populate('author')
+            const response = await Course.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true }).populate('author')
             req.io.emit('course_edited', response)
             res.json(response)
         } catch (error) {

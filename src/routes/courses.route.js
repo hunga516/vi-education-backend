@@ -5,19 +5,19 @@ import chapterController from '../app/controllers/CourseController/ChapterContro
 const router = express.Router();
 
 router.post('/handle-form-action', courseController.handleFormAction);
-router.delete('/:courseId', courseController.softDeleteCourse);
+router.delete('/:id', courseController.softDeleteCourse);
 router.get('/trash', courseController.getAllTrashCourses);
-router.post('/restore/:courseId', courseController.restoreCourse);
-router.delete('/:courseId', courseController.softDeleteCourse);
-router.put('/:courseId', courseController.editCourse);
-router.get('/:courseId', courseController.getCourseByCourseId);
+router.post('/restore/:id', courseController.restoreCourse);
+router.delete('/:id', courseController.softDeleteCourse);
+router.put('/:id', courseController.editCourse);
+router.get('/:id', courseController.getCourseByCourseId);
 router.post('/', courseController.addCourse);
 router.get('/', courseController.getAllCourses);
 
 
 router.get('/chapters', chapterController.getAllChapters);
-router.get('/:courseId/chapters', chapterController.getChaptersByCourseId);
-router.post('/:courseId/chapters', chapterController.addChapter);
+router.get('/:id/chapters', chapterController.getChaptersByCourseId);
+router.post('/:id/chapters', chapterController.addChapter);
 
 
 export default router;

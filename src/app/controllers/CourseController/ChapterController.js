@@ -26,10 +26,10 @@ class ChapterController {
         }
     }
 
-    // [GET] /courses/:courseId/chapters
+    // [GET] /courses/:id/chapters
     async getChaptersByCourseId(req, res, next) {
         try {
-            const chapters = await Chapter.find({ course: req.params.courseId })
+            const chapters = await Chapter.find({ _id: req.params.id })
             res.json(chapters)
         } catch (error) {
             next(error);
@@ -42,32 +42,34 @@ class ChapterController {
         res.render("courses/createCourse");
     }
 
-    // [POST] /courses/:courseId/chapters
+    // [POST] /courses/:id/chapters
     async addChapter(req, res, next) {
         try {
             const chapter = req.body;
 
             const newChapter = new Chapter({
-                ...chapter
+                ...chapter,
+                course: req.params.id
             });
 
             await newChapter.save();
 
-            await Course.findByIdAndUpdate(req.params.courseId, { $push: { chapters: newChapter._id } })
+            await Course.findOneAndUpdate(
+                { _id: req.params.id },
+                { $push: { chapters: newChapter._id } }
+            );
 
-            res.json(chapter);
+            res.json(newChapter);
         } catch (error) {
-            // await session.abortTransaction()
             next(error);
-        } finally {
-            // session.endSession()
         }
     }
 
-    // [GET] /courses/:slug
+
+    // [GET] /courses/:courseId
     async detail(req, res, next) {
         try {
-            const course = await Courses.findOne({ slug: req.params.slug });
+            const course = await Courses.findOne({ courseId: req.params.courseId });
             res.render('courses/detailCourse', { course: singleMongooseToObject(course) });
             console.log(course);
         } catch (error) {
