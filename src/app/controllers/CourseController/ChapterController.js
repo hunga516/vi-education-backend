@@ -27,9 +27,9 @@ class ChapterController {
     }
 
     // [GET] /courses/:id/chapters
-    async getChaptersByCourseId(req, res, next) {
+    async getAllChaptersByCourseId(req, res, next) {
         try {
-            const chapters = await Chapter.find({ _id: req.params.id })
+            const chapters = await Chapter.find({ course: req.params.id })
             res.json(chapters)
         } catch (error) {
             next(error);
@@ -51,13 +51,7 @@ class ChapterController {
                 ...chapter,
                 course: req.params.id
             });
-
             await newChapter.save();
-
-            await Course.findOneAndUpdate(
-                { _id: req.params.id },
-                { $push: { chapters: newChapter._id } }
-            );
 
             res.json(newChapter);
         } catch (error) {

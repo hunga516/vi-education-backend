@@ -16,7 +16,7 @@ router.get('/', courseController.getAllCourses);
 
 
 router.get('/chapters', chapterController.getAllChapters);
-router.get('/:id/chapters', chapterController.getChaptersByCourseId);
+router.get('/:id/chapters', chapterController.getAllChaptersByCourseId);
 router.post('/:id/chapters', chapterController.addChapter);
 
 

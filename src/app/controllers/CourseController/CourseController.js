@@ -4,7 +4,7 @@ class CourseController {
     // [GET] /courses
     async getAllCourses(req, res, next) {
         try {
-            const { _id, sort, order, title, description } = req.query
+            const { _id, sort, order, title, description, author } = req.query
 
             let query = { isDeleted: false }
             if (title) {
@@ -16,8 +16,11 @@ class CourseController {
             if (_id) {
                 query._id = _id
             }
+            if (author) {
+                query.author = author
+            }
 
-            const courses = await Course.find(query).populate('chapters').populate('author', 'displayName photoURL email').sort({ [sort]: order || -1 })
+            const courses = await Course.find(query).populate('author', 'displayName photoURL email').sort({ [sort]: order || -1 })
             res.json(courses);
         } catch (error) {
             next(error);
@@ -27,7 +30,7 @@ class CourseController {
     // [GET] /courses/trash
     async getAllTrashCourses(req, res, next) {
         try {
-            const courses = await Course.find({ isDeleted: true }).populate('chapters').populate('author', 'displayName photoURL');
+            const courses = await Course.find({ isDeleted: true }).populate('author', 'displayName photoURL');
             res.json(courses);
         } catch (error) {
             next(error);
@@ -37,7 +40,7 @@ class CourseController {
     // [GET] /courses/:id
     async getCourseByCourseId(req, res, next) {
         try {
-            const course = await Course.findOne({ _id: req.params.id }).populate('chapters', 'title').populate('author', 'displayName photoURL email');
+            const course = await Course.findOne({ _id: req.params.id }).populate('author', 'displayName photoURL email');
             res.json(course)
         } catch (error) {
             next(error);
