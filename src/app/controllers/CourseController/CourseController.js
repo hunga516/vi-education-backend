@@ -1,3 +1,4 @@
+import cloudinary from '../../../config/cloudinary/index.js';
 import Course from '../../models/Course/Course.js';
 
 class CourseController {
@@ -55,21 +56,34 @@ class CourseController {
     // [POST] /courses
     async addCourse(req, res, next) {
         try {
-            const course = req.body;
+            const { title, description, author, content, role } = req.body;
+            let imageUrl;
 
-            if (course.images === '') {
-                course.images = undefined;
+            if (req.file) {
+                const result = await cloudinary.uploader.upload(req.file.path, {
+                });
+                imageUrl = result.secure_url;
+            } else {
+                console.log('khong co file');
             }
 
-            const newCourse = new Course(course)
-            await newCourse.save() //xem lai khuc nay, co can asign savedCourse khong
+            const newCourse = new Course({
+                title,
+                description,
+                author,
+                content,
+                role,
+                images: imageUrl || '',
+            });
 
-            const savedCourse = await Course.findById(newCourse._id).populate('author', 'displayName photoURL');
+            await newCourse.save();
+
+            const savedCourse = await Course.findById(newCourse._id).populate('author', 'displayName photoURL')
+
             req.io.emit('course_added', savedCourse);
-            res.json(newCourse)
+            res.json(newCourse);
         } catch (error) {
             next(error);
-        } finally {
         }
     }
 
