@@ -133,9 +133,13 @@ class CourseController {
     async handleFormAction(req, res, next) {
         try {
             switch (req.body.action) {
-                case 'delete':
-                    await Course.delete({ _id: { $in: req.body.courseIds } });
-                    res.redirect('back');
+                case 'soft-delete':
+                    await Course.updateMany({ _id: { $in: req.body.courseIds } }, {
+                        isDeleted: true,
+                        deletedBy: req.body.userId,
+                        deletedAt: new Date()
+                    });
+                    req.io.emit('course_soft_deleted')
                     break;
                 case 'restore':
                     await Course.restore({ _id: { $in: req.body.courseIds } });
