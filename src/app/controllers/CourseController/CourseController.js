@@ -31,7 +31,7 @@ class CourseController {
     // [GET] /courses/trash
     async getAllTrashCourses(req, res, next) {
         try {
-            const courses = await Course.find({ isDeleted: true }).populate('author', 'displayName photoURL');
+            const courses = await Course.find({ isDeleted: true }).sort({ deletedAt: -1 }).populate('author', 'displayName photoURL');
             res.json(courses);
         } catch (error) {
             next(error);
@@ -139,11 +139,18 @@ class CourseController {
                         deletedBy: req.body.userId,
                         deletedAt: new Date()
                     });
-                    req.io.emit('course_soft_deleted')
+
+                    const courseDeleteds = await Course.find({ _id: { $in: req.body.courseIds } })
+                    req.io.emit('course_soft_deleted', courseDeleteds)
                     break;
                 case 'restore':
-                    await Course.restore({ _id: { $in: req.body.courseIds } });
-                    res.redirect('back');
+                    await Course.updateMany({ _id: { $in: req.body.courseIds } }, {
+                        isDeleted: false,
+                        deletedAt: null,
+                        deletedBy: null
+                    });
+                    const courseRestoreds = await Course.find({ _id: { $in: req.body.courseIds } })
+                    req.io.emit('course_restored', courseRestoreds)
                     break;
                 case 'forceDelete':
                     await Course.deleteMany({ _id: { $in: req.body.courseIds } });
