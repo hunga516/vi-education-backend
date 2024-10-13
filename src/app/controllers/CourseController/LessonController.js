@@ -1,10 +1,11 @@
 import cloudinary from '../../../config/cloudinary/index.js';
 import Course from '../../models/Course/Course.js';
+import Lesson from '../../models/Course/Lesson.js';
 
 class CourseController {
-    // [GET] /courses
-    async getAllCourses(req, res, next) {
-        const { _id, sort = "courseId", order, title, description, author, page = 1 } = req.query
+    // [GET] /lessons
+    async getAllLessons(req, res, next) {
+        const { _id, sort = "lesson", order, title, description, page = 1 } = req.query
         const skip = (page - 1) * 10 //number of limit is 10
 
         let query = { isDeleted: false }
@@ -17,69 +18,71 @@ class CourseController {
         if (_id) {
             query._id = _id
         }
-        if (author) {
-            query.author = author
-        }
-
 
         try {
-            const courses = await Course.find(query).skip(skip).limit(10).populate('author', 'displayName photoURL email').sort({ [sort]: order || -1 })
-            const totalCourses = await Course.find(query).countDocuments()
+            const lessons = await Lesson.find(query)
+                .skip(skip)
+                .limit(10)
+                .populate({
+                    path: 'course',
+                    select: 'images title',
+                    populate: {
+                        path: 'author',
+                        select: 'displayName photoURL'
+                    }
+                })
+            const totalLessons = await Lesson.find(query).countDocuments()
             res.json({
-                courses,
-                totalCourses
+                lessons,
+                totalLessons
             });
         } catch (error) {
             next(error);
         }
     }
 
-    // [GET] /courses/count
-    async countAllCourses(req, res, next) {
+    // [GET] /lessons/count
+    async countAllLessons(req, res, next) {
         try {
-            const totalCourses = await Course.countDocuments()
-            res.json(totalCourses);
+            const totalLessons = await Lesson.countDocuments()
+            res.json(totalLessons);
         } catch (error) {
             next(error);
         }
     }
 
-    // [GET] /courses/trash
-    async getAllTrashCourses(req, res, next) {
+    // [GET] /lessons/trash
+    async getAllTrashLessons(req, res, next) {
         const { page = 1 } = req.query
         const skip = (page - 1) * 10
 
         try {
-            const courses = await Course.find({ isDeleted: true }).skip(skip).limit(10).sort({ deletedAt: -1 }).populate('author', 'displayName photoURL');
-            const totalCoursesDeleted = await Course.find({ isDeleted: true }).countDocuments()
+            const lessons = await Lesson.find({ isDeleted: true }).skip(skip).limit(10).sort({ deletedAt: -1 }).populate('course', 'images');
+            const totalLessonsDeleted = await Lesson.find({ isDeleted: true }).countDocuments()
             res.json({
-                courses,
-                totalCoursesDeleted
+                lessons,
+                totalLessonsDeleted
             });
         } catch (error) {
             next(error);
         }
     }
 
-    // [GET] /courses/:id
-    async getCourseByCourseId(req, res, next) {
+    // [GET] /lessons/:id
+    async getLessonByLessonId(req, res, next) {
         try {
-            const course = await Course.findOne({ _id: req.params.id }).populate('author', 'displayName photoURL email');
-            res.json(course)
+            const lesson = await Lesson.findOne({ _id: req.params.id }).populate('course', 'images');
+            res.json(lesson)
         } catch (error) {
             next(error);
         }
     }
 
-    // [GET] /courses/show-add-course
-    showAddCourse(req, res) {
-        res.render("courses/createCourse");
-    }
-
-    // [POST] /courses
-    async addCourse(req, res, next) {
+    // [POST] /lessons
+    async addLesson(req, res, next) {
         try {
-            const { title, description, author, content, role } = req.body;
+            const { title, description, content } = req.body;
+            const course_id = req.params.id
             let imageUrl;
 
             if (req.file) {
@@ -90,21 +93,19 @@ class CourseController {
                 console.log('khong co file');
             }
 
-            const newCourse = new Course({
+            const newLesson = new Lesson({
                 title,
                 description,
-                author,
                 content,
-                role,
                 images: imageUrl || '',
             });
 
-            await newCourse.save();
+            await newLesson.save();
 
-            const savedCourse = await Course.findById(newCourse._id).populate('author', 'displayName photoURL')
+            const savedLesson = await Course.findById(newLesson._id).populate('author', 'displayName photoURL')
 
-            req.io.emit('course_added', savedCourse);
-            res.json(newCourse);
+            req.io.emit('course_added', savedLesson);
+            res.json(newLesson);
         } catch (error) {
             next(error);
         }

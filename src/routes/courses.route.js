@@ -1,9 +1,14 @@
 import express from 'express';
 import courseController from '../app/controllers/CourseController/CourseController.js';
-import chapterController from '../app/controllers/CourseController/ChapterController.js'
+import lessonController from '../app/controllers/CourseController/LessonController.js'
 import upload from '../config/multer/index.js';
 
 const router = express.Router();
+
+
+router.get('/lessons', lessonController.getAllLessons);
+// router.get('/:id/lessons', lessonController.getAllLessonsByCourseId);
+router.post('/:id/lessons', lessonController.addLesson);
 
 router.post('/handle-form-action', courseController.handleFormAction);
 router.delete('/:id', courseController.softDeleteCourse);
@@ -17,9 +22,6 @@ router.post('/', upload.single('images'), courseController.addCourse);
 router.get('/', courseController.getAllCourses);
 
 
-router.get('/chapters', chapterController.getAllChapters);
-router.get('/:id/chapters', chapterController.getAllChaptersByCourseId);
-router.post('/:id/chapters', chapterController.addChapter);
 
 
 export default router;
