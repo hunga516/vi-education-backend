@@ -4,25 +4,41 @@ import Course from '../../models/Course/Course.js';
 class CourseController {
     // [GET] /courses
     async getAllCourses(req, res, next) {
+        const { _id, sort, order, title, description, author, page = 1 } = req.query
+        const skip = (page - 1) * 10 //number of limit is 10
+
+        let query = { isDeleted: false }
+        if (title) {
+            query.title = new RegExp(title, 'i');
+        }
+        if (description) {
+            query.description = description;
+        }
+        if (_id) {
+            query._id = _id
+        } 3
+        if (author) {
+            query.author = author
+        }
+
+
         try {
-            const { _id, sort, order, title, description, author } = req.query
+            const courses = await Course.find(query).skip(skip).limit(10).populate('author', 'displayName photoURL email').sort({ [sort]: order || -1 })
+            const totalCourses = await Course.find(query).countDocuments()
+            res.json({
+                courses,
+                totalCourses
+            });
+        } catch (error) {
+            next(error);
+        }
+    }
 
-            let query = { isDeleted: false }
-            if (title) {
-                query.title = new RegExp(title, 'i');
-            }
-            if (description) {
-                query.description = description;
-            }
-            if (_id) {
-                query._id = _id
-            }
-            if (author) {
-                query.author = author
-            }
-
-            const courses = await Course.find(query).populate('author', 'displayName photoURL email').sort({ [sort]: order || -1 })
-            res.json(courses);
+    // [GET] /courses/count
+    async countAllCourses(req, res, next) {
+        try {
+            const totalCourses = await Course.countDocuments()
+            res.json(totalCourses);
         } catch (error) {
             next(error);
         }
