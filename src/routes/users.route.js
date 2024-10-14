@@ -1,15 +1,13 @@
 import express from 'express';
-import usersController from '../app/controllers/UsersController.js'; // Đổi extension sang .js nếu cần
+import userController from '../app/controllers/UserController.js';
 
 const router = express.Router();
 
-// router.get('/create', usersController.create);
-// router.post('/handle-form-action', usersController.handleFormAction);
-// router.post('/create/store', usersController.store);
-// router.get('/detail/:slug', usersController.detail);
-router.post('/create', usersController.create);
-router.get('/email/:email', usersController.getUserByEmail);
-router.get('/', usersController.index);
+router.post('/sign-in', userController.signIn)
+router.post('/sign-up', userController.signUp)
+router.get('/:id', userController.getUserById)
+router.get('/email/:email', userController.getUserByEmail)
+router.get('/', userController.getAllUsers)
 
 
 export default router;
