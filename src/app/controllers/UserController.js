@@ -7,7 +7,7 @@ class UserController {
         try {
             const exsitUser = await Users.findOne({ email })
             if (!!exsitUser) {
-                return res.json({ message: "Tai khoan da ton tai truoc do" })
+                return res.status(409).json({ message: "Tai khoan da ton tai truoc do" })
             }
             const newUser = new Users({
                 username: username || displayName,
@@ -27,12 +27,14 @@ class UserController {
 
     async signIn(req, res, next) {
         try {
-            const { username, password } = req.body
-            const user = await Users.findOne({ username, password })
+            const { email, password } = req.body
+            console.log(req.body);
+
+            const user = await Users.findOne({ email, password })
             if (!user) {
                 return res.status(401).json({ message: "Email hoặc mật khẩu không đúng" })
             }
-            res.json({ message: "Đăng nhập thành công", user })
+            res.status(200).json({ message: "Đăng nhập thành công", user })
         } catch (error) {
             next(error)
         }

@@ -8,6 +8,7 @@ const UsersSchema = new Schema({
     photoURL: { type: String },
     email: { type: String, required: true },
     role: { type: String, default: "user" },
+    followCount: { type: Number, default: 0 },
     isDeleted: { type: Boolean, default: false },
     deletedBy: { type: Schema.Types.ObjectId, ref: 'Users' },
     deletedReason: { type: String },
