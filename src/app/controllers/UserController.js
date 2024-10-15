@@ -81,6 +81,16 @@ class UserController {
             next(error);
         }
     }
+
+    async editUser(req, res, next) {
+        try {
+            const userEdited = await Users.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
+            req.io.emit('user:updated', userEdited)
+            res.json(userEdited)
+        } catch (error) {
+            next(error)
+        }
+    }
 }
 
 export default new UserController
