@@ -103,7 +103,7 @@ class CourseController {
 
             const savedCourse = await Course.findById(newCourse._id).populate('author', 'displayName photoURL')
 
-            req.io.emit('course_added', savedCourse);
+            req.io.emit('course:create', savedCourse);
             res.json(newCourse);
         } catch (error) {
             next(error);
@@ -119,7 +119,7 @@ class CourseController {
                 deletedAt: new Date()
             })
 
-            req.io.emit('course_soft_deleted', courseDeleted)
+            req.io.emit('course:soft-delete', courseDeleted)
             res.json(courseDeleted)
         } catch (error) {
             next(error)
@@ -135,7 +135,7 @@ class CourseController {
                 deletedBy: null
             })
 
-            req.io.emit('course_restored', courseRestored)
+            req.io.emit('course:restore', courseRestored)
             res.json(courseRestored)
         } catch (error) {
             next(error)
@@ -165,7 +165,7 @@ class CourseController {
 
                     const courseDeleteds = await Course.find({ _id: { $in: req.body.courseIds } })
                     console.log(courseDeleteds);
-                    req.io.emit('course_soft_deleted', courseDeleteds)
+                    req.io.emit('course:soft-delete', courseDeleteds)
                     break;
                 case 'restore':
                     await Course.updateMany({ _id: { $in: req.body.courseIds } }, {
@@ -174,7 +174,7 @@ class CourseController {
                         deletedBy: null
                     });
                     const courseRestoreds = await Course.find({ _id: { $in: req.body.courseIds } })
-                    req.io.emit('course_restored', courseRestoreds)
+                    req.io.emit('course:restore', courseRestoreds)
                     break;
                 case 'forceDelete':
                     await Course.deleteMany({ _id: { $in: req.body.courseIds } });

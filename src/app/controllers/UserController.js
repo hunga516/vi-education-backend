@@ -41,7 +41,7 @@ class UserController {
     }
 
     async getAllUsers(req, res, next) {
-        const { sort = "_id", order, email, username, page = 1 } = req.query
+        const { sort = "_id", order, email, username, displayName, page = 1 } = req.query
         const skip = (page - 1) * 10
 
         const query = { isDeleted: false }
@@ -51,6 +51,10 @@ class UserController {
         if (username) {
             query.username = new RegExp(username, 'i')
         }
+        if (displayName) {
+            query.displayName = new RegExp(displayName, 'i')
+        }
+
         try {
             const users = await Users.find(query).skip(skip).limit(10).sort({ [sort]: order || -1 })
             const totalUsers = await Users.find(query).countDocuments()
