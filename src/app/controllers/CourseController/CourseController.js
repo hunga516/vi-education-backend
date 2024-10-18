@@ -104,6 +104,8 @@ class CourseController {
             const savedCourse = await Course.findById(newCourse._id).populate('author', 'displayName photoURL')
 
             req.io.emit('course:create', savedCourse);
+            console.log(savedCourse);
+
             res.json(newCourse);
         } catch (error) {
             next(error);
@@ -146,7 +148,7 @@ class CourseController {
     async editCourse(req, res, next) {
         try {
             const response = await Course.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true }).populate('author')
-            req.io.emit('course_edited', response)
+            req.io.emit('course:update', response)
             res.json(response)
         } catch (error) {
             next(error)
