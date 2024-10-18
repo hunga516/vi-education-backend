@@ -7,7 +7,7 @@ class UserController {
         try {
             const exsitUser = await Users.findOne({ email })
             if (!!exsitUser) {
-                return res.status(409).json({ message: "Tai khoan da ton tai truoc do" })
+                return
             }
             const newUser = new Users({
                 username: username || displayName,

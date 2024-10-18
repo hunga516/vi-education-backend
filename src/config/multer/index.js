@@ -1,17 +1,25 @@
-import multer from 'multer';
+import multer, { diskStorage } from 'multer';
 import { CloudinaryStorage } from 'multer-storage-cloudinary';
-import cloudinary from '../cloudinary/index.js'; // Sửa đổi đường dẫn nhập
+import cloudinary from '../cloudinary/index.js';
 
 // Cấu hình lưu trữ của Cloudinary
-const storage = new CloudinaryStorage({
+const cloudinaryStorageConfig = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
-        folder: 'courses', // Thư mục trên Cloudinary để lưu ảnh
-        allowed_formats: ['jpg', 'png', 'jpeg'], // Các định dạng cho phép
+        folder: 'courses',
+        allowed_formats: ['jpg', 'png', 'jpeg'],
     },
 });
 
-// Cấu hình Multer sử dụng CloudinaryStorage
-const upload = multer({ storage });
+// Cấu hình lưu trữ trên đĩa
+const diskStorageConfig = new diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, './uploads')
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.originalname)
+    }
+})
 
-export default upload;
+export const uploadCloud = multer({ storage: cloudinaryStorageConfig });
+export const uploadDisk = multer({ storage: diskStorageConfig })

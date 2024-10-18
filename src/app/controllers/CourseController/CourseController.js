@@ -1,5 +1,6 @@
 import cloudinary from '../../../config/cloudinary/index.js';
 import Course from '../../models/Course/Course.js';
+import csv from 'csvtojson'
 
 class CourseController {
     // [GET] /courses
@@ -103,11 +104,50 @@ class CourseController {
             const savedCourse = await Course.findById(newCourse._id).populate('author', 'displayName photoURL')
 
             req.io.emit('course:create', savedCourse);
-            console.log(savedCourse);
 
             res.json(newCourse);
         } catch (error) {
             next(error);
+        }
+    }
+
+    //[POST] /courses/add-course-csv
+    async addCourseByCsv(req, res, next) {
+        try {
+            const jsonArray = await csv().fromFile(req.file.path);
+            console.log(JSON.stringify(jsonArray, null, 2));
+
+            const courses = await Course.insertMany(jsonArray)
+            res.json(courses)
+        } catch (error) {
+            console.log('loi');
+            next(error);
+
+        }
+    }
+
+    //[POST] /courses/export-csv
+    async exportCoursesToCsv(req, res, next) {
+
+        const data = [
+            { name: 'John Doe', age: 28, email: 'john@example.com' },
+            { name: 'Jane Doe', age: 24, email: 'jane@example.com' },
+            { name: 'Mary Smith', age: 32, email: 'mary@example.com' }
+        ];
+
+        // Định nghĩa các trường (fields) của file CSV
+        const fields = ['name', 'age', 'email']; // Tên các trường tương ứng với key trong object
+        const opts = { fields }; // Tuỳ chọn với định dạng các fields
+
+        try {
+            const parser = new Parser(opts);
+            const csv = parser.parse(data); // Chuyển đổi mảng đối tượng thành định dạng CSV
+
+            // Lưu file CSV vào thư mục 'exports'
+            fs.writeFileSync('./exports/data.csv', csv);
+            console.log('File CSV đã được tạo thành công!');
+        } catch (err) {
+            console.error('Lỗi khi tạo file CSV:', err);
         }
     }
 
