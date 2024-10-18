@@ -1,6 +1,9 @@
 import cloudinary from '../../../config/cloudinary/index.js';
 import Course from '../../models/Course/Course.js';
-import csv from 'csvtojson'
+import csv from 'csvtojson' //for import
+import { Parser } from 'json2csv'; //for export
+import fs from 'fs'
+
 
 class CourseController {
     // [GET] /courses
@@ -111,11 +114,10 @@ class CourseController {
         }
     }
 
-    //[POST] /courses/add-course-csv
-    async addCourseByCsv(req, res, next) {
+    //[POST] /courses/import-csv
+    async importCoursesByCsv(req, res, next) {
         try {
             const jsonArray = await csv().fromFile(req.file.path);
-            console.log(JSON.stringify(jsonArray, null, 2));
 
             const courses = await Course.insertMany(jsonArray)
             res.json(courses)
@@ -128,15 +130,11 @@ class CourseController {
 
     //[POST] /courses/export-csv
     async exportCoursesToCsv(req, res, next) {
-
-        const data = [
-            { name: 'John Doe', age: 28, email: 'john@example.com' },
-            { name: 'Jane Doe', age: 24, email: 'jane@example.com' },
-            { name: 'Mary Smith', age: 32, email: 'mary@example.com' }
-        ];
+        // Lấy dữ liệu từ cơ sở dữ liệu
+        const data = await Course.find({}).lean(); // Thêm .lean() để tối ưu hóa hiệu suất
 
         // Định nghĩa các trường (fields) của file CSV
-        const fields = ['name', 'age', 'email']; // Tên các trường tương ứng với key trong object
+        const fields = ['title', 'description', 'images', 'author', 'content', 'role']; // Tên các trường tương ứng với key trong object
         const opts = { fields }; // Tuỳ chọn với định dạng các fields
 
         try {
@@ -146,8 +144,10 @@ class CourseController {
             // Lưu file CSV vào thư mục 'exports'
             fs.writeFileSync('./exports/data.csv', csv);
             console.log('File CSV đã được tạo thành công!');
+            res.download('./exports/data.csv'); // Tải file CSV về cho người dùng
         } catch (err) {
             console.error('Lỗi khi tạo file CSV:', err);
+            res.status(500).json({ message: 'Lỗi khi tạo file CSV' }); // Trả về thông báo lỗi
         }
     }
 
