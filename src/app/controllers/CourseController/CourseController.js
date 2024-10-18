@@ -83,8 +83,7 @@ class CourseController {
             let imageUrl;
 
             if (req.file) {
-                const result = await cloudinary.uploader.upload(req.file.path, {
-                });
+                const result = await cloudinary.uploader.upload(req.file.path, {});
                 imageUrl = result.secure_url;
             } else {
                 console.log('khong co file');
