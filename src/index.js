@@ -30,15 +30,37 @@ const io = new Server(server, {
         origin: 'http://localhost:3000',
         methods: ['GET', 'POST']
     },
-    pingTimeout: 60000, // Thay đổi thời gian timeout (60 giây)
-    pingInterval: 25000 // Thay đổi thời gian ping (25 giây)
 })
 
 io.on('connection', (socket) => {
+    console.log('a user connected:', socket.id);
+
+    socket.on('join_room', (roomId) => {
+        socket.join(roomId);
+        console.log(`${socket.id} joined room ${roomId}`);
+    });
+
+    socket.on('offer', (data) => {
+        const { offer, roomId } = data;
+        socket.to(roomId).emit('receive_offer', offer);
+    });
+
+    socket.on('answer', (data) => {
+        const { answer, roomId } = data;
+        socket.to(roomId).emit('receive_answer', answer);
+    });
+
+    socket.on('ice_candidate', (data) => {
+        const { candidate, roomId } = data;
+        socket.to(roomId).emit('receive_ice_candidate', candidate);
+    });
+
     socket.on('disconnect', () => {
         console.log('user disconnected');
     });
 });
+
+
 
 app.use((req, res, next) => {
     req.io = io
