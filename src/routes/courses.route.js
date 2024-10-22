@@ -17,8 +17,8 @@ router.post('/restore/:id', courseController.restoreCourse);
 router.delete('/:id', courseController.softDeleteCourse);
 router.put('/:id', courseController.editCourse);
 router.get('/:id', courseController.getCourseByCourseId);
-router.post('/import-csv', uploadDisk.single('file'), courseController.importCoursesByCsv);
-router.post('/export-csv', uploadDisk.single('file'), courseController.exportCoursesToCsv);
+router.post('/import-csv', uploadDisk.single('files'), courseController.importCoursesByCsv);
+router.post('/export-csv', uploadDisk.single('files'), courseController.exportCoursesToCsv);
 router.post('/', uploadCloud.single('images'), courseController.addCourse);
 router.get('/', courseController.getAllCourses);
 
