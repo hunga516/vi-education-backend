@@ -12,7 +12,8 @@ const UsersSchema = new Schema({
     isDeleted: { type: Boolean, default: false },
     deletedBy: { type: Schema.Types.ObjectId, ref: 'Users' },
     deletedReason: { type: String },
-    deletedAt: { type: Date }
+    deletedAt: { type: Date },
+    online: { type: Boolean }
 }, {
     timestamps: true
 })

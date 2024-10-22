@@ -3,6 +3,10 @@ import userController from '../app/controllers/UserController.js';
 
 const router = express.Router();
 
+router.post('/online', userController.setUserOnline)
+router.post('/offline', userController.setUserOffline)
+router.get('/online/count', userController.countUsersOnline)
+router.get('/online', userController.getAllUsersOnline)
 router.post('/handle-form-action', userController.handleFormAction)
 router.post('/sign-in', userController.signIn)
 router.post('/sign-up', userController.signUp)

@@ -14,6 +14,7 @@ router.delete('/:id', courseController.softDeleteCourse);
 router.get('/trash', courseController.getAllTrashCourses);
 router.get('/count', courseController.countAllCourses);
 router.post('/restore/:id', courseController.restoreCourse);
+router.get('/history', courseController.getAllHistoryCourses);
 router.delete('/:id', courseController.softDeleteCourse);
 router.put('/:id', courseController.editCourse);
 router.get('/:id', courseController.getCourseByCourseId);

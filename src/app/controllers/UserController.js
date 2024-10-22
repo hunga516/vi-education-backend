@@ -182,6 +182,43 @@ class UserController {
             next(error);
         }
     }
+
+    async setUserOnline(req, res, next) {
+        try {
+            const user = await Users.findByIdAndUpdate(req.body.userId, { online: true })
+            res.status(200).send()
+            req.io.emit('user:online', user)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    async setUserOffline(req, res, next) {
+        try {
+            await Users.findByIdAndUpdate(req.body.userId, { online: false })
+            res.status(200).send()
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    async countUsersOnline(req, res, next) {
+        try {
+            const allUsersOnline = await Users.countDocuments({ online: true })
+            res.json(allUsersOnline)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    async getAllUsersOnline(req, res, next) {
+        try {
+            const allUsersOnline = await Users.find({ online: true })
+            res.json(allUsersOnline)
+        } catch (error) {
+            next(error)
+        }
+    }
 }
 
 export default new UserController

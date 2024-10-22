@@ -3,6 +3,8 @@ import Course from '../../models/Course/Course.js';
 import csv from 'csvtojson' //for import
 import { Parser } from 'json2csv'; //for export
 import fs from 'fs'
+import Users from '../../models/Users.js';
+import HistoryCourse from '../../models/Course/HistoryCourse.js';
 
 
 class CourseController {
@@ -27,7 +29,7 @@ class CourseController {
 
 
         try {
-            const courses = await Course.find(query).skip(skip).limit(10).populate('author', 'displayName photoURL email').sort({ [sort]: order || -1 })
+            const courses = await Course.find(query).skip(skip).limit(10).populate('author', 'displayName photoURL email').populate('updatedBy', 'displayName photoURL email').sort({ [sort]: order || -1 })
             const totalCourses = await Course.find(query).countDocuments()
             res.json({
                 courses,
@@ -186,7 +188,18 @@ class CourseController {
     // [PUT] /courses/:id
     async editCourse(req, res, next) {
         try {
-            const response = await Course.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true }).populate('author')
+            const editorInfo = await Users.findById(req.body.updatedBy)
+
+            const newHistoryCourse = new HistoryCourse({
+                updatedBy: req.body.updatedBy,
+                updatedContent: `${editorInfo.displayName} chỉnh sửa khoá học ${req.body.title}`
+            })
+
+            newHistoryCourse.save()
+
+            const response = await Course.findOneAndUpdate({ _id: req.params.id }, {
+                ...req.body,
+            }, { new: true }).populate('author')
             req.io.emit('course:update', response)
             res.json(response)
         } catch (error) {
@@ -227,6 +240,16 @@ class CourseController {
             }
         } catch (error) {
             next(error);
+        }
+    }
+
+    async getAllHistoryCourses(req, res, next) {
+        const { limit } = req.query
+        try {
+            const allHistory = await HistoryCourse.find({}).populate('updatedBy', 'displayName photoURL').limit(limit)
+            res.json(allHistory)
+        } catch (error) {
+            next(error)
         }
     }
 }
