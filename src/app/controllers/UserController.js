@@ -223,6 +223,15 @@ class UserController {
             next(error)
         }
     }
+
+    async getUsersByManyId(req, res, next) {
+        try {
+            const users = await Users.find({ _id: { $in: req.body.userIds } })
+            res.json(users)
+        } catch (error) {
+            next(error)
+        }
+    }
 }
 
 export default new UserController

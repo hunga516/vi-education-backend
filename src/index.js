@@ -32,33 +32,35 @@ const io = new Server(server, {
     },
 })
 
-// io.on('connection', (socket) => {
-//     console.log('a user connected:', socket.id);
 
-//     socket.on('join_room', (roomId) => {
-//         socket.join(roomId);
-//         console.log(`${socket.id} joined room ${roomId}`);
-//     });
 
-//     socket.on('offer', (data) => {
-//         const { offer, roomId } = data;
-//         socket.to(roomId).emit('receive_offer', offer);
-//     });
+const users = {};
 
-//     socket.on('answer', (data) => {
-//         const { answer, roomId } = data;
-//         socket.to(roomId).emit('receive_answer', answer);
-//     });
+io.on('connection', (socket) => {
+    socket.on('user:join-room', (data) => {
+        socket.join(data.room);
+        users[socket.id] = data.userId;
+        console.log(`${users[socket.id]} joined room: ${data.room}`);
 
-//     socket.on('ice_candidate', (data) => {
-//         const { candidate, roomId } = data;
-//         socket.to(roomId).emit('receive_ice_candidate', candidate);
-//     });
+        const usersInRoom = io.sockets.adapter.rooms.get(data.room);
 
-//     socket.on('disconnect', () => {
-//         console.log('user disconnected');
-//     });
-// });
+        const userIdsInRoom = [...usersInRoom].map(socketId => users[socketId]);
+        console.log('User IDs in room:', userIdsInRoom);
+
+        // Gửi danh sách userId về client
+        socket.to(data.room).emit('user:update-online', userIdsInRoom);
+        socket.emit('user:update-online', userIdsInRoom);
+    });
+
+    socket.on('disconnect', () => {
+        console.log(`User ${users[socket.id]} disconnected`, socket.id);
+        delete users[socket.id]; // Xóa user khi ngắt kết nối
+    });
+});
+
+
+
+
 
 
 
