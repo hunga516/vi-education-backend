@@ -184,9 +184,10 @@ class UserController {
     }
 
     async setUserOnline(req, res, next) {
+        console.log(req.body.userId + "online backend");
         try {
             const user = await Users.findByIdAndUpdate(req.body.userId, { online: true })
-            res.status(200).send()
+            res.status(200).json(user)
             req.io.emit('user:online', user)
         } catch (error) {
             next(error)
@@ -194,9 +195,12 @@ class UserController {
     }
 
     async setUserOffline(req, res, next) {
+        console.log(req.body.userId + "offline backend");
+
         try {
-            await Users.findByIdAndUpdate(req.body.userId, { online: false })
-            res.status(200).send()
+            const user = await Users.findByIdAndUpdate(req.body.userId, { online: false })
+            res.status(200).json(user)
+            req.io.emit('user:offline', user)
         } catch (error) {
             next(error)
         }

@@ -132,24 +132,21 @@ class CourseController {
 
     //[POST] /courses/export-csv
     async exportCoursesToCsv(req, res, next) {
-        // Lấy dữ liệu từ cơ sở dữ liệu
-        const data = await Course.find({}).lean(); // Thêm .lean() để tối ưu hóa hiệu suất
+        const data = await Course.find({}).lean();
 
-        // Định nghĩa các trường (fields) của file CSV
-        const fields = ['title', 'description', 'images', 'author', 'content', 'role']; // Tên các trường tương ứng với key trong object
-        const opts = { fields }; // Tuỳ chọn với định dạng các fields
+        const fields = ['title', 'description', 'images', 'author', 'content', 'role'];
+        const opts = { fields };
 
         try {
             const parser = new Parser(opts);
-            const csv = parser.parse(data); // Chuyển đổi mảng đối tượng thành định dạng CSV
+            const csv = parser.parse(data);
 
-            // Lưu file CSV vào thư mục 'exports'
             fs.writeFileSync('./exports/data.csv', csv);
             console.log('File CSV đã được tạo thành công!');
-            res.download('./exports/data.csv'); // Tải file CSV về cho người dùng
+            res.download('./exports/data.csv');
         } catch (err) {
             console.error('Lỗi khi tạo file CSV:', err);
-            res.status(500).json({ message: 'Lỗi khi tạo file CSV' }); // Trả về thông báo lỗi
+            res.status(500).json({ message: 'Lỗi khi tạo file CSV' });
         }
     }
 
