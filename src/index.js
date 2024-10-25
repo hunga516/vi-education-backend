@@ -44,12 +44,34 @@ io.on('connection', (socket) => {
 
         const usersInRoom = io.sockets.adapter.rooms.get(data.room);
 
-        const userIdsInRoom = [...usersInRoom].map(socketId => users[socketId]);
-        console.log('User IDs in room:', userIdsInRoom);
+        if (usersInRoom) {
+            const userIdsInRoom = [...usersInRoom].map(socketId => users[socketId]);
+            console.log('User IDs in room:', userIdsInRoom);
 
-        // Gửi danh sách userId về client
-        socket.to(data.room).emit('user:update-online', userIdsInRoom);
-        socket.emit('user:update-online', userIdsInRoom);
+            // Gửi danh sách userId về client
+            socket.to(data.room).emit('user:update-online', userIdsInRoom);
+            socket.emit('user:update-online', userIdsInRoom);
+        } else {
+            console.log('No users in room');
+        }
+    });
+
+    socket.on('user:left-room', (data) => {
+        socket.leave(data.room);
+        delete users[socket.id];
+
+        const usersInRoom = io.sockets.adapter.rooms.get(data.room);
+
+        if (usersInRoom) {
+            const userIdsInRoom = [...usersInRoom].map(socketId => users[socketId]);
+            console.log('User IDs in room:', userIdsInRoom);
+
+            // Gửi danh sách userId về client
+            socket.to(data.room).emit('user:update-online', userIdsInRoom);
+            socket.emit('user:update-online', userIdsInRoom);
+        } else {
+            console.log('No users left in the room');
+        }
     });
 
     socket.on('disconnect', () => {
@@ -57,6 +79,7 @@ io.on('connection', (socket) => {
         delete users[socket.id]; // Xóa user khi ngắt kết nối
     });
 });
+
 
 
 
