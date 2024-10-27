@@ -5,6 +5,13 @@ import { Parser } from 'json2csv'; //for export
 import fs from 'fs'
 import Users from '../../models/Users.js';
 import HistoryCourse from '../../models/Course/HistoryCourse.js';
+import path from 'path'
+import { fileURLToPath } from 'url';
+
+// Định nghĩa lại __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 
 
 class CourseController {
@@ -122,39 +129,7 @@ class CourseController {
         }
     }
 
-    //[POST] /courses/import-csv
-    async importCoursesByCsv(req, res, next) {
-        try {
-            const jsonArray = await csv().fromFile(req.file.path);
 
-            const courses = await Course.insertMany(jsonArray)
-            res.json(courses)
-        } catch (error) {
-            console.log('loi');
-            next(error);
-
-        }
-    }
-
-    //[POST] /courses/export-csv
-    async exportCoursesToCsv(req, res, next) {
-        const data = await Course.find({}).lean();
-
-        const fields = ['title', 'description', 'images', 'author', 'content', 'role'];
-        const opts = { fields };
-
-        try {
-            const parser = new Parser(opts);
-            const csv = parser.parse(data);
-
-            fs.writeFileSync('./exports/data.csv', csv);
-            console.log('File CSV đã được tạo thành công!');
-            res.download('./exports/data.csv');
-        } catch (err) {
-            console.error('Lỗi khi tạo file CSV:', err);
-            res.status(500).json({ message: 'Lỗi khi tạo file CSV' });
-        }
-    }
 
     //[DELETE] /courses/:id
     async softDeleteCourse(req, res, next) {
@@ -274,6 +249,110 @@ class CourseController {
             res.json(allHistory)
         } catch (error) {
             next(error)
+        }
+    }
+
+    //[POST] /courses/import-csv
+    async importCoursesByCsv(req, res, next) {
+        try {
+            const jsonArray = await csv().fromFile(req.file.path);
+
+            // Kiểm tra xem có dữ liệu hay không
+            if (!jsonArray || jsonArray.length === 0) {
+                return res.status(400).json({ message: 'File CSV không chứa dữ liệu' });
+            }
+
+            // Tạo một mảng các promise để lưu từng course
+            const coursesToInsert = jsonArray.map(async (courseData) => {
+                // Kiểm tra xem các trường bắt buộc có tồn tại không
+                if (!courseData.title || !courseData.description) {
+                    throw new Error('Thiếu trường bắt buộc trong CSV');
+                }
+
+                // Tạo một instance mới của Course
+                const newCourse = new Course({
+                    title: courseData.title,
+                    description: courseData.description,
+                    images: courseData.images || '', // sử dụng giá trị mặc định nếu không có
+                    content: courseData.content || '', // sử dụng giá trị mặc định nếu không có
+                    author: courseData.author || null, // Nếu author không có, đặt là null hoặc một giá trị mặc định
+                    role: courseData.role || '', // sử dụng giá trị mặc định nếu không có
+                    courseId: courseData.courseId || undefined // Thêm trường courseId nếu cần
+                });
+
+                // Lưu course vào cơ sở dữ liệu
+                return await newCourse.save();
+            });
+
+            const importAuthor = await Users.findById(req.body.updatedBy)
+
+            const newHistoryCourse = new HistoryCourse({
+                updatedBy: req.body.updatedBy,
+                updatedContent: `${importAuthor.displayName} đã tải lên tệp ${req.file.filename}`,
+                type: 'Import CSV',
+                fileName: `${req.file.filename}`
+            })
+            newHistoryCourse.save()
+
+            // Chờ tất cả các promise hoàn thành
+            const courses = await Promise.all(coursesToInsert);
+            const savedCourses = await Course.find({ _id: { $in: courses.map(course => course._id) } }).populate('author', 'displayName photoURL');
+            const savedNewHistoryCourse = await HistoryCourse.findById(newHistoryCourse._id).populate('updatedBy', 'displayName photoURL')
+            req.io.emit('course:create', savedCourses)
+            req.io.emit('historycourse:update', savedNewHistoryCourse);
+            res.json(courses);
+        } catch (error) {
+            console.log('Lỗi:', error);
+            next(error);
+        }
+    }
+
+
+    //[POST] /courses/export-csv
+    async exportCoursesToCsv(req, res, next) {
+        const data = await Course.find({}).lean();
+        const fields = ['title', 'description', 'images', 'author', 'content', 'role', 'courseId'];
+        const opts = { fields };
+
+        try {
+            const parser = new Parser(opts);
+            const csv = parser.parse(data);
+
+            // Tạo file CSV và lưu vào thư mục tạm
+            const filePath = path.join(__dirname, '../../../../exports/courses/data.csv');
+            fs.writeFileSync(filePath, csv);
+            console.log('File CSV đã được tạo thành công!');
+
+            res.sendFile(filePath, { headers: { 'Content-Disposition': 'attachment; filename=data.csv' } }, (err) => {
+                if (err) {
+                    console.error('Lỗi khi tải file:', err);
+                    return res.status(500).json({ message: 'Lỗi khi tải file CSV' });
+                }
+
+                // Xóa file sau khi gửi
+                fs.unlink(filePath, (unlinkErr) => {
+                    if (unlinkErr) {
+                        console.error('Lỗi khi xóa file:', unlinkErr);
+                    }
+                });
+            });
+
+            const exportAuthor = await Users.findById(req.body.updatedBy)
+
+            const newHistoryCourse = new HistoryCourse({
+                updatedBy: req.body.updatedBy,
+                updatedContent: `${exportAuthor.displayName} đã tải xuống bản cập nhật khoá học`,
+                type: 'Export CSV',
+                fileName: `All-Courses at ${new Date().toLocaleString('vi-VN')}`
+            })
+            newHistoryCourse.save()
+
+            const savedNewHistoryCourse = await HistoryCourse.findById(newHistoryCourse._id).populate('updatedBy', 'displayName photoURL')
+            console.log(savedNewHistoryCourse);
+            req.io.emit('historycourse:update', savedNewHistoryCourse);
+        } catch (err) {
+            console.error('Lỗi khi tạo file CSV:', err);
+            res.status(500).json({ message: 'Lỗi khi tạo file CSV' });
         }
     }
 }

@@ -5,6 +5,8 @@ import 'moment/locale/vi.js';
 const HistoryCourseSchema = new mongoose.Schema({
     updatedBy: { type: Schema.Types.ObjectId, ref: 'Users' },
     updatedContent: { type: String },
+    type: { type: String }, //import or export
+    fileName: { type: String } //name cua file csv
 }, {
     timestamps: true,
 });

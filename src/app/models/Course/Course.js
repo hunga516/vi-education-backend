@@ -17,7 +17,8 @@ const CourseSchema = new mongoose.Schema({
     isDeleted: { type: Boolean, default: false },
     deletedBy: { type: Schema.Types.ObjectId, ref: 'Users' },
     deletedReason: { type: String },
-    deletedAt: { type: Date }
+    deletedAt: { type: Date },
+    courseId: { type: Number }
 }, {
     timestamps: true,
 });
