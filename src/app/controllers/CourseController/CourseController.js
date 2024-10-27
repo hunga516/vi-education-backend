@@ -95,6 +95,13 @@ class CourseController {
                 console.log('khong co file');
             }
 
+            const editorInfo = await Users.findById(req.body.updatedBy)
+            const newHistoryCourse = new HistoryCourse({
+                updatedBy: req.body.updatedBy,
+                updatedContent: `${editorInfo.displayName} thêm khoá học ${title}`
+            })
+            newHistoryCourse.save()
+
             const newCourse = new Course({
                 title,
                 description,
@@ -103,13 +110,12 @@ class CourseController {
                 role,
                 images: imageUrl || '',
             });
-
             await newCourse.save();
 
             const savedCourse = await Course.findById(newCourse._id).populate('author', 'displayName photoURL')
-
+            const savedNewHistoryCourse = await HistoryCourse.findById(newHistoryCourse._id).populate('updatedBy', 'displayName photoURL')
             req.io.emit('course:create', savedCourse);
-
+            req.io.emit('historycourse:update', savedNewHistoryCourse);
             res.json(newCourse);
         } catch (error) {
             next(error);
@@ -159,6 +165,15 @@ class CourseController {
                 deletedAt: new Date()
             })
 
+            const editorInfo = await Users.findById(req.query.updatedBy)
+            const newHistoryCourse = new HistoryCourse({
+                updatedBy: req.query.updatedBy,
+                updatedContent: `${editorInfo.displayName} cho vào thùng rác khoá học ${courseDeleted.title}`
+            })
+            newHistoryCourse.save()
+
+            const savedNewHistoryCourse = await HistoryCourse.findById(newHistoryCourse._id).populate('updatedBy', 'displayName photoURL')
+            req.io.emit('historycourse:update', savedNewHistoryCourse);
             req.io.emit('course:soft-delete', courseDeleted)
             res.json(courseDeleted)
         } catch (error) {
@@ -175,6 +190,15 @@ class CourseController {
                 deletedBy: null
             })
 
+            const editorInfo = await Users.findById(req.query.updatedBy)
+            const newHistoryCourse = new HistoryCourse({
+                updatedBy: req.query.updatedBy,
+                updatedContent: `${editorInfo.displayName} khôi phục khoá học ${courseRestored.title}`
+            })
+            newHistoryCourse.save()
+
+            const savedNewHistoryCourse = await HistoryCourse.findById(newHistoryCourse._id).populate('updatedBy', 'displayName photoURL')
+            req.io.emit('historycourse:update', savedNewHistoryCourse);
             req.io.emit('course:restore', courseRestored)
             res.json(courseRestored)
         } catch (error) {
@@ -197,6 +221,9 @@ class CourseController {
             const response = await Course.findOneAndUpdate({ _id: req.params.id }, {
                 ...req.body,
             }, { new: true }).populate('author')
+
+            const savedNewHistoryCourse = await HistoryCourse.findById(newHistoryCourse._id).populate('updatedBy', 'displayName photoURL')
+            req.io.emit('historycourse:update', savedNewHistoryCourse);
             req.io.emit('course:update', response)
             res.json(response)
         } catch (error) {
@@ -243,7 +270,7 @@ class CourseController {
     async getAllHistoryCourses(req, res, next) {
         const { limit } = req.query
         try {
-            const allHistory = await HistoryCourse.find({}).populate('updatedBy', 'displayName photoURL').limit(limit)
+            const allHistory = await HistoryCourse.find({}).populate('updatedBy', 'displayName photoURL').limit(limit).sort({ updatedAt: -1 })
             res.json(allHistory)
         } catch (error) {
             next(error)
