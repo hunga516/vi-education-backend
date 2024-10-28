@@ -1,164 +1,290 @@
-"title","description","images","author","content","role"
-"Nhập môn NODEJS","Nhập môn Node.js là khóa học cơ bản giúp bạn làm quen với Node.js, nền tảng JavaScript trên máy chủ. Bạn sẽ học cách xây dựng server, làm việc với API, và quản lý dữ liệu. Khóa học cung cấp các kiến thức cần thiết để phát triển ứng dụng web hiệu quả với Node.js.","blob:http://localhost:3000/8ed52734-10cc-4aaa-b192-34b12280c95d","66ed7b2fe7e1fe197f2599c2","<p><span style=""color: #169179;""><strong># Node.js l&agrave; g&igrave;? &nbsp;</strong></span></p>
-<p><br>Node.js l&agrave; một m&ocirc;i trường chạy JavaScript ph&iacute;a server, được x&acirc;y dựng dựa tr&ecirc;n V8 JavaScript Engine của Google. Node.js cho ph&eacute;p tạo ra c&aacute;c <span style=""color: #000000;"">ứng</span> dụng web tốc độ cao, c&oacute; khả năng xử l&yacute; lượng lớn y&ecirc;u cầu đồng thời m&agrave; kh&ocirc;ng bị nghẽn.</p>
+"title","description","images","author","content","role","courseId"
+"Nhập môn ReactJS","Mo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo ta","https://res.cloudinary.com/ddbod5k0w/image/upload/v1730044919/cbedvaupspnflnuelr5l.png","66f02f858b509e87c09456b4","<p># Node.js l&agrave; g&igrave;? &nbsp;</p>
+<p><br>Node.js l&agrave; một m&ocirc;i trường chạy JavaScript ph&iacute;a server, được x&acirc;y dựng dựa tr&ecirc;n V8 JavaScript Engine của Google. Node.js cho ph&eacute;p tạo ra c&aacute;c ứng dụng web tốc độ cao, c&oacute; khả năng xử l&yacute; lượng lớn y&ecirc;u cầu đồng thời m&agrave; kh&ocirc;ng bị nghẽn.</p>
 <p>&nbsp;</p>
-<p><strong># Lợi &iacute;ch của việc học Node.js &nbsp;</strong></p>
+<p># Lợi &iacute;ch của việc học Node.js &nbsp;</p>
 <p><br>- Hiệu suất cao: Node.js c&oacute; khả năng xử l&yacute; c&aacute;c y&ecirc;u cầu kh&ocirc;ng đồng bộ, gi&uacute;p ứng dụng c&oacute; tốc độ nhanh hơn.<br>- Đa nền tảng: Hỗ trợ cả Windows, macOS v&agrave; Linux, dễ d&agrave;ng triển khai.<br>- JavaScript to&agrave;n diện: Sử dụng JavaScript cho cả backend v&agrave; frontend.<br>- Thư viện phong ph&uacute;: C&oacute; sẵn rất nhiều g&oacute;i phần mềm tr&ecirc;n npm (Node Package Manager) gi&uacute;p dễ d&agrave;ng t&iacute;ch hợp t&iacute;nh năng v&agrave;o dự &aacute;n.</p>
 <p>&nbsp;</p>
-<p><strong># Cấu tr&uacute;c kh&oacute;a học Node.js &nbsp;</strong></p>
+<p># Cấu tr&uacute;c kh&oacute;a học Node.js &nbsp;</p>
 <p><br>- Giới thiệu về Node.js: Kh&aacute;i niệm v&agrave; c&agrave;i đặt m&ocirc;i trường.<br>- X&acirc;y dựng RESTful API: Hướng dẫn tạo c&aacute;c endpoint API cơ bản, xử l&yacute; HTTP request v&agrave; response.<br>- Quản l&yacute; cơ sở dữ liệu: Kết nối Node.js với MongoDB, PostgreSQL, MySQL.<br>- Xử l&yacute; bất đồng bộ: Callback, Promise, async/await trong Node.js.<br>- Bảo mật API: JWT, OAuth, bảo vệ c&aacute;c endpoint API.<br>- Socket.IO v&agrave; Websockets: X&acirc;y dựng ứng dụng realtime như chat, th&ocirc;ng b&aacute;o.</p>
-<p>&nbsp;&nbsp;<br><strong># Ai n&ecirc;n học Node.js?</strong></p>
+<p>&nbsp;&nbsp;<br># Ai n&ecirc;n học Node.js?</p>
 <p>&nbsp;<br>- Lập tr&igrave;nh vi&ecirc;n Frontend muốn trở th&agrave;nh lập tr&igrave;nh vi&ecirc;n Fullstack.<br>- Những người mới bắt đầu t&igrave;m kiếm ng&ocirc;n ngữ dễ học cho backend.<br>- Lập tr&igrave;nh vi&ecirc;n muốn tối ưu h&oacute;a hiệu suất ứng dụng web.</p>
 <p>&nbsp;</p>
-<p><strong># Mục ti&ecirc;u kh&oacute;a học</strong> &nbsp;</p>
+<p># Mục ti&ecirc;u kh&oacute;a học &nbsp;</p>
 <p><br>- Hiểu c&aacute;ch vận h&agrave;nh của Node.js.<br>- Tạo ứng dụng web với Node.js.<br>- T&iacute;ch hợp Node.js với cơ sở dữ liệu.<br>- Xử l&yacute; logic bất đồng bộ hiệu quả.</p>
 <p>&nbsp;</p>
-<p><strong># T&agrave;i liệu v&agrave; c&ocirc;ng cụ sử dụng</strong> &nbsp;<br>- <strong>Node.js</strong>: Phi&ecirc;n bản LTS mới nhất.<br>- <strong>Express.js</strong>: Framework hỗ trợ tạo server dễ d&agrave;ng.<br>- <strong>Postman</strong>: C&ocirc;ng cụ để kiểm thử API.<br>-&nbsp;<strong>MongoDB</strong>: Cơ sở dữ liệu NoSQL phổ biến.</p>
-<p><strong># Kết luận &nbsp;</strong></p>
-<p><br>Kh&oacute;a học Node.js sẽ cung cấp cho bạn nền tảng vững chắc về ph&aacute;t triển web backend. Sau kh&oacute;a học, bạn sẽ c&oacute; khả năng x&acirc;y dựng v&agrave; triển khai c&aacute;c ứng dụng Node.js, tạo REST API, v&agrave; xử l&yacute; dữ liệu một c&aacute;ch hiệu quả.</p>","Backend"
-"11111","222","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2","","Frontend"
-"11111","edited","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2","","Backend"
-"11111","sss","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2","","Design"
-"11111111","123123","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2","","Design"
-"11111","4324","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2","","Backend"
-"111111","222","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2","","Frontend"
-"111111111","dasdad","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2","","Frontend"
-"1111","","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2","","Backend"
-"xxxxx","","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2","","Backend"
-"ddd","","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,""
-"111111","","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2","",""
-"dddd","","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,"Backend"
-"loc so 2","","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2","","Frontend"
-"dsds","","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,""
-"xxxxx","","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2","","Backend"
-"dsdsd","","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,""
-"dsdsd","","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,""
-"","","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,""
-"dsdsdsd","","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,""
-"sadsad","","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,""
-"xxxx","","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,"Backend"
-"dsd","","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,"Frontend"
-"zxc","","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,"Frontend"
-"added","czxcz","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,"Frontend"
-"ccccxzczczxc","dasdasdsd","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,"Frontend"
-"dddd","ddddddddddddddddddddddddddddddddddddddd","blob:http://localhost:3000/89aacb8f-722a-4912-8887-1bc1fbee56c7","66ed7b2fe7e1fe197f2599c2","","Frontend"
-"xxxzz","ok bbi","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2","<p>testtttt</p>
+<p># T&agrave;i liệu v&agrave; c&ocirc;ng cụ sử dụng &nbsp;<br>- Node.js: Phi&ecirc;n bản LTS mới nhất.<br>- Express.js: Framework hỗ trợ tạo server dễ d&agrave;ng.<br>- Postman: C&ocirc;ng cụ để kiểm thử API.<br>- MongoDB: Cơ sở dữ liệu NoSQL phổ biến.</p>
+<p># Kết luận &nbsp;</p>
+<p><br>Kh&oacute;a học Node.js sẽ cung cấp cho bạn nền tảng vững chắc về ph&aacute;t triển web backend. Sau kh&oacute;a học, bạn sẽ c&oacute; khả năng x&acirc;y dựng v&agrave; triển khai c&aacute;c ứng dụng Node.js, tạo REST API, v&agrave; xử l&yacute; dữ liệu một c&aacute;ch hiệu quả.</p>","Backend",3
+"Nhập môn ReactJS","Mo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo ta","https://res.cloudinary.com/ddbod5k0w/image/upload/v1730044919/cbedvaupspnflnuelr5l.png","66f02f858b509e87c09456b4","<p># Node.js l&agrave; g&igrave;? &nbsp;</p>
+<p><br>Node.js l&agrave; một m&ocirc;i trường chạy JavaScript ph&iacute;a server, được x&acirc;y dựng dựa tr&ecirc;n V8 JavaScript Engine của Google. Node.js cho ph&eacute;p tạo ra c&aacute;c ứng dụng web tốc độ cao, c&oacute; khả năng xử l&yacute; lượng lớn y&ecirc;u cầu đồng thời m&agrave; kh&ocirc;ng bị nghẽn.</p>
 <p>&nbsp;</p>
+<p># Lợi &iacute;ch của việc học Node.js &nbsp;</p>
+<p><br>- Hiệu suất cao: Node.js c&oacute; khả năng xử l&yacute; c&aacute;c y&ecirc;u cầu kh&ocirc;ng đồng bộ, gi&uacute;p ứng dụng c&oacute; tốc độ nhanh hơn.<br>- Đa nền tảng: Hỗ trợ cả Windows, macOS v&agrave; Linux, dễ d&agrave;ng triển khai.<br>- JavaScript to&agrave;n diện: Sử dụng JavaScript cho cả backend v&agrave; frontend.<br>- Thư viện phong ph&uacute;: C&oacute; sẵn rất nhiều g&oacute;i phần mềm tr&ecirc;n npm (Node Package Manager) gi&uacute;p dễ d&agrave;ng t&iacute;ch hợp t&iacute;nh năng v&agrave;o dự &aacute;n.</p>
 <p>&nbsp;</p>
-<p><strong>loc dep trai</strong></p>
+<p># Cấu tr&uacute;c kh&oacute;a học Node.js &nbsp;</p>
+<p><br>- Giới thiệu về Node.js: Kh&aacute;i niệm v&agrave; c&agrave;i đặt m&ocirc;i trường.<br>- X&acirc;y dựng RESTful API: Hướng dẫn tạo c&aacute;c endpoint API cơ bản, xử l&yacute; HTTP request v&agrave; response.<br>- Quản l&yacute; cơ sở dữ liệu: Kết nối Node.js với MongoDB, PostgreSQL, MySQL.<br>- Xử l&yacute; bất đồng bộ: Callback, Promise, async/await trong Node.js.<br>- Bảo mật API: JWT, OAuth, bảo vệ c&aacute;c endpoint API.<br>- Socket.IO v&agrave; Websockets: X&acirc;y dựng ứng dụng realtime như chat, th&ocirc;ng b&aacute;o.</p>
+<p>&nbsp;&nbsp;<br># Ai n&ecirc;n học Node.js?</p>
+<p>&nbsp;<br>- Lập tr&igrave;nh vi&ecirc;n Frontend muốn trở th&agrave;nh lập tr&igrave;nh vi&ecirc;n Fullstack.<br>- Những người mới bắt đầu t&igrave;m kiếm ng&ocirc;n ngữ dễ học cho backend.<br>- Lập tr&igrave;nh vi&ecirc;n muốn tối ưu h&oacute;a hiệu suất ứng dụng web.</p>
 <p>&nbsp;</p>
-<p><strong>khoa hoc dau mua</strong></p>","Frontend"
-"finish","","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2","<h3><strong>Ban se lam duoc gi sau khoa hoc ? :</strong></h3>
-<ul>
-<li>Xay dung nodejs</li>
-<li>Xay dung restful api</li>
-<li>Tim hieu middleware</li>
-</ul>
-<h3>Nodejs <strong>la gi ?</strong></h3>
-<p>Mo ta &nbsp;Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta&nbsp;</p>","Backend"
-"text","","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2","<h3><strong>Ban se lam duoc gi sau khoa hoc ? :</strong></h3>
+<p># Mục ti&ecirc;u kh&oacute;a học &nbsp;</p>
+<p><br>- Hiểu c&aacute;ch vận h&agrave;nh của Node.js.<br>- Tạo ứng dụng web với Node.js.<br>- T&iacute;ch hợp Node.js với cơ sở dữ liệu.<br>- Xử l&yacute; logic bất đồng bộ hiệu quả.</p>
 <p>&nbsp;</p>
-<ul>
-<li>Xay dung nodejs</li>
-<li>Xay dung restful api</li>
-<li>Tim hieu middleware</li>
-</ul>
+<p># T&agrave;i liệu v&agrave; c&ocirc;ng cụ sử dụng &nbsp;<br>- Node.js: Phi&ecirc;n bản LTS mới nhất.<br>- Express.js: Framework hỗ trợ tạo server dễ d&agrave;ng.<br>- Postman: C&ocirc;ng cụ để kiểm thử API.<br>- MongoDB: Cơ sở dữ liệu NoSQL phổ biến.</p>
+<p># Kết luận &nbsp;</p>
+<p><br>Kh&oacute;a học Node.js sẽ cung cấp cho bạn nền tảng vững chắc về ph&aacute;t triển web backend. Sau kh&oacute;a học, bạn sẽ c&oacute; khả năng x&acirc;y dựng v&agrave; triển khai c&aacute;c ứng dụng Node.js, tạo REST API, v&agrave; xử l&yacute; dữ liệu một c&aacute;ch hiệu quả.</p>","Backend",4
+"Nhập môn ReactJS","Mo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo ta","https://res.cloudinary.com/ddbod5k0w/image/upload/v1730044919/cbedvaupspnflnuelr5l.png","66f02f858b509e87c09456b4","<p># Node.js l&agrave; g&igrave;? &nbsp;</p>
+<p><br>Node.js l&agrave; một m&ocirc;i trường chạy JavaScript ph&iacute;a server, được x&acirc;y dựng dựa tr&ecirc;n V8 JavaScript Engine của Google. Node.js cho ph&eacute;p tạo ra c&aacute;c ứng dụng web tốc độ cao, c&oacute; khả năng xử l&yacute; lượng lớn y&ecirc;u cầu đồng thời m&agrave; kh&ocirc;ng bị nghẽn.</p>
 <p>&nbsp;</p>
-<h3>Nodejs <strong>la gi ?</strong></h3>
+<p># Lợi &iacute;ch của việc học Node.js &nbsp;</p>
+<p><br>- Hiệu suất cao: Node.js c&oacute; khả năng xử l&yacute; c&aacute;c y&ecirc;u cầu kh&ocirc;ng đồng bộ, gi&uacute;p ứng dụng c&oacute; tốc độ nhanh hơn.<br>- Đa nền tảng: Hỗ trợ cả Windows, macOS v&agrave; Linux, dễ d&agrave;ng triển khai.<br>- JavaScript to&agrave;n diện: Sử dụng JavaScript cho cả backend v&agrave; frontend.<br>- Thư viện phong ph&uacute;: C&oacute; sẵn rất nhiều g&oacute;i phần mềm tr&ecirc;n npm (Node Package Manager) gi&uacute;p dễ d&agrave;ng t&iacute;ch hợp t&iacute;nh năng v&agrave;o dự &aacute;n.</p>
 <p>&nbsp;</p>
-<p>Mo ta &nbsp;Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta&nbsp;</p>","Frontend"
-"loc loc","","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2","<h2><strong>Ban se lam duoc gi sau khoa hoc ? :</strong></h2>
+<p># Cấu tr&uacute;c kh&oacute;a học Node.js &nbsp;</p>
+<p><br>- Giới thiệu về Node.js: Kh&aacute;i niệm v&agrave; c&agrave;i đặt m&ocirc;i trường.<br>- X&acirc;y dựng RESTful API: Hướng dẫn tạo c&aacute;c endpoint API cơ bản, xử l&yacute; HTTP request v&agrave; response.<br>- Quản l&yacute; cơ sở dữ liệu: Kết nối Node.js với MongoDB, PostgreSQL, MySQL.<br>- Xử l&yacute; bất đồng bộ: Callback, Promise, async/await trong Node.js.<br>- Bảo mật API: JWT, OAuth, bảo vệ c&aacute;c endpoint API.<br>- Socket.IO v&agrave; Websockets: X&acirc;y dựng ứng dụng realtime như chat, th&ocirc;ng b&aacute;o.</p>
+<p>&nbsp;&nbsp;<br># Ai n&ecirc;n học Node.js?</p>
+<p>&nbsp;<br>- Lập tr&igrave;nh vi&ecirc;n Frontend muốn trở th&agrave;nh lập tr&igrave;nh vi&ecirc;n Fullstack.<br>- Những người mới bắt đầu t&igrave;m kiếm ng&ocirc;n ngữ dễ học cho backend.<br>- Lập tr&igrave;nh vi&ecirc;n muốn tối ưu h&oacute;a hiệu suất ứng dụng web.</p>
 <p>&nbsp;</p>
-<ul>
-<li>Xay dung nodejs</li>
-<li>Xay dung restful api</li>
-<li>Tim hieu middleware</li>
-</ul>
+<p># Mục ti&ecirc;u kh&oacute;a học &nbsp;</p>
+<p><br>- Hiểu c&aacute;ch vận h&agrave;nh của Node.js.<br>- Tạo ứng dụng web với Node.js.<br>- T&iacute;ch hợp Node.js với cơ sở dữ liệu.<br>- Xử l&yacute; logic bất đồng bộ hiệu quả.</p>
 <p>&nbsp;</p>
-<h2><span style=""color: #169179;""><strong>Nodejs la gi ?</strong></span></h2>
+<p># T&agrave;i liệu v&agrave; c&ocirc;ng cụ sử dụng &nbsp;<br>- Node.js: Phi&ecirc;n bản LTS mới nhất.<br>- Express.js: Framework hỗ trợ tạo server dễ d&agrave;ng.<br>- Postman: C&ocirc;ng cụ để kiểm thử API.<br>- MongoDB: Cơ sở dữ liệu NoSQL phổ biến.</p>
+<p># Kết luận &nbsp;</p>
+<p><br>Kh&oacute;a học Node.js sẽ cung cấp cho bạn nền tảng vững chắc về ph&aacute;t triển web backend. Sau kh&oacute;a học, bạn sẽ c&oacute; khả năng x&acirc;y dựng v&agrave; triển khai c&aacute;c ứng dụng Node.js, tạo REST API, v&agrave; xử l&yacute; dữ liệu một c&aacute;ch hiệu quả.</p>","Backend",5
+"Nhập môn ReactJS","Mo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo ta","https://res.cloudinary.com/ddbod5k0w/image/upload/v1730044919/cbedvaupspnflnuelr5l.png","66f02f858b509e87c09456b4","<p># Node.js l&agrave; g&igrave;? &nbsp;</p>
+<p><br>Node.js l&agrave; một m&ocirc;i trường chạy JavaScript ph&iacute;a server, được x&acirc;y dựng dựa tr&ecirc;n V8 JavaScript Engine của Google. Node.js cho ph&eacute;p tạo ra c&aacute;c ứng dụng web tốc độ cao, c&oacute; khả năng xử l&yacute; lượng lớn y&ecirc;u cầu đồng thời m&agrave; kh&ocirc;ng bị nghẽn.</p>
 <p>&nbsp;</p>
-<p>Mo ta &nbsp;Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta Mo ta&nbsp;</p>
+<p># Lợi &iacute;ch của việc học Node.js &nbsp;</p>
+<p><br>- Hiệu suất cao: Node.js c&oacute; khả năng xử l&yacute; c&aacute;c y&ecirc;u cầu kh&ocirc;ng đồng bộ, gi&uacute;p ứng dụng c&oacute; tốc độ nhanh hơn.<br>- Đa nền tảng: Hỗ trợ cả Windows, macOS v&agrave; Linux, dễ d&agrave;ng triển khai.<br>- JavaScript to&agrave;n diện: Sử dụng JavaScript cho cả backend v&agrave; frontend.<br>- Thư viện phong ph&uacute;: C&oacute; sẵn rất nhiều g&oacute;i phần mềm tr&ecirc;n npm (Node Package Manager) gi&uacute;p dễ d&agrave;ng t&iacute;ch hợp t&iacute;nh năng v&agrave;o dự &aacute;n.</p>
 <p>&nbsp;</p>
-<p>&nbsp;</p>","Backend"
-"zzz","zzz","","66ed7b2fe7e1fe197f2599c2","<p>This is the initial content of the editor.</p>","Backend"
-"sss","ssss","","66ed7b2fe7e1fe197f2599c2","<p>This is the initial content of the editor.</p>",""
-"xxxxx","xxxxx","","66ed7b2fe7e1fe197f2599c2","<p>This is the initial content of the editor.</p>",""
-"aaaa","aaaa","","66ed7b2fe7e1fe197f2599c2","<p>This is the initial content of the editor.</p>","Backend"
-"Locle","11111","","66ed7b2fe7e1fe197f2599c2","<p>This is the initial content of the editor.</p>","Backend"
-"9999","99999","","66ed7b2fe7e1fe197f2599c2","<p>This is the initial content of the editor.</p>","Backend"
-"locccc","ssss","https://res.cloudinary.com/ddbod5k0w/image/upload/v1728015507/fsestazifxg0edvmnuvk.png","66ed7b2fe7e1fe197f2599c2","<p>This is the initial content of the editor.</p>
-<div id=""eJOY__extension_root"" class=""eJOY__extension_root_class"" style=""all: unset;""></div>","Backend"
-"123123","test","https://res.cloudinary.com/ddbod5k0w/image/upload/v1728015584/icc0sksik0eawuda7h54.png","66ed7b2fe7e1fe197f2599c2","<p>This is the initial content of the editor.</p>","Backend"
-"React","react","https://res.cloudinary.com/ddbod5k0w/image/upload/v1728059872/hyh0aclcph7hy51ajika.png","66ed7b2fe7e1fe197f2599c2","<p><span style=""color: #e03e2d;""><strong>reactjss</strong></span></p>","Frontend"
-"3","rrr","https://res.cloudinary.com/ddbod5k0w/image/upload/v1728060067/gwfp6igrybawollk74ai.jpg","66ed7b2fe7e1fe197f2599c2","<p>rrrr</p>","Backend"
-"2","locccc","https://res.cloudinary.com/ddbod5k0w/image/upload/v1728142766/v4vqmwmuars42pf79b0f.png","66ed7b2fe7e1fe197f2599c2","<p><span style=""color: #e03e2d;""><strong>loccc</strong></span></p>","Backend"
-"1","","","66ed7b2fe7e1fe197f2599c2","<p>This is the initial content of the editor.</p>",""
-"bar","bar","blob:http://localhost:3000/d475a7c6-8e33-4b4e-be05-8991e6e7852c","66ed7b2fe7e1fe197f2599c2","<p>This is the initial content of the editor.</p>","Backend"
-"ok","","","66f02f858b509e87c09456b4","<p>This is the initial content of the editor.</p>","Backend"
-"leloc","","","66ed7b2fe7e1fe197f2599c2","<p>This is the initial content of the editor.</p>","Backend"
-"locneeeeee","","","670d5799f498f2f5d25de8b9","<p>This is the initial content of the editor.</p>",""
-"cccc","","","670d277989715a2e24ddd58d","<p>This is the initial content of the editor.</p>",""
-"ccccxzczxccsdasd","","","66f02f858b509e87c09456b4","<p>This is the initial content of the editor.</p>",""
-"dasdadawd","","","670d277989715a2e24ddd58d","<p>This is the initial content of the editor.</p>",""
-"newwwww","","","670d277989715a2e24ddd58d","<p>This is the initial content of the editor.</p>",""
-"cccccc","","","66f02f858b509e87c09456b4","<p>This is the initial content of the editor.</p>",""
-"dep trai ne edit","","","66ed7b2fe7e1fe197f2599c2","<p>This is the initial content of the editor.</p>",""
-"aaa","","","66ed7b2fe7e1fe197f2599c2","<p>This is the initial content of the editor.</p>",""
-"aaaa","","","66ed7b2fe7e1fe197f2599c2","<p>This is the initial content of the editor.</p>",""
-"ok","","","670d277989715a2e24ddd58d","<p>This is the initial content of the editor.</p>",""
-"ok bbiddd","","","670d277989715a2e24ddd58d","<p>This is the initial content of the editor.</p>",""
-"ddd","","","670d277989715a2e24ddd58d","<p>This is the initial content of the editor.</p>",""
-"load","","","670d277989715a2e24ddd58d","<p>This is the initial content of the editor.</p>",""
-"cccc","","","670d277989715a2e24ddd58d","<p>This is the initial content of the editor.</p>",""
-"ccc","","","66f02f858b509e87c09456b4","<p>This is the initial content of the editor.</p>",""
-"ccccc","","","66f02f858b509e87c09456b4","<p>This is the initial content of the editor.</p>",""
-"ddd","","","66f02f858b509e87c09456b4","<p>This is the initial content of the editor.</p>",""
-"NodeNe","Mota","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,"User"
-"NodeNe","Mota","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,"User"
-"NodeNe","Mota","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,"User"
-"NodeNe","Mota","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,"User"
-"ccc","cccc","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,"User"
-"aaa","aaa","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,"User"
-"NodeNe","Mota","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,"User"
-"ccc","cccc","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,"User"
-"aaa","aaa","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,"User"
-"ccc","","","671369f8e618b9376eb6ffbc","<p>This is the initial content of the editor.</p>",""
-"ccc","","","671369f8e618b9376eb6ffbc","<p>This is the initial content of the editor.</p>",""
-"ccc","","","671369f8e618b9376eb6ffbc","<p>This is the initial content of the editor.</p>",""
-"nbb","","","66ed7b2fe7e1fe197f2599c2","<p>This is the initial content of the editor.</p>",""
-"NodeNe","Mota","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,"User"
-"ccc","cccc","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,"User"
-"aaa","aaa","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,"User"
-"aaaaa","","","671369f8e618b9376eb6ffbc","<p>This is the initial content of the editor.</p>",""
-"NNNNNNN","","","66f02f858b509e87c09456b4","<p>This is the initial content of the editor.</p>",""
-"NodeNe","Mota","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,"User"
-"ccc","cccc","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,"User"
-"aaa","aaa","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,"User"
-"loc","","","671369f8e618b9376eb6ffbc","<p>This is the initial content of the editor.</p>","Backend"
-"okeee","","","66ed7b2fe7e1fe197f2599c2","<p>This is the initial content of the editor.</p>",""
-"okee","loc ne rat vui vi duoc day cac ban nhedsadasdadkdokadpakpoakdopakopdakspdaopskdkpoasd","https://res.cloudinary.com/ddbod5k0w/image/upload/v1729518450/fwpuhiq84gtyzuouxi9i.jpg","66ed7b2fe7e1fe197f2599c2","<p>This is the initial content of the editor.</p>","Frontend"
-"edit ne ban oi","dasdadlapdpask opkfospdkfopsdkfops kopsdkfspofkpsodf","https://res.cloudinary.com/ddbod5k0w/image/upload/v1729519168/ifpoglmjjnrruyraxdfc.jpg","66ed7b2fe7e1fe197f2599c2","<p>This is the initial content of the editor.</p>","Backend"
-"NodeNe","Mota","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,"User"
-"ccc","cccc","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,"User"
-"aaa","aaa","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,"User"
-"NodeNe","Mota","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,"User"
-"ccc","cccc","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,"User"
-"aaa","aaa","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,"User"
-"NodeNe","Mota","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,"User"
-"ccc","cccc","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,"User"
-"aaa","aaa","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,"User"
-"NodeNe","Mota","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,"User"
-"ccc","cccc","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,"User"
-"aaa","aaa","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,"User"
-"Rat dep luon","Mota","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2","","Backend"
-"ccc","cccc","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5V5g68dTYlES7tgY55eWdnJSChHU27m1kg&s","66ed7b2fe7e1fe197f2599c2",,"User"
-"dddddd","daskmadsokjdaslkjdaslkjasdlkjasdlkjdaslkjadslkjasdkjldaslkjdaslkjfsdlkj;ssl;kjfdss","https://res.cloudinary.com/ddbod5k0w/image/upload/v1730018295/cuzk5q5dumgttnmo0qod.png","670d277989715a2e24ddd58d","<p>This is the initial content of the editor.</p>","Backend"
-"aaa","lkfhndfdgnjlkgfdlkjfdlkjgfdglkjgfdlkjfdglkjfdglkjgfdlkjlkjfdg","https://res.cloudinary.com/ddbod5k0w/image/upload/v1730018655/f3dnqgqttcq8f7sztgln.png","670d277989715a2e24ddd58d","<p>This is the initial content of the editor.</p>","Backend"
-"ddd","fsdfsdgfasdfadgfsdgfdgsfdgsfsdgfsdgfdggfsdvbccvbxcbvxbcvxvbcx","https://res.cloudinary.com/ddbod5k0w/image/upload/v1730018726/oyy6maa4ag4fc3oeiukc.png","66ed7b2fe7e1fe197f2599c2","<p>This is the initial content of the editor.</p>","Backend"
-"dddddasdasdasd","fhkjfasdhkjfasdhkjfasdhkjfasdkhjjfahdlksjshfakjdsdshlkjfsdhfasdhkljlhlkjfadkhjljfhdlksjshkljfsdsdhlkjasdhlkjsfadadhkjsfadhkljfdfdhlkjfjf","https://res.cloudinary.com/ddbod5k0w/image/upload/v1730020529/vjdrse1bza6lrsrxxqaw.png","670d5799f498f2f5d25de8b9","<p>This is the initial content of the editor.</p>","Backend"
-"ngoclocnew","dasdasdada gfdojfdgkjlofdgkljfdglkjgfdlkjlkjfgsdgljfksd;gkg;sdgf;jkfsdgljd;kgsfsljkfgsdg","https://res.cloudinary.com/ddbod5k0w/image/upload/v1730020746/yaxp9ztua1xyfu5ruw0s.png","671369f8e618b9376eb6ffbc","<p>This is the initial content of the editor.</p>","Backend"
-"ngoclocnewdasdasd","dasdasdada gfdojfdgkjlofdgkljfdglkjgfdlkjlkjfgsdgljfksd;gkg;sdgf;jkffsdfsdfsdfsdfsdsdgljd;kgsfsljkfgsdg","https://res.cloudinary.com/ddbod5k0w/image/upload/v1730020799/pan4nmtgsfy4wd8h7y3u.png","670d277989715a2e24ddd58d","<p>This is the initial content of the editor.</p>","Frontend"
-"ddd","fsdfdfasdfsdfdasfasdfdsafdasfasdfadsafsdfasdfasd","https://res.cloudinary.com/ddbod5k0w/image/upload/v1730042424/rpni7yjet1eaoqpqcqge.png","670d277989715a2e24ddd58d","<p>This is the initial content of the editor.</p>","Frontend"
-"aaaa","dadasasdasdasdasdsdasdasdasasasd","https://res.cloudinary.com/ddbod5k0w/image/upload/v1730042649/lgntagewtb7fu9s9sjj9.png","670d277989715a2e24ddd58d","<p>This is the initial content of the editor.</p>","Backend"
-"ccccc","fsdfsdfsdfasdfadsfasdasfdfsdsdfafasdfasdfdsdf","https://res.cloudinary.com/ddbod5k0w/image/upload/v1730042970/qpexnvl0sp2gqvl6dhcv.png","670d277989715a2e24ddd58d","<p>This is the initial content of the editor.</p>","Backend"
-"dddasdasdczxc","gfdgsdfsgsfdgsfdgfsdgfsgdfsdgdgfs","https://res.cloudinary.com/ddbod5k0w/image/upload/v1730043057/ggu5ev4ckqj9pixsswas.png","670d277989715a2e24ddd58d","<p>This is the initial content of the editor.</p>","Frontend"
+<p># Cấu tr&uacute;c kh&oacute;a học Node.js &nbsp;</p>
+<p><br>- Giới thiệu về Node.js: Kh&aacute;i niệm v&agrave; c&agrave;i đặt m&ocirc;i trường.<br>- X&acirc;y dựng RESTful API: Hướng dẫn tạo c&aacute;c endpoint API cơ bản, xử l&yacute; HTTP request v&agrave; response.<br>- Quản l&yacute; cơ sở dữ liệu: Kết nối Node.js với MongoDB, PostgreSQL, MySQL.<br>- Xử l&yacute; bất đồng bộ: Callback, Promise, async/await trong Node.js.<br>- Bảo mật API: JWT, OAuth, bảo vệ c&aacute;c endpoint API.<br>- Socket.IO v&agrave; Websockets: X&acirc;y dựng ứng dụng realtime như chat, th&ocirc;ng b&aacute;o.</p>
+<p>&nbsp;&nbsp;<br># Ai n&ecirc;n học Node.js?</p>
+<p>&nbsp;<br>- Lập tr&igrave;nh vi&ecirc;n Frontend muốn trở th&agrave;nh lập tr&igrave;nh vi&ecirc;n Fullstack.<br>- Những người mới bắt đầu t&igrave;m kiếm ng&ocirc;n ngữ dễ học cho backend.<br>- Lập tr&igrave;nh vi&ecirc;n muốn tối ưu h&oacute;a hiệu suất ứng dụng web.</p>
+<p>&nbsp;</p>
+<p># Mục ti&ecirc;u kh&oacute;a học &nbsp;</p>
+<p><br>- Hiểu c&aacute;ch vận h&agrave;nh của Node.js.<br>- Tạo ứng dụng web với Node.js.<br>- T&iacute;ch hợp Node.js với cơ sở dữ liệu.<br>- Xử l&yacute; logic bất đồng bộ hiệu quả.</p>
+<p>&nbsp;</p>
+<p># T&agrave;i liệu v&agrave; c&ocirc;ng cụ sử dụng &nbsp;<br>- Node.js: Phi&ecirc;n bản LTS mới nhất.<br>- Express.js: Framework hỗ trợ tạo server dễ d&agrave;ng.<br>- Postman: C&ocirc;ng cụ để kiểm thử API.<br>- MongoDB: Cơ sở dữ liệu NoSQL phổ biến.</p>
+<p># Kết luận &nbsp;</p>
+<p><br>Kh&oacute;a học Node.js sẽ cung cấp cho bạn nền tảng vững chắc về ph&aacute;t triển web backend. Sau kh&oacute;a học, bạn sẽ c&oacute; khả năng x&acirc;y dựng v&agrave; triển khai c&aacute;c ứng dụng Node.js, tạo REST API, v&agrave; xử l&yacute; dữ liệu một c&aacute;ch hiệu quả.</p>","Backend",6
+"Nhập môn ReactJS","Mo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo ta","https://res.cloudinary.com/ddbod5k0w/image/upload/v1730044919/cbedvaupspnflnuelr5l.png","66f02f858b509e87c09456b4","<p># Node.js l&agrave; g&igrave;? &nbsp;</p>
+<p><br>Node.js l&agrave; một m&ocirc;i trường chạy JavaScript ph&iacute;a server, được x&acirc;y dựng dựa tr&ecirc;n V8 JavaScript Engine của Google. Node.js cho ph&eacute;p tạo ra c&aacute;c ứng dụng web tốc độ cao, c&oacute; khả năng xử l&yacute; lượng lớn y&ecirc;u cầu đồng thời m&agrave; kh&ocirc;ng bị nghẽn.</p>
+<p>&nbsp;</p>
+<p># Lợi &iacute;ch của việc học Node.js &nbsp;</p>
+<p><br>- Hiệu suất cao: Node.js c&oacute; khả năng xử l&yacute; c&aacute;c y&ecirc;u cầu kh&ocirc;ng đồng bộ, gi&uacute;p ứng dụng c&oacute; tốc độ nhanh hơn.<br>- Đa nền tảng: Hỗ trợ cả Windows, macOS v&agrave; Linux, dễ d&agrave;ng triển khai.<br>- JavaScript to&agrave;n diện: Sử dụng JavaScript cho cả backend v&agrave; frontend.<br>- Thư viện phong ph&uacute;: C&oacute; sẵn rất nhiều g&oacute;i phần mềm tr&ecirc;n npm (Node Package Manager) gi&uacute;p dễ d&agrave;ng t&iacute;ch hợp t&iacute;nh năng v&agrave;o dự &aacute;n.</p>
+<p>&nbsp;</p>
+<p># Cấu tr&uacute;c kh&oacute;a học Node.js &nbsp;</p>
+<p><br>- Giới thiệu về Node.js: Kh&aacute;i niệm v&agrave; c&agrave;i đặt m&ocirc;i trường.<br>- X&acirc;y dựng RESTful API: Hướng dẫn tạo c&aacute;c endpoint API cơ bản, xử l&yacute; HTTP request v&agrave; response.<br>- Quản l&yacute; cơ sở dữ liệu: Kết nối Node.js với MongoDB, PostgreSQL, MySQL.<br>- Xử l&yacute; bất đồng bộ: Callback, Promise, async/await trong Node.js.<br>- Bảo mật API: JWT, OAuth, bảo vệ c&aacute;c endpoint API.<br>- Socket.IO v&agrave; Websockets: X&acirc;y dựng ứng dụng realtime như chat, th&ocirc;ng b&aacute;o.</p>
+<p>&nbsp;&nbsp;<br># Ai n&ecirc;n học Node.js?</p>
+<p>&nbsp;<br>- Lập tr&igrave;nh vi&ecirc;n Frontend muốn trở th&agrave;nh lập tr&igrave;nh vi&ecirc;n Fullstack.<br>- Những người mới bắt đầu t&igrave;m kiếm ng&ocirc;n ngữ dễ học cho backend.<br>- Lập tr&igrave;nh vi&ecirc;n muốn tối ưu h&oacute;a hiệu suất ứng dụng web.</p>
+<p>&nbsp;</p>
+<p># Mục ti&ecirc;u kh&oacute;a học &nbsp;</p>
+<p><br>- Hiểu c&aacute;ch vận h&agrave;nh của Node.js.<br>- Tạo ứng dụng web với Node.js.<br>- T&iacute;ch hợp Node.js với cơ sở dữ liệu.<br>- Xử l&yacute; logic bất đồng bộ hiệu quả.</p>
+<p>&nbsp;</p>
+<p># T&agrave;i liệu v&agrave; c&ocirc;ng cụ sử dụng &nbsp;<br>- Node.js: Phi&ecirc;n bản LTS mới nhất.<br>- Express.js: Framework hỗ trợ tạo server dễ d&agrave;ng.<br>- Postman: C&ocirc;ng cụ để kiểm thử API.<br>- MongoDB: Cơ sở dữ liệu NoSQL phổ biến.</p>
+<p># Kết luận &nbsp;</p>
+<p><br>Kh&oacute;a học Node.js sẽ cung cấp cho bạn nền tảng vững chắc về ph&aacute;t triển web backend. Sau kh&oacute;a học, bạn sẽ c&oacute; khả năng x&acirc;y dựng v&agrave; triển khai c&aacute;c ứng dụng Node.js, tạo REST API, v&agrave; xử l&yacute; dữ liệu một c&aacute;ch hiệu quả.</p>","Backend",7
+"Nhập môn ReactJS","Mo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo ta","https://res.cloudinary.com/ddbod5k0w/image/upload/v1730044919/cbedvaupspnflnuelr5l.png","66f02f858b509e87c09456b4","<p># Node.js l&agrave; g&igrave;? &nbsp;</p>
+<p><br>Node.js l&agrave; một m&ocirc;i trường chạy JavaScript ph&iacute;a server, được x&acirc;y dựng dựa tr&ecirc;n V8 JavaScript Engine của Google. Node.js cho ph&eacute;p tạo ra c&aacute;c ứng dụng web tốc độ cao, c&oacute; khả năng xử l&yacute; lượng lớn y&ecirc;u cầu đồng thời m&agrave; kh&ocirc;ng bị nghẽn.</p>
+<p>&nbsp;</p>
+<p># Lợi &iacute;ch của việc học Node.js &nbsp;</p>
+<p><br>- Hiệu suất cao: Node.js c&oacute; khả năng xử l&yacute; c&aacute;c y&ecirc;u cầu kh&ocirc;ng đồng bộ, gi&uacute;p ứng dụng c&oacute; tốc độ nhanh hơn.<br>- Đa nền tảng: Hỗ trợ cả Windows, macOS v&agrave; Linux, dễ d&agrave;ng triển khai.<br>- JavaScript to&agrave;n diện: Sử dụng JavaScript cho cả backend v&agrave; frontend.<br>- Thư viện phong ph&uacute;: C&oacute; sẵn rất nhiều g&oacute;i phần mềm tr&ecirc;n npm (Node Package Manager) gi&uacute;p dễ d&agrave;ng t&iacute;ch hợp t&iacute;nh năng v&agrave;o dự &aacute;n.</p>
+<p>&nbsp;</p>
+<p># Cấu tr&uacute;c kh&oacute;a học Node.js &nbsp;</p>
+<p><br>- Giới thiệu về Node.js: Kh&aacute;i niệm v&agrave; c&agrave;i đặt m&ocirc;i trường.<br>- X&acirc;y dựng RESTful API: Hướng dẫn tạo c&aacute;c endpoint API cơ bản, xử l&yacute; HTTP request v&agrave; response.<br>- Quản l&yacute; cơ sở dữ liệu: Kết nối Node.js với MongoDB, PostgreSQL, MySQL.<br>- Xử l&yacute; bất đồng bộ: Callback, Promise, async/await trong Node.js.<br>- Bảo mật API: JWT, OAuth, bảo vệ c&aacute;c endpoint API.<br>- Socket.IO v&agrave; Websockets: X&acirc;y dựng ứng dụng realtime như chat, th&ocirc;ng b&aacute;o.</p>
+<p>&nbsp;&nbsp;<br># Ai n&ecirc;n học Node.js?</p>
+<p>&nbsp;<br>- Lập tr&igrave;nh vi&ecirc;n Frontend muốn trở th&agrave;nh lập tr&igrave;nh vi&ecirc;n Fullstack.<br>- Những người mới bắt đầu t&igrave;m kiếm ng&ocirc;n ngữ dễ học cho backend.<br>- Lập tr&igrave;nh vi&ecirc;n muốn tối ưu h&oacute;a hiệu suất ứng dụng web.</p>
+<p>&nbsp;</p>
+<p># Mục ti&ecirc;u kh&oacute;a học &nbsp;</p>
+<p><br>- Hiểu c&aacute;ch vận h&agrave;nh của Node.js.<br>- Tạo ứng dụng web với Node.js.<br>- T&iacute;ch hợp Node.js với cơ sở dữ liệu.<br>- Xử l&yacute; logic bất đồng bộ hiệu quả.</p>
+<p>&nbsp;</p>
+<p># T&agrave;i liệu v&agrave; c&ocirc;ng cụ sử dụng &nbsp;<br>- Node.js: Phi&ecirc;n bản LTS mới nhất.<br>- Express.js: Framework hỗ trợ tạo server dễ d&agrave;ng.<br>- Postman: C&ocirc;ng cụ để kiểm thử API.<br>- MongoDB: Cơ sở dữ liệu NoSQL phổ biến.</p>
+<p># Kết luận &nbsp;</p>
+<p><br>Kh&oacute;a học Node.js sẽ cung cấp cho bạn nền tảng vững chắc về ph&aacute;t triển web backend. Sau kh&oacute;a học, bạn sẽ c&oacute; khả năng x&acirc;y dựng v&agrave; triển khai c&aacute;c ứng dụng Node.js, tạo REST API, v&agrave; xử l&yacute; dữ liệu một c&aacute;ch hiệu quả.</p>","Backend",8
+"Nhập môn ReactJS","Mo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo ta","https://res.cloudinary.com/ddbod5k0w/image/upload/v1730044919/cbedvaupspnflnuelr5l.png","66f02f858b509e87c09456b4","<p># Node.js l&agrave; g&igrave;? &nbsp;</p>
+<p><br>Node.js l&agrave; một m&ocirc;i trường chạy JavaScript ph&iacute;a server, được x&acirc;y dựng dựa tr&ecirc;n V8 JavaScript Engine của Google. Node.js cho ph&eacute;p tạo ra c&aacute;c ứng dụng web tốc độ cao, c&oacute; khả năng xử l&yacute; lượng lớn y&ecirc;u cầu đồng thời m&agrave; kh&ocirc;ng bị nghẽn.</p>
+<p>&nbsp;</p>
+<p># Lợi &iacute;ch của việc học Node.js &nbsp;</p>
+<p><br>- Hiệu suất cao: Node.js c&oacute; khả năng xử l&yacute; c&aacute;c y&ecirc;u cầu kh&ocirc;ng đồng bộ, gi&uacute;p ứng dụng c&oacute; tốc độ nhanh hơn.<br>- Đa nền tảng: Hỗ trợ cả Windows, macOS v&agrave; Linux, dễ d&agrave;ng triển khai.<br>- JavaScript to&agrave;n diện: Sử dụng JavaScript cho cả backend v&agrave; frontend.<br>- Thư viện phong ph&uacute;: C&oacute; sẵn rất nhiều g&oacute;i phần mềm tr&ecirc;n npm (Node Package Manager) gi&uacute;p dễ d&agrave;ng t&iacute;ch hợp t&iacute;nh năng v&agrave;o dự &aacute;n.</p>
+<p>&nbsp;</p>
+<p># Cấu tr&uacute;c kh&oacute;a học Node.js &nbsp;</p>
+<p><br>- Giới thiệu về Node.js: Kh&aacute;i niệm v&agrave; c&agrave;i đặt m&ocirc;i trường.<br>- X&acirc;y dựng RESTful API: Hướng dẫn tạo c&aacute;c endpoint API cơ bản, xử l&yacute; HTTP request v&agrave; response.<br>- Quản l&yacute; cơ sở dữ liệu: Kết nối Node.js với MongoDB, PostgreSQL, MySQL.<br>- Xử l&yacute; bất đồng bộ: Callback, Promise, async/await trong Node.js.<br>- Bảo mật API: JWT, OAuth, bảo vệ c&aacute;c endpoint API.<br>- Socket.IO v&agrave; Websockets: X&acirc;y dựng ứng dụng realtime như chat, th&ocirc;ng b&aacute;o.</p>
+<p>&nbsp;&nbsp;<br># Ai n&ecirc;n học Node.js?</p>
+<p>&nbsp;<br>- Lập tr&igrave;nh vi&ecirc;n Frontend muốn trở th&agrave;nh lập tr&igrave;nh vi&ecirc;n Fullstack.<br>- Những người mới bắt đầu t&igrave;m kiếm ng&ocirc;n ngữ dễ học cho backend.<br>- Lập tr&igrave;nh vi&ecirc;n muốn tối ưu h&oacute;a hiệu suất ứng dụng web.</p>
+<p>&nbsp;</p>
+<p># Mục ti&ecirc;u kh&oacute;a học &nbsp;</p>
+<p><br>- Hiểu c&aacute;ch vận h&agrave;nh của Node.js.<br>- Tạo ứng dụng web với Node.js.<br>- T&iacute;ch hợp Node.js với cơ sở dữ liệu.<br>- Xử l&yacute; logic bất đồng bộ hiệu quả.</p>
+<p>&nbsp;</p>
+<p># T&agrave;i liệu v&agrave; c&ocirc;ng cụ sử dụng &nbsp;<br>- Node.js: Phi&ecirc;n bản LTS mới nhất.<br>- Express.js: Framework hỗ trợ tạo server dễ d&agrave;ng.<br>- Postman: C&ocirc;ng cụ để kiểm thử API.<br>- MongoDB: Cơ sở dữ liệu NoSQL phổ biến.</p>
+<p># Kết luận &nbsp;</p>
+<p><br>Kh&oacute;a học Node.js sẽ cung cấp cho bạn nền tảng vững chắc về ph&aacute;t triển web backend. Sau kh&oacute;a học, bạn sẽ c&oacute; khả năng x&acirc;y dựng v&agrave; triển khai c&aacute;c ứng dụng Node.js, tạo REST API, v&agrave; xử l&yacute; dữ liệu một c&aacute;ch hiệu quả.</p>","Backend",9
+"Nhập môn ReactJS","Mo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo ta","https://res.cloudinary.com/ddbod5k0w/image/upload/v1730044919/cbedvaupspnflnuelr5l.png","66f02f858b509e87c09456b4","<p># Node.js l&agrave; g&igrave;? &nbsp;</p>
+<p><br>Node.js l&agrave; một m&ocirc;i trường chạy JavaScript ph&iacute;a server, được x&acirc;y dựng dựa tr&ecirc;n V8 JavaScript Engine của Google. Node.js cho ph&eacute;p tạo ra c&aacute;c ứng dụng web tốc độ cao, c&oacute; khả năng xử l&yacute; lượng lớn y&ecirc;u cầu đồng thời m&agrave; kh&ocirc;ng bị nghẽn.</p>
+<p>&nbsp;</p>
+<p># Lợi &iacute;ch của việc học Node.js &nbsp;</p>
+<p><br>- Hiệu suất cao: Node.js c&oacute; khả năng xử l&yacute; c&aacute;c y&ecirc;u cầu kh&ocirc;ng đồng bộ, gi&uacute;p ứng dụng c&oacute; tốc độ nhanh hơn.<br>- Đa nền tảng: Hỗ trợ cả Windows, macOS v&agrave; Linux, dễ d&agrave;ng triển khai.<br>- JavaScript to&agrave;n diện: Sử dụng JavaScript cho cả backend v&agrave; frontend.<br>- Thư viện phong ph&uacute;: C&oacute; sẵn rất nhiều g&oacute;i phần mềm tr&ecirc;n npm (Node Package Manager) gi&uacute;p dễ d&agrave;ng t&iacute;ch hợp t&iacute;nh năng v&agrave;o dự &aacute;n.</p>
+<p>&nbsp;</p>
+<p># Cấu tr&uacute;c kh&oacute;a học Node.js &nbsp;</p>
+<p><br>- Giới thiệu về Node.js: Kh&aacute;i niệm v&agrave; c&agrave;i đặt m&ocirc;i trường.<br>- X&acirc;y dựng RESTful API: Hướng dẫn tạo c&aacute;c endpoint API cơ bản, xử l&yacute; HTTP request v&agrave; response.<br>- Quản l&yacute; cơ sở dữ liệu: Kết nối Node.js với MongoDB, PostgreSQL, MySQL.<br>- Xử l&yacute; bất đồng bộ: Callback, Promise, async/await trong Node.js.<br>- Bảo mật API: JWT, OAuth, bảo vệ c&aacute;c endpoint API.<br>- Socket.IO v&agrave; Websockets: X&acirc;y dựng ứng dụng realtime như chat, th&ocirc;ng b&aacute;o.</p>
+<p>&nbsp;&nbsp;<br># Ai n&ecirc;n học Node.js?</p>
+<p>&nbsp;<br>- Lập tr&igrave;nh vi&ecirc;n Frontend muốn trở th&agrave;nh lập tr&igrave;nh vi&ecirc;n Fullstack.<br>- Những người mới bắt đầu t&igrave;m kiếm ng&ocirc;n ngữ dễ học cho backend.<br>- Lập tr&igrave;nh vi&ecirc;n muốn tối ưu h&oacute;a hiệu suất ứng dụng web.</p>
+<p>&nbsp;</p>
+<p># Mục ti&ecirc;u kh&oacute;a học &nbsp;</p>
+<p><br>- Hiểu c&aacute;ch vận h&agrave;nh của Node.js.<br>- Tạo ứng dụng web với Node.js.<br>- T&iacute;ch hợp Node.js với cơ sở dữ liệu.<br>- Xử l&yacute; logic bất đồng bộ hiệu quả.</p>
+<p>&nbsp;</p>
+<p># T&agrave;i liệu v&agrave; c&ocirc;ng cụ sử dụng &nbsp;<br>- Node.js: Phi&ecirc;n bản LTS mới nhất.<br>- Express.js: Framework hỗ trợ tạo server dễ d&agrave;ng.<br>- Postman: C&ocirc;ng cụ để kiểm thử API.<br>- MongoDB: Cơ sở dữ liệu NoSQL phổ biến.</p>
+<p># Kết luận &nbsp;</p>
+<p><br>Kh&oacute;a học Node.js sẽ cung cấp cho bạn nền tảng vững chắc về ph&aacute;t triển web backend. Sau kh&oacute;a học, bạn sẽ c&oacute; khả năng x&acirc;y dựng v&agrave; triển khai c&aacute;c ứng dụng Node.js, tạo REST API, v&agrave; xử l&yacute; dữ liệu một c&aacute;ch hiệu quả.</p>","Backend",10
+"Nhập môn ReactJS","Mo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo ta","https://res.cloudinary.com/ddbod5k0w/image/upload/v1730044919/cbedvaupspnflnuelr5l.png","66f02f858b509e87c09456b4","<p># Node.js l&agrave; g&igrave;? &nbsp;</p>
+<p><br>Node.js l&agrave; một m&ocirc;i trường chạy JavaScript ph&iacute;a server, được x&acirc;y dựng dựa tr&ecirc;n V8 JavaScript Engine của Google. Node.js cho ph&eacute;p tạo ra c&aacute;c ứng dụng web tốc độ cao, c&oacute; khả năng xử l&yacute; lượng lớn y&ecirc;u cầu đồng thời m&agrave; kh&ocirc;ng bị nghẽn.</p>
+<p>&nbsp;</p>
+<p># Lợi &iacute;ch của việc học Node.js &nbsp;</p>
+<p><br>- Hiệu suất cao: Node.js c&oacute; khả năng xử l&yacute; c&aacute;c y&ecirc;u cầu kh&ocirc;ng đồng bộ, gi&uacute;p ứng dụng c&oacute; tốc độ nhanh hơn.<br>- Đa nền tảng: Hỗ trợ cả Windows, macOS v&agrave; Linux, dễ d&agrave;ng triển khai.<br>- JavaScript to&agrave;n diện: Sử dụng JavaScript cho cả backend v&agrave; frontend.<br>- Thư viện phong ph&uacute;: C&oacute; sẵn rất nhiều g&oacute;i phần mềm tr&ecirc;n npm (Node Package Manager) gi&uacute;p dễ d&agrave;ng t&iacute;ch hợp t&iacute;nh năng v&agrave;o dự &aacute;n.</p>
+<p>&nbsp;</p>
+<p># Cấu tr&uacute;c kh&oacute;a học Node.js &nbsp;</p>
+<p><br>- Giới thiệu về Node.js: Kh&aacute;i niệm v&agrave; c&agrave;i đặt m&ocirc;i trường.<br>- X&acirc;y dựng RESTful API: Hướng dẫn tạo c&aacute;c endpoint API cơ bản, xử l&yacute; HTTP request v&agrave; response.<br>- Quản l&yacute; cơ sở dữ liệu: Kết nối Node.js với MongoDB, PostgreSQL, MySQL.<br>- Xử l&yacute; bất đồng bộ: Callback, Promise, async/await trong Node.js.<br>- Bảo mật API: JWT, OAuth, bảo vệ c&aacute;c endpoint API.<br>- Socket.IO v&agrave; Websockets: X&acirc;y dựng ứng dụng realtime như chat, th&ocirc;ng b&aacute;o.</p>
+<p>&nbsp;&nbsp;<br># Ai n&ecirc;n học Node.js?</p>
+<p>&nbsp;<br>- Lập tr&igrave;nh vi&ecirc;n Frontend muốn trở th&agrave;nh lập tr&igrave;nh vi&ecirc;n Fullstack.<br>- Những người mới bắt đầu t&igrave;m kiếm ng&ocirc;n ngữ dễ học cho backend.<br>- Lập tr&igrave;nh vi&ecirc;n muốn tối ưu h&oacute;a hiệu suất ứng dụng web.</p>
+<p>&nbsp;</p>
+<p># Mục ti&ecirc;u kh&oacute;a học &nbsp;</p>
+<p><br>- Hiểu c&aacute;ch vận h&agrave;nh của Node.js.<br>- Tạo ứng dụng web với Node.js.<br>- T&iacute;ch hợp Node.js với cơ sở dữ liệu.<br>- Xử l&yacute; logic bất đồng bộ hiệu quả.</p>
+<p>&nbsp;</p>
+<p># T&agrave;i liệu v&agrave; c&ocirc;ng cụ sử dụng &nbsp;<br>- Node.js: Phi&ecirc;n bản LTS mới nhất.<br>- Express.js: Framework hỗ trợ tạo server dễ d&agrave;ng.<br>- Postman: C&ocirc;ng cụ để kiểm thử API.<br>- MongoDB: Cơ sở dữ liệu NoSQL phổ biến.</p>
+<p># Kết luận &nbsp;</p>
+<p><br>Kh&oacute;a học Node.js sẽ cung cấp cho bạn nền tảng vững chắc về ph&aacute;t triển web backend. Sau kh&oacute;a học, bạn sẽ c&oacute; khả năng x&acirc;y dựng v&agrave; triển khai c&aacute;c ứng dụng Node.js, tạo REST API, v&agrave; xử l&yacute; dữ liệu một c&aacute;ch hiệu quả.</p>","Backend",11
+"Nhập môn ReactJS","Mo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo ta","https://res.cloudinary.com/ddbod5k0w/image/upload/v1730044919/cbedvaupspnflnuelr5l.png","66f02f858b509e87c09456b4","<p># Node.js l&agrave; g&igrave;? &nbsp;</p>
+<p><br>Node.js l&agrave; một m&ocirc;i trường chạy JavaScript ph&iacute;a server, được x&acirc;y dựng dựa tr&ecirc;n V8 JavaScript Engine của Google. Node.js cho ph&eacute;p tạo ra c&aacute;c ứng dụng web tốc độ cao, c&oacute; khả năng xử l&yacute; lượng lớn y&ecirc;u cầu đồng thời m&agrave; kh&ocirc;ng bị nghẽn.</p>
+<p>&nbsp;</p>
+<p># Lợi &iacute;ch của việc học Node.js &nbsp;</p>
+<p><br>- Hiệu suất cao: Node.js c&oacute; khả năng xử l&yacute; c&aacute;c y&ecirc;u cầu kh&ocirc;ng đồng bộ, gi&uacute;p ứng dụng c&oacute; tốc độ nhanh hơn.<br>- Đa nền tảng: Hỗ trợ cả Windows, macOS v&agrave; Linux, dễ d&agrave;ng triển khai.<br>- JavaScript to&agrave;n diện: Sử dụng JavaScript cho cả backend v&agrave; frontend.<br>- Thư viện phong ph&uacute;: C&oacute; sẵn rất nhiều g&oacute;i phần mềm tr&ecirc;n npm (Node Package Manager) gi&uacute;p dễ d&agrave;ng t&iacute;ch hợp t&iacute;nh năng v&agrave;o dự &aacute;n.</p>
+<p>&nbsp;</p>
+<p># Cấu tr&uacute;c kh&oacute;a học Node.js &nbsp;</p>
+<p><br>- Giới thiệu về Node.js: Kh&aacute;i niệm v&agrave; c&agrave;i đặt m&ocirc;i trường.<br>- X&acirc;y dựng RESTful API: Hướng dẫn tạo c&aacute;c endpoint API cơ bản, xử l&yacute; HTTP request v&agrave; response.<br>- Quản l&yacute; cơ sở dữ liệu: Kết nối Node.js với MongoDB, PostgreSQL, MySQL.<br>- Xử l&yacute; bất đồng bộ: Callback, Promise, async/await trong Node.js.<br>- Bảo mật API: JWT, OAuth, bảo vệ c&aacute;c endpoint API.<br>- Socket.IO v&agrave; Websockets: X&acirc;y dựng ứng dụng realtime như chat, th&ocirc;ng b&aacute;o.</p>
+<p>&nbsp;&nbsp;<br># Ai n&ecirc;n học Node.js?</p>
+<p>&nbsp;<br>- Lập tr&igrave;nh vi&ecirc;n Frontend muốn trở th&agrave;nh lập tr&igrave;nh vi&ecirc;n Fullstack.<br>- Những người mới bắt đầu t&igrave;m kiếm ng&ocirc;n ngữ dễ học cho backend.<br>- Lập tr&igrave;nh vi&ecirc;n muốn tối ưu h&oacute;a hiệu suất ứng dụng web.</p>
+<p>&nbsp;</p>
+<p># Mục ti&ecirc;u kh&oacute;a học &nbsp;</p>
+<p><br>- Hiểu c&aacute;ch vận h&agrave;nh của Node.js.<br>- Tạo ứng dụng web với Node.js.<br>- T&iacute;ch hợp Node.js với cơ sở dữ liệu.<br>- Xử l&yacute; logic bất đồng bộ hiệu quả.</p>
+<p>&nbsp;</p>
+<p># T&agrave;i liệu v&agrave; c&ocirc;ng cụ sử dụng &nbsp;<br>- Node.js: Phi&ecirc;n bản LTS mới nhất.<br>- Express.js: Framework hỗ trợ tạo server dễ d&agrave;ng.<br>- Postman: C&ocirc;ng cụ để kiểm thử API.<br>- MongoDB: Cơ sở dữ liệu NoSQL phổ biến.</p>
+<p># Kết luận &nbsp;</p>
+<p><br>Kh&oacute;a học Node.js sẽ cung cấp cho bạn nền tảng vững chắc về ph&aacute;t triển web backend. Sau kh&oacute;a học, bạn sẽ c&oacute; khả năng x&acirc;y dựng v&agrave; triển khai c&aacute;c ứng dụng Node.js, tạo REST API, v&agrave; xử l&yacute; dữ liệu một c&aacute;ch hiệu quả.</p>","Backend",12
+"Nhập môn ReactJS","Mo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo ta","https://res.cloudinary.com/ddbod5k0w/image/upload/v1730044919/cbedvaupspnflnuelr5l.png","66f02f858b509e87c09456b4","<p># Node.js l&agrave; g&igrave;? &nbsp;</p>
+<p><br>Node.js l&agrave; một m&ocirc;i trường chạy JavaScript ph&iacute;a server, được x&acirc;y dựng dựa tr&ecirc;n V8 JavaScript Engine của Google. Node.js cho ph&eacute;p tạo ra c&aacute;c ứng dụng web tốc độ cao, c&oacute; khả năng xử l&yacute; lượng lớn y&ecirc;u cầu đồng thời m&agrave; kh&ocirc;ng bị nghẽn.</p>
+<p>&nbsp;</p>
+<p># Lợi &iacute;ch của việc học Node.js &nbsp;</p>
+<p><br>- Hiệu suất cao: Node.js c&oacute; khả năng xử l&yacute; c&aacute;c y&ecirc;u cầu kh&ocirc;ng đồng bộ, gi&uacute;p ứng dụng c&oacute; tốc độ nhanh hơn.<br>- Đa nền tảng: Hỗ trợ cả Windows, macOS v&agrave; Linux, dễ d&agrave;ng triển khai.<br>- JavaScript to&agrave;n diện: Sử dụng JavaScript cho cả backend v&agrave; frontend.<br>- Thư viện phong ph&uacute;: C&oacute; sẵn rất nhiều g&oacute;i phần mềm tr&ecirc;n npm (Node Package Manager) gi&uacute;p dễ d&agrave;ng t&iacute;ch hợp t&iacute;nh năng v&agrave;o dự &aacute;n.</p>
+<p>&nbsp;</p>
+<p># Cấu tr&uacute;c kh&oacute;a học Node.js &nbsp;</p>
+<p><br>- Giới thiệu về Node.js: Kh&aacute;i niệm v&agrave; c&agrave;i đặt m&ocirc;i trường.<br>- X&acirc;y dựng RESTful API: Hướng dẫn tạo c&aacute;c endpoint API cơ bản, xử l&yacute; HTTP request v&agrave; response.<br>- Quản l&yacute; cơ sở dữ liệu: Kết nối Node.js với MongoDB, PostgreSQL, MySQL.<br>- Xử l&yacute; bất đồng bộ: Callback, Promise, async/await trong Node.js.<br>- Bảo mật API: JWT, OAuth, bảo vệ c&aacute;c endpoint API.<br>- Socket.IO v&agrave; Websockets: X&acirc;y dựng ứng dụng realtime như chat, th&ocirc;ng b&aacute;o.</p>
+<p>&nbsp;&nbsp;<br># Ai n&ecirc;n học Node.js?</p>
+<p>&nbsp;<br>- Lập tr&igrave;nh vi&ecirc;n Frontend muốn trở th&agrave;nh lập tr&igrave;nh vi&ecirc;n Fullstack.<br>- Những người mới bắt đầu t&igrave;m kiếm ng&ocirc;n ngữ dễ học cho backend.<br>- Lập tr&igrave;nh vi&ecirc;n muốn tối ưu h&oacute;a hiệu suất ứng dụng web.</p>
+<p>&nbsp;</p>
+<p># Mục ti&ecirc;u kh&oacute;a học &nbsp;</p>
+<p><br>- Hiểu c&aacute;ch vận h&agrave;nh của Node.js.<br>- Tạo ứng dụng web với Node.js.<br>- T&iacute;ch hợp Node.js với cơ sở dữ liệu.<br>- Xử l&yacute; logic bất đồng bộ hiệu quả.</p>
+<p>&nbsp;</p>
+<p># T&agrave;i liệu v&agrave; c&ocirc;ng cụ sử dụng &nbsp;<br>- Node.js: Phi&ecirc;n bản LTS mới nhất.<br>- Express.js: Framework hỗ trợ tạo server dễ d&agrave;ng.<br>- Postman: C&ocirc;ng cụ để kiểm thử API.<br>- MongoDB: Cơ sở dữ liệu NoSQL phổ biến.</p>
+<p># Kết luận &nbsp;</p>
+<p><br>Kh&oacute;a học Node.js sẽ cung cấp cho bạn nền tảng vững chắc về ph&aacute;t triển web backend. Sau kh&oacute;a học, bạn sẽ c&oacute; khả năng x&acirc;y dựng v&agrave; triển khai c&aacute;c ứng dụng Node.js, tạo REST API, v&agrave; xử l&yacute; dữ liệu một c&aacute;ch hiệu quả.</p>","Backend",13
+"Nhập môn ReactJS","Mo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo ta","https://res.cloudinary.com/ddbod5k0w/image/upload/v1730044919/cbedvaupspnflnuelr5l.png","66f02f858b509e87c09456b4","<p># Node.js l&agrave; g&igrave;? &nbsp;</p>
+<p><br>Node.js l&agrave; một m&ocirc;i trường chạy JavaScript ph&iacute;a server, được x&acirc;y dựng dựa tr&ecirc;n V8 JavaScript Engine của Google. Node.js cho ph&eacute;p tạo ra c&aacute;c ứng dụng web tốc độ cao, c&oacute; khả năng xử l&yacute; lượng lớn y&ecirc;u cầu đồng thời m&agrave; kh&ocirc;ng bị nghẽn.</p>
+<p>&nbsp;</p>
+<p># Lợi &iacute;ch của việc học Node.js &nbsp;</p>
+<p><br>- Hiệu suất cao: Node.js c&oacute; khả năng xử l&yacute; c&aacute;c y&ecirc;u cầu kh&ocirc;ng đồng bộ, gi&uacute;p ứng dụng c&oacute; tốc độ nhanh hơn.<br>- Đa nền tảng: Hỗ trợ cả Windows, macOS v&agrave; Linux, dễ d&agrave;ng triển khai.<br>- JavaScript to&agrave;n diện: Sử dụng JavaScript cho cả backend v&agrave; frontend.<br>- Thư viện phong ph&uacute;: C&oacute; sẵn rất nhiều g&oacute;i phần mềm tr&ecirc;n npm (Node Package Manager) gi&uacute;p dễ d&agrave;ng t&iacute;ch hợp t&iacute;nh năng v&agrave;o dự &aacute;n.</p>
+<p>&nbsp;</p>
+<p># Cấu tr&uacute;c kh&oacute;a học Node.js &nbsp;</p>
+<p><br>- Giới thiệu về Node.js: Kh&aacute;i niệm v&agrave; c&agrave;i đặt m&ocirc;i trường.<br>- X&acirc;y dựng RESTful API: Hướng dẫn tạo c&aacute;c endpoint API cơ bản, xử l&yacute; HTTP request v&agrave; response.<br>- Quản l&yacute; cơ sở dữ liệu: Kết nối Node.js với MongoDB, PostgreSQL, MySQL.<br>- Xử l&yacute; bất đồng bộ: Callback, Promise, async/await trong Node.js.<br>- Bảo mật API: JWT, OAuth, bảo vệ c&aacute;c endpoint API.<br>- Socket.IO v&agrave; Websockets: X&acirc;y dựng ứng dụng realtime như chat, th&ocirc;ng b&aacute;o.</p>
+<p>&nbsp;&nbsp;<br># Ai n&ecirc;n học Node.js?</p>
+<p>&nbsp;<br>- Lập tr&igrave;nh vi&ecirc;n Frontend muốn trở th&agrave;nh lập tr&igrave;nh vi&ecirc;n Fullstack.<br>- Những người mới bắt đầu t&igrave;m kiếm ng&ocirc;n ngữ dễ học cho backend.<br>- Lập tr&igrave;nh vi&ecirc;n muốn tối ưu h&oacute;a hiệu suất ứng dụng web.</p>
+<p>&nbsp;</p>
+<p># Mục ti&ecirc;u kh&oacute;a học &nbsp;</p>
+<p><br>- Hiểu c&aacute;ch vận h&agrave;nh của Node.js.<br>- Tạo ứng dụng web với Node.js.<br>- T&iacute;ch hợp Node.js với cơ sở dữ liệu.<br>- Xử l&yacute; logic bất đồng bộ hiệu quả.</p>
+<p>&nbsp;</p>
+<p># T&agrave;i liệu v&agrave; c&ocirc;ng cụ sử dụng &nbsp;<br>- Node.js: Phi&ecirc;n bản LTS mới nhất.<br>- Express.js: Framework hỗ trợ tạo server dễ d&agrave;ng.<br>- Postman: C&ocirc;ng cụ để kiểm thử API.<br>- MongoDB: Cơ sở dữ liệu NoSQL phổ biến.</p>
+<p># Kết luận &nbsp;</p>
+<p><br>Kh&oacute;a học Node.js sẽ cung cấp cho bạn nền tảng vững chắc về ph&aacute;t triển web backend. Sau kh&oacute;a học, bạn sẽ c&oacute; khả năng x&acirc;y dựng v&agrave; triển khai c&aacute;c ứng dụng Node.js, tạo REST API, v&agrave; xử l&yacute; dữ liệu một c&aacute;ch hiệu quả.</p>","Backend",14
+"Nhập môn ReactJS","Mo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo ta","https://res.cloudinary.com/ddbod5k0w/image/upload/v1730044919/cbedvaupspnflnuelr5l.png","66f02f858b509e87c09456b4","<p># Node.js l&agrave; g&igrave;? &nbsp;</p>
+<p><br>Node.js l&agrave; một m&ocirc;i trường chạy JavaScript ph&iacute;a server, được x&acirc;y dựng dựa tr&ecirc;n V8 JavaScript Engine của Google. Node.js cho ph&eacute;p tạo ra c&aacute;c ứng dụng web tốc độ cao, c&oacute; khả năng xử l&yacute; lượng lớn y&ecirc;u cầu đồng thời m&agrave; kh&ocirc;ng bị nghẽn.</p>
+<p>&nbsp;</p>
+<p># Lợi &iacute;ch của việc học Node.js &nbsp;</p>
+<p><br>- Hiệu suất cao: Node.js c&oacute; khả năng xử l&yacute; c&aacute;c y&ecirc;u cầu kh&ocirc;ng đồng bộ, gi&uacute;p ứng dụng c&oacute; tốc độ nhanh hơn.<br>- Đa nền tảng: Hỗ trợ cả Windows, macOS v&agrave; Linux, dễ d&agrave;ng triển khai.<br>- JavaScript to&agrave;n diện: Sử dụng JavaScript cho cả backend v&agrave; frontend.<br>- Thư viện phong ph&uacute;: C&oacute; sẵn rất nhiều g&oacute;i phần mềm tr&ecirc;n npm (Node Package Manager) gi&uacute;p dễ d&agrave;ng t&iacute;ch hợp t&iacute;nh năng v&agrave;o dự &aacute;n.</p>
+<p>&nbsp;</p>
+<p># Cấu tr&uacute;c kh&oacute;a học Node.js &nbsp;</p>
+<p><br>- Giới thiệu về Node.js: Kh&aacute;i niệm v&agrave; c&agrave;i đặt m&ocirc;i trường.<br>- X&acirc;y dựng RESTful API: Hướng dẫn tạo c&aacute;c endpoint API cơ bản, xử l&yacute; HTTP request v&agrave; response.<br>- Quản l&yacute; cơ sở dữ liệu: Kết nối Node.js với MongoDB, PostgreSQL, MySQL.<br>- Xử l&yacute; bất đồng bộ: Callback, Promise, async/await trong Node.js.<br>- Bảo mật API: JWT, OAuth, bảo vệ c&aacute;c endpoint API.<br>- Socket.IO v&agrave; Websockets: X&acirc;y dựng ứng dụng realtime như chat, th&ocirc;ng b&aacute;o.</p>
+<p>&nbsp;&nbsp;<br># Ai n&ecirc;n học Node.js?</p>
+<p>&nbsp;<br>- Lập tr&igrave;nh vi&ecirc;n Frontend muốn trở th&agrave;nh lập tr&igrave;nh vi&ecirc;n Fullstack.<br>- Những người mới bắt đầu t&igrave;m kiếm ng&ocirc;n ngữ dễ học cho backend.<br>- Lập tr&igrave;nh vi&ecirc;n muốn tối ưu h&oacute;a hiệu suất ứng dụng web.</p>
+<p>&nbsp;</p>
+<p># Mục ti&ecirc;u kh&oacute;a học &nbsp;</p>
+<p><br>- Hiểu c&aacute;ch vận h&agrave;nh của Node.js.<br>- Tạo ứng dụng web với Node.js.<br>- T&iacute;ch hợp Node.js với cơ sở dữ liệu.<br>- Xử l&yacute; logic bất đồng bộ hiệu quả.</p>
+<p>&nbsp;</p>
+<p># T&agrave;i liệu v&agrave; c&ocirc;ng cụ sử dụng &nbsp;<br>- Node.js: Phi&ecirc;n bản LTS mới nhất.<br>- Express.js: Framework hỗ trợ tạo server dễ d&agrave;ng.<br>- Postman: C&ocirc;ng cụ để kiểm thử API.<br>- MongoDB: Cơ sở dữ liệu NoSQL phổ biến.</p>
+<p># Kết luận &nbsp;</p>
+<p><br>Kh&oacute;a học Node.js sẽ cung cấp cho bạn nền tảng vững chắc về ph&aacute;t triển web backend. Sau kh&oacute;a học, bạn sẽ c&oacute; khả năng x&acirc;y dựng v&agrave; triển khai c&aacute;c ứng dụng Node.js, tạo REST API, v&agrave; xử l&yacute; dữ liệu một c&aacute;ch hiệu quả.</p>","Backend",15
+"Nhập môn ReactJS","Mo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo ta","https://res.cloudinary.com/ddbod5k0w/image/upload/v1730044919/cbedvaupspnflnuelr5l.png","66f02f858b509e87c09456b4","<p># Node.js l&agrave; g&igrave;? &nbsp;</p>
+<p><br>Node.js l&agrave; một m&ocirc;i trường chạy JavaScript ph&iacute;a server, được x&acirc;y dựng dựa tr&ecirc;n V8 JavaScript Engine của Google. Node.js cho ph&eacute;p tạo ra c&aacute;c ứng dụng web tốc độ cao, c&oacute; khả năng xử l&yacute; lượng lớn y&ecirc;u cầu đồng thời m&agrave; kh&ocirc;ng bị nghẽn.</p>
+<p>&nbsp;</p>
+<p># Lợi &iacute;ch của việc học Node.js &nbsp;</p>
+<p><br>- Hiệu suất cao: Node.js c&oacute; khả năng xử l&yacute; c&aacute;c y&ecirc;u cầu kh&ocirc;ng đồng bộ, gi&uacute;p ứng dụng c&oacute; tốc độ nhanh hơn.<br>- Đa nền tảng: Hỗ trợ cả Windows, macOS v&agrave; Linux, dễ d&agrave;ng triển khai.<br>- JavaScript to&agrave;n diện: Sử dụng JavaScript cho cả backend v&agrave; frontend.<br>- Thư viện phong ph&uacute;: C&oacute; sẵn rất nhiều g&oacute;i phần mềm tr&ecirc;n npm (Node Package Manager) gi&uacute;p dễ d&agrave;ng t&iacute;ch hợp t&iacute;nh năng v&agrave;o dự &aacute;n.</p>
+<p>&nbsp;</p>
+<p># Cấu tr&uacute;c kh&oacute;a học Node.js &nbsp;</p>
+<p><br>- Giới thiệu về Node.js: Kh&aacute;i niệm v&agrave; c&agrave;i đặt m&ocirc;i trường.<br>- X&acirc;y dựng RESTful API: Hướng dẫn tạo c&aacute;c endpoint API cơ bản, xử l&yacute; HTTP request v&agrave; response.<br>- Quản l&yacute; cơ sở dữ liệu: Kết nối Node.js với MongoDB, PostgreSQL, MySQL.<br>- Xử l&yacute; bất đồng bộ: Callback, Promise, async/await trong Node.js.<br>- Bảo mật API: JWT, OAuth, bảo vệ c&aacute;c endpoint API.<br>- Socket.IO v&agrave; Websockets: X&acirc;y dựng ứng dụng realtime như chat, th&ocirc;ng b&aacute;o.</p>
+<p>&nbsp;&nbsp;<br># Ai n&ecirc;n học Node.js?</p>
+<p>&nbsp;<br>- Lập tr&igrave;nh vi&ecirc;n Frontend muốn trở th&agrave;nh lập tr&igrave;nh vi&ecirc;n Fullstack.<br>- Những người mới bắt đầu t&igrave;m kiếm ng&ocirc;n ngữ dễ học cho backend.<br>- Lập tr&igrave;nh vi&ecirc;n muốn tối ưu h&oacute;a hiệu suất ứng dụng web.</p>
+<p>&nbsp;</p>
+<p># Mục ti&ecirc;u kh&oacute;a học &nbsp;</p>
+<p><br>- Hiểu c&aacute;ch vận h&agrave;nh của Node.js.<br>- Tạo ứng dụng web với Node.js.<br>- T&iacute;ch hợp Node.js với cơ sở dữ liệu.<br>- Xử l&yacute; logic bất đồng bộ hiệu quả.</p>
+<p>&nbsp;</p>
+<p># T&agrave;i liệu v&agrave; c&ocirc;ng cụ sử dụng &nbsp;<br>- Node.js: Phi&ecirc;n bản LTS mới nhất.<br>- Express.js: Framework hỗ trợ tạo server dễ d&agrave;ng.<br>- Postman: C&ocirc;ng cụ để kiểm thử API.<br>- MongoDB: Cơ sở dữ liệu NoSQL phổ biến.</p>
+<p># Kết luận &nbsp;</p>
+<p><br>Kh&oacute;a học Node.js sẽ cung cấp cho bạn nền tảng vững chắc về ph&aacute;t triển web backend. Sau kh&oacute;a học, bạn sẽ c&oacute; khả năng x&acirc;y dựng v&agrave; triển khai c&aacute;c ứng dụng Node.js, tạo REST API, v&agrave; xử l&yacute; dữ liệu một c&aacute;ch hiệu quả.</p>","Backend",16
+"Nhập môn ReactJS","Mo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo ta","https://res.cloudinary.com/ddbod5k0w/image/upload/v1730044919/cbedvaupspnflnuelr5l.png","66f02f858b509e87c09456b4","<p># Node.js l&agrave; g&igrave;? &nbsp;</p>
+<p><br>Node.js l&agrave; một m&ocirc;i trường chạy JavaScript ph&iacute;a server, được x&acirc;y dựng dựa tr&ecirc;n V8 JavaScript Engine của Google. Node.js cho ph&eacute;p tạo ra c&aacute;c ứng dụng web tốc độ cao, c&oacute; khả năng xử l&yacute; lượng lớn y&ecirc;u cầu đồng thời m&agrave; kh&ocirc;ng bị nghẽn.</p>
+<p>&nbsp;</p>
+<p># Lợi &iacute;ch của việc học Node.js &nbsp;</p>
+<p><br>- Hiệu suất cao: Node.js c&oacute; khả năng xử l&yacute; c&aacute;c y&ecirc;u cầu kh&ocirc;ng đồng bộ, gi&uacute;p ứng dụng c&oacute; tốc độ nhanh hơn.<br>- Đa nền tảng: Hỗ trợ cả Windows, macOS v&agrave; Linux, dễ d&agrave;ng triển khai.<br>- JavaScript to&agrave;n diện: Sử dụng JavaScript cho cả backend v&agrave; frontend.<br>- Thư viện phong ph&uacute;: C&oacute; sẵn rất nhiều g&oacute;i phần mềm tr&ecirc;n npm (Node Package Manager) gi&uacute;p dễ d&agrave;ng t&iacute;ch hợp t&iacute;nh năng v&agrave;o dự &aacute;n.</p>
+<p>&nbsp;</p>
+<p># Cấu tr&uacute;c kh&oacute;a học Node.js &nbsp;</p>
+<p><br>- Giới thiệu về Node.js: Kh&aacute;i niệm v&agrave; c&agrave;i đặt m&ocirc;i trường.<br>- X&acirc;y dựng RESTful API: Hướng dẫn tạo c&aacute;c endpoint API cơ bản, xử l&yacute; HTTP request v&agrave; response.<br>- Quản l&yacute; cơ sở dữ liệu: Kết nối Node.js với MongoDB, PostgreSQL, MySQL.<br>- Xử l&yacute; bất đồng bộ: Callback, Promise, async/await trong Node.js.<br>- Bảo mật API: JWT, OAuth, bảo vệ c&aacute;c endpoint API.<br>- Socket.IO v&agrave; Websockets: X&acirc;y dựng ứng dụng realtime như chat, th&ocirc;ng b&aacute;o.</p>
+<p>&nbsp;&nbsp;<br># Ai n&ecirc;n học Node.js?</p>
+<p>&nbsp;<br>- Lập tr&igrave;nh vi&ecirc;n Frontend muốn trở th&agrave;nh lập tr&igrave;nh vi&ecirc;n Fullstack.<br>- Những người mới bắt đầu t&igrave;m kiếm ng&ocirc;n ngữ dễ học cho backend.<br>- Lập tr&igrave;nh vi&ecirc;n muốn tối ưu h&oacute;a hiệu suất ứng dụng web.</p>
+<p>&nbsp;</p>
+<p># Mục ti&ecirc;u kh&oacute;a học &nbsp;</p>
+<p><br>- Hiểu c&aacute;ch vận h&agrave;nh của Node.js.<br>- Tạo ứng dụng web với Node.js.<br>- T&iacute;ch hợp Node.js với cơ sở dữ liệu.<br>- Xử l&yacute; logic bất đồng bộ hiệu quả.</p>
+<p>&nbsp;</p>
+<p># T&agrave;i liệu v&agrave; c&ocirc;ng cụ sử dụng &nbsp;<br>- Node.js: Phi&ecirc;n bản LTS mới nhất.<br>- Express.js: Framework hỗ trợ tạo server dễ d&agrave;ng.<br>- Postman: C&ocirc;ng cụ để kiểm thử API.<br>- MongoDB: Cơ sở dữ liệu NoSQL phổ biến.</p>
+<p># Kết luận &nbsp;</p>
+<p><br>Kh&oacute;a học Node.js sẽ cung cấp cho bạn nền tảng vững chắc về ph&aacute;t triển web backend. Sau kh&oacute;a học, bạn sẽ c&oacute; khả năng x&acirc;y dựng v&agrave; triển khai c&aacute;c ứng dụng Node.js, tạo REST API, v&agrave; xử l&yacute; dữ liệu một c&aacute;ch hiệu quả.</p>","Backend",17
+"Nhập môn ReactJS","Mo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo ta","https://res.cloudinary.com/ddbod5k0w/image/upload/v1730044919/cbedvaupspnflnuelr5l.png","66f02f858b509e87c09456b4","<p># Node.js l&agrave; g&igrave;? &nbsp;</p>
+<p><br>Node.js l&agrave; một m&ocirc;i trường chạy JavaScript ph&iacute;a server, được x&acirc;y dựng dựa tr&ecirc;n V8 JavaScript Engine của Google. Node.js cho ph&eacute;p tạo ra c&aacute;c ứng dụng web tốc độ cao, c&oacute; khả năng xử l&yacute; lượng lớn y&ecirc;u cầu đồng thời m&agrave; kh&ocirc;ng bị nghẽn.</p>
+<p>&nbsp;</p>
+<p># Lợi &iacute;ch của việc học Node.js &nbsp;</p>
+<p><br>- Hiệu suất cao: Node.js c&oacute; khả năng xử l&yacute; c&aacute;c y&ecirc;u cầu kh&ocirc;ng đồng bộ, gi&uacute;p ứng dụng c&oacute; tốc độ nhanh hơn.<br>- Đa nền tảng: Hỗ trợ cả Windows, macOS v&agrave; Linux, dễ d&agrave;ng triển khai.<br>- JavaScript to&agrave;n diện: Sử dụng JavaScript cho cả backend v&agrave; frontend.<br>- Thư viện phong ph&uacute;: C&oacute; sẵn rất nhiều g&oacute;i phần mềm tr&ecirc;n npm (Node Package Manager) gi&uacute;p dễ d&agrave;ng t&iacute;ch hợp t&iacute;nh năng v&agrave;o dự &aacute;n.</p>
+<p>&nbsp;</p>
+<p># Cấu tr&uacute;c kh&oacute;a học Node.js &nbsp;</p>
+<p><br>- Giới thiệu về Node.js: Kh&aacute;i niệm v&agrave; c&agrave;i đặt m&ocirc;i trường.<br>- X&acirc;y dựng RESTful API: Hướng dẫn tạo c&aacute;c endpoint API cơ bản, xử l&yacute; HTTP request v&agrave; response.<br>- Quản l&yacute; cơ sở dữ liệu: Kết nối Node.js với MongoDB, PostgreSQL, MySQL.<br>- Xử l&yacute; bất đồng bộ: Callback, Promise, async/await trong Node.js.<br>- Bảo mật API: JWT, OAuth, bảo vệ c&aacute;c endpoint API.<br>- Socket.IO v&agrave; Websockets: X&acirc;y dựng ứng dụng realtime như chat, th&ocirc;ng b&aacute;o.</p>
+<p>&nbsp;&nbsp;<br># Ai n&ecirc;n học Node.js?</p>
+<p>&nbsp;<br>- Lập tr&igrave;nh vi&ecirc;n Frontend muốn trở th&agrave;nh lập tr&igrave;nh vi&ecirc;n Fullstack.<br>- Những người mới bắt đầu t&igrave;m kiếm ng&ocirc;n ngữ dễ học cho backend.<br>- Lập tr&igrave;nh vi&ecirc;n muốn tối ưu h&oacute;a hiệu suất ứng dụng web.</p>
+<p>&nbsp;</p>
+<p># Mục ti&ecirc;u kh&oacute;a học &nbsp;</p>
+<p><br>- Hiểu c&aacute;ch vận h&agrave;nh của Node.js.<br>- Tạo ứng dụng web với Node.js.<br>- T&iacute;ch hợp Node.js với cơ sở dữ liệu.<br>- Xử l&yacute; logic bất đồng bộ hiệu quả.</p>
+<p>&nbsp;</p>
+<p># T&agrave;i liệu v&agrave; c&ocirc;ng cụ sử dụng &nbsp;<br>- Node.js: Phi&ecirc;n bản LTS mới nhất.<br>- Express.js: Framework hỗ trợ tạo server dễ d&agrave;ng.<br>- Postman: C&ocirc;ng cụ để kiểm thử API.<br>- MongoDB: Cơ sở dữ liệu NoSQL phổ biến.</p>
+<p># Kết luận &nbsp;</p>
+<p><br>Kh&oacute;a học Node.js sẽ cung cấp cho bạn nền tảng vững chắc về ph&aacute;t triển web backend. Sau kh&oacute;a học, bạn sẽ c&oacute; khả năng x&acirc;y dựng v&agrave; triển khai c&aacute;c ứng dụng Node.js, tạo REST API, v&agrave; xử l&yacute; dữ liệu một c&aacute;ch hiệu quả.</p>","Backend",18
+"Nhập môn ReactJS","Mo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo taMo ta","https://res.cloudinary.com/ddbod5k0w/image/upload/v1730044919/cbedvaupspnflnuelr5l.png","66f02f858b509e87c09456b4","<p># Node.js l&agrave; g&igrave;? &nbsp;</p>
+<p><br>Node.js l&agrave; một m&ocirc;i trường chạy JavaScript ph&iacute;a server, được x&acirc;y dựng dựa tr&ecirc;n V8 JavaScript Engine của Google. Node.js cho ph&eacute;p tạo ra c&aacute;c ứng dụng web tốc độ cao, c&oacute; khả năng xử l&yacute; lượng lớn y&ecirc;u cầu đồng thời m&agrave; kh&ocirc;ng bị nghẽn.</p>
+<p>&nbsp;</p>
+<p># Lợi &iacute;ch của việc học Node.js &nbsp;</p>
+<p><br>- Hiệu suất cao: Node.js c&oacute; khả năng xử l&yacute; c&aacute;c y&ecirc;u cầu kh&ocirc;ng đồng bộ, gi&uacute;p ứng dụng c&oacute; tốc độ nhanh hơn.<br>- Đa nền tảng: Hỗ trợ cả Windows, macOS v&agrave; Linux, dễ d&agrave;ng triển khai.<br>- JavaScript to&agrave;n diện: Sử dụng JavaScript cho cả backend v&agrave; frontend.<br>- Thư viện phong ph&uacute;: C&oacute; sẵn rất nhiều g&oacute;i phần mềm tr&ecirc;n npm (Node Package Manager) gi&uacute;p dễ d&agrave;ng t&iacute;ch hợp t&iacute;nh năng v&agrave;o dự &aacute;n.</p>
+<p>&nbsp;</p>
+<p># Cấu tr&uacute;c kh&oacute;a học Node.js &nbsp;</p>
+<p><br>- Giới thiệu về Node.js: Kh&aacute;i niệm v&agrave; c&agrave;i đặt m&ocirc;i trường.<br>- X&acirc;y dựng RESTful API: Hướng dẫn tạo c&aacute;c endpoint API cơ bản, xử l&yacute; HTTP request v&agrave; response.<br>- Quản l&yacute; cơ sở dữ liệu: Kết nối Node.js với MongoDB, PostgreSQL, MySQL.<br>- Xử l&yacute; bất đồng bộ: Callback, Promise, async/await trong Node.js.<br>- Bảo mật API: JWT, OAuth, bảo vệ c&aacute;c endpoint API.<br>- Socket.IO v&agrave; Websockets: X&acirc;y dựng ứng dụng realtime như chat, th&ocirc;ng b&aacute;o.</p>
+<p>&nbsp;&nbsp;<br># Ai n&ecirc;n học Node.js?</p>
+<p>&nbsp;<br>- Lập tr&igrave;nh vi&ecirc;n Frontend muốn trở th&agrave;nh lập tr&igrave;nh vi&ecirc;n Fullstack.<br>- Những người mới bắt đầu t&igrave;m kiếm ng&ocirc;n ngữ dễ học cho backend.<br>- Lập tr&igrave;nh vi&ecirc;n muốn tối ưu h&oacute;a hiệu suất ứng dụng web.</p>
+<p>&nbsp;</p>
+<p># Mục ti&ecirc;u kh&oacute;a học &nbsp;</p>
+<p><br>- Hiểu c&aacute;ch vận h&agrave;nh của Node.js.<br>- Tạo ứng dụng web với Node.js.<br>- T&iacute;ch hợp Node.js với cơ sở dữ liệu.<br>- Xử l&yacute; logic bất đồng bộ hiệu quả.</p>
+<p>&nbsp;</p>
+<p># T&agrave;i liệu v&agrave; c&ocirc;ng cụ sử dụng &nbsp;<br>- Node.js: Phi&ecirc;n bản LTS mới nhất.<br>- Express.js: Framework hỗ trợ tạo server dễ d&agrave;ng.<br>- Postman: C&ocirc;ng cụ để kiểm thử API.<br>- MongoDB: Cơ sở dữ liệu NoSQL phổ biến.</p>
+<p># Kết luận &nbsp;</p>
+<p><br>Kh&oacute;a học Node.js sẽ cung cấp cho bạn nền tảng vững chắc về ph&aacute;t triển web backend. Sau kh&oacute;a học, bạn sẽ c&oacute; khả năng x&acirc;y dựng v&agrave; triển khai c&aacute;c ứng dụng Node.js, tạo REST API, v&agrave; xử l&yacute; dữ liệu một c&aacute;ch hiệu quả.</p>","Backend",19

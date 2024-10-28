@@ -7,6 +7,7 @@ import Users from '../../models/Users.js';
 import HistoryCourse from '../../models/Course/HistoryCourse.js';
 import path from 'path'
 import { fileURLToPath } from 'url';
+import formatFileSize from '../../../utils/formatFileSize.js';
 
 // Định nghĩa lại __dirname
 const __filename = fileURLToPath(import.meta.url);
@@ -257,6 +258,7 @@ class CourseController {
         try {
             const jsonArray = await csv().fromFile(req.file.path);
 
+
             // Kiểm tra xem có dữ liệu hay không
             if (!jsonArray || jsonArray.length === 0) {
                 return res.status(400).json({ message: 'File CSV không chứa dữ liệu' });
@@ -290,7 +292,8 @@ class CourseController {
                 updatedBy: req.body.updatedBy,
                 updatedContent: `${importAuthor.displayName} đã tải lên tệp ${req.file.filename}`,
                 type: 'Import CSV',
-                fileName: `${req.file.filename}`
+                fileName: `${req.file.filename}`,
+                size: formatFileSize(req.file.size)
             })
             newHistoryCourse.save()
 
@@ -353,6 +356,24 @@ class CourseController {
         } catch (err) {
             console.error('Lỗi khi tạo file CSV:', err);
             res.status(500).json({ message: 'Lỗi khi tạo file CSV' });
+        }
+    }
+
+    async getAllImportsCourses(req, res, next) {
+        try {
+            const historyImports = await HistoryCourse.find({ type: { $regex: new RegExp('Import CSV', 'i') } }).sort({ createdAt: -1 })
+            res.json(historyImports)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    async getAllExportsCourses(req, res, next) {
+        try {
+            const historyExports = await HistoryCourse.find({ type: { $regex: new RegExp('Export CSV', 'i') } }).sort({ createdAt: -1 })
+            res.json(historyExports)
+        } catch (error) {
+            next(error)
         }
     }
 }
