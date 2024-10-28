@@ -1,13 +1,7 @@
 import express from 'express';
 import courseController from '../app/controllers/CourseController/CourseController.js';
-import lessonController from '../app/controllers/CourseController/LessonController.js'
 import { uploadCloud, uploadDisk } from '../config/multer/index.js';
 const router = express.Router();
-
-
-router.get('/lessons', lessonController.getAllLessons);
-// router.get('/:id/lessons', lessonController.getAllLessonsByCourseId);
-router.post('/:id/lessons', lessonController.addLesson);
 
 router.post('/handle-form-action', courseController.handleFormAction);
 router.get('/trash', courseController.getAllTrashCourses);
@@ -19,7 +13,7 @@ router.get('/import-csv', courseController.getAllImportsCourses);
 router.post('/export-csv', uploadDisk.single('files'), courseController.exportCoursesToCsv);
 router.get('/export-csv', courseController.getAllExportsCourses);
 router.delete('/:id', courseController.softDeleteCourse);
-router.put('/:id', courseController.editCourse);
+router.put('/:id', uploadCloud.single('images'), courseController.editCourse);
 router.get('/:id', courseController.getCourseByCourseId);
 router.post('/', uploadCloud.single('images'), courseController.addCourse);
 router.get('/', courseController.getAllCourses);

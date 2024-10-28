@@ -108,7 +108,7 @@ class CourseController {
                 updatedBy: req.body.updatedBy,
                 updatedContent: `${editorInfo.displayName} thêm khoá học ${title}`
             })
-            newHistoryCourse.save()
+            await newHistoryCourse.save()
 
             const newCourse = new Course({
                 title,
@@ -122,6 +122,7 @@ class CourseController {
 
             const savedCourse = await Course.findById(newCourse._id).populate('author', 'displayName photoURL')
             const savedNewHistoryCourse = await HistoryCourse.findById(newHistoryCourse._id).populate('updatedBy', 'displayName photoURL')
+            console.log(savedCourse);
             req.io.emit('course:create', savedCourse);
             req.io.emit('historycourse:update', savedNewHistoryCourse);
             res.json(newCourse);
@@ -135,20 +136,21 @@ class CourseController {
     //[DELETE] /courses/:id
     async softDeleteCourse(req, res, next) {
         try {
-            const courseDeleted = await Course.findOneAndUpdate({ _id: req.params.id }, {
+            const newCourseDeleted = await Course.findOneAndUpdate({ _id: req.params.id }, {
                 isDeleted: true,
-                deletedBy: req.body.userId,
+                deletedBy: req.query.updatedBy,
                 deletedAt: new Date()
             })
 
             const editorInfo = await Users.findById(req.query.updatedBy)
             const newHistoryCourse = new HistoryCourse({
                 updatedBy: req.query.updatedBy,
-                updatedContent: `${editorInfo.displayName} cho vào thùng rác khoá học ${courseDeleted.title}`
+                updatedContent: `${editorInfo.displayName} cho vào thùng rác khoá học ${newCourseDeleted.title}`
             })
-            newHistoryCourse.save()
+            await newHistoryCourse.save()
 
             const savedNewHistoryCourse = await HistoryCourse.findById(newHistoryCourse._id).populate('updatedBy', 'displayName photoURL')
+            const courseDeleted = await Course.findById(req.params.id)
             req.io.emit('historycourse:update', savedNewHistoryCourse);
             req.io.emit('course:soft-delete', courseDeleted)
             res.json(courseDeleted)
@@ -171,7 +173,7 @@ class CourseController {
                 updatedBy: req.query.updatedBy,
                 updatedContent: `${editorInfo.displayName} khôi phục khoá học ${courseRestored.title}`
             })
-            newHistoryCourse.save()
+            await newHistoryCourse.save()
 
             const savedNewHistoryCourse = await HistoryCourse.findById(newHistoryCourse._id).populate('updatedBy', 'displayName photoURL')
             req.io.emit('historycourse:update', savedNewHistoryCourse);
@@ -186,16 +188,22 @@ class CourseController {
     async editCourse(req, res, next) {
         try {
             const editorInfo = await Users.findById(req.body.updatedBy)
-
             const newHistoryCourse = new HistoryCourse({
                 updatedBy: req.body.updatedBy,
                 updatedContent: `${editorInfo.displayName} chỉnh sửa khoá học ${req.body.title}`
             })
+            await newHistoryCourse.save()
 
-            newHistoryCourse.save()
+            let imageUrl;
+            if (req.file) {
+                const result = await cloudinary.uploader.upload(req.file.path, {});
+                imageUrl = result.secure_url;
+            } else {
+                console.log('khong co file');
+            }
 
             const response = await Course.findOneAndUpdate({ _id: req.params.id }, {
-                ...req.body,
+                ...req.body, images: imageUrl || ''
             }, { new: true }).populate('author')
 
             const savedNewHistoryCourse = await HistoryCourse.findById(newHistoryCourse._id).populate('updatedBy', 'displayName photoURL')
@@ -295,7 +303,7 @@ class CourseController {
                 fileName: `${req.file.filename}`,
                 size: formatFileSize(req.file.size)
             })
-            newHistoryCourse.save()
+            await newHistoryCourse.save()
 
             // Chờ tất cả các promise hoàn thành
             const courses = await Promise.all(coursesToInsert);
@@ -348,7 +356,7 @@ class CourseController {
                 type: 'Export CSV',
                 fileName: `All-Courses at ${new Date().toLocaleString('vi-VN')}`
             })
-            newHistoryCourse.save()
+            await newHistoryCourse.save()
 
             const savedNewHistoryCourse = await HistoryCourse.findById(newHistoryCourse._id).populate('updatedBy', 'displayName photoURL')
             console.log(savedNewHistoryCourse);
