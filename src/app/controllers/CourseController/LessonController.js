@@ -18,7 +18,7 @@ const __dirname = path.dirname(__filename);
 class LessonController {
     // [GET] /lessons
     async getAllLessons(req, res, next) {
-        const { _id, sort = "lessonId", order, title, description, author, page = 1 } = req.query
+        const { _id, sort = "lessonId", order, title, description, chapter, chapters, page = 1, course_id } = req.query
         const skip = (page - 1) * 10 //number of limit is 10
 
         let query = { isDeleted: false }
@@ -31,10 +31,17 @@ class LessonController {
         if (_id) {
             query._id = _id
         }
-        if (author) {
-            query.author = author
+        if (course_id) {
+            query.course = course_id
         }
-
+        if (chapter) {
+            query.chapter = { $regex: new RegExp(chapter, 'i') }
+        }
+        if (chapters) {
+            query.chapter = {
+                $in: chapters.map(chapter => new RegExp(chapter, 'i'))
+            };
+        }
 
         try {
             const lessons = await Lesson.find(query).skip(skip).limit(10).sort({ [sort]: order || -1 }).populate({
@@ -53,6 +60,15 @@ class LessonController {
             next(error);
         }
     }
+
+    // async getAllChaptersByCourseId(req, res, next) {
+    //     try {
+    //         const lessons = await Lesson.find({ chapter: { $regex: new RegExp(req.query.course_id) } })
+    //         console.log(lessons);
+    //     } catch (error) {
+    //         next(error)
+    //     }
+    // }
 
     // [GET] /lessons/count
     async countAllLessons(req, res, next) {
@@ -100,7 +116,7 @@ class LessonController {
     // [POST] /lessons
     async addLesson(req, res, next) {
         try {
-            const { title, description, author, content, role, course_id } = req.body;
+            const { title, description, author, content, role, course_id, chapter } = req.body;
             let imageUrl;
 
             if (req.file) {
@@ -124,7 +140,8 @@ class LessonController {
                 content,
                 role,
                 images: imageUrl || '',
-                course: course_id
+                course: course_id,
+                chapter: chapter
             });
             await newLesson.save();
 
@@ -236,7 +253,7 @@ class LessonController {
         try {
             switch (req.body.action) {
                 case 'soft-delete':
-                    await Lesson.updateMany({ _id: { $in: req.body.lesson_ids } }, {
+                    await Lesson.updateMany({ _id: { $in: req.body.lessons_id } }, {
                         isDeleted: true,
                         deletedBy: req.body.userId,
                         deletedAt: new Date()

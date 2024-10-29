@@ -13,6 +13,7 @@ const LessonSchema = new mongoose.Schema({
     slug: { type: String, slug: 'title', parse: true },
     learnCount: { type: Number, default: 0 },
     course: { type: Schema.Types.ObjectId, ref: "Course" },
+    chapter: { type: String },
     isDeleted: { type: Boolean, default: false },
     deletedBy: { type: Schema.Types.ObjectId, ref: 'Users' },
     deletedReason: { type: String },
