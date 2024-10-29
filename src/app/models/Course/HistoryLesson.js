@@ -2,14 +2,17 @@ import mongoose, { Schema } from 'mongoose';
 import moment from 'moment';
 import 'moment/locale/vi.js';
 
-const HistoryLesson = new mongoose.Schema({
+const HistoryLessonSchema = new mongoose.Schema({
     updatedBy: { type: Schema.Types.ObjectId, ref: 'Users' },
     updatedContent: { type: String },
+    type: { type: String }, //import or export
+    fileName: { type: String }, //name cua file csv
+    size: { type: String } //size cua file csv
 }, {
     timestamps: true,
 });
 
-HistoryLesson.methods.toJSON = function () {
+HistoryLessonSchema.methods.toJSON = function () {
     const lesson = this.toObject();
 
     if (lesson.createdAt) {
@@ -22,4 +25,4 @@ HistoryLesson.methods.toJSON = function () {
 };
 
 
-export default mongoose.model('HistoryLesson', HistoryLesson);
+export default mongoose.model('HistoryLesson', HistoryLessonSchema);
