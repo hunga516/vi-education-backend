@@ -1,13 +1,13 @@
 import cloudinary from '../../../config/cloudinary/index.js';
-import Lesson from '../../models/Course/Lesson.js';
 import csv from 'csvtojson' //for import
 import { Parser } from 'json2csv'; //for export
 import fs from 'fs'
 import Users from '../../models/Users.js';
-import HistoryLesson from '../../models/Course/HistoryLesson.js';
+// import HistoryPost from '../../models/Course/HistoryPost.js';
 import path from 'path'
 import { fileURLToPath } from 'url';
 import formatFileSize from '../../../utils/formatFileSize.js';
+import Post from '../../models/Posts/Post.js';
 
 // Định nghĩa lại __dirname
 const __filename = fileURLToPath(import.meta.url);
@@ -16,199 +16,173 @@ const __dirname = path.dirname(__filename);
 
 
 class PostController {
-    // [GET] /lessons
+    // [GET] /posts
     async getAllPosts(req, res, next) {
-        const { _id, sort = "lessonId", order, title, description, chapter, chapters, page = 1, course_id } = req.query
-        const skip = (page - 1) * 10 //number of limit is 10
+        const { _id, sort = "postId", order, content, page = 1 } = req.query
 
         let query = { isDeleted: false }
-        if (title) {
-            query.title = new RegExp(title, 'i');
-        }
-        if (description) {
-            query.description = description;
+        if (content) {
+            query.content = content;
         }
         if (_id) {
             query._id = _id
         }
-        if (course_id) {
-            query.course = course_id
-        }
-        if (chapter) {
-            query.chapter = { $regex: new RegExp(chapter, 'i') }
-        }
-        if (chapters) {
-            query.chapter = {
-                $in: chapters.map(chapter => new RegExp(chapter, 'i'))
-            };
-        }
 
         try {
-            const lessons = await Lesson.find(query).skip(skip).limit(10).sort({ [sort]: order || -1 }).populate({
-                path: 'course',
-                populate: {
-                    path: 'author',
-                    select: 'photoURL displayName'
-                }
-            })
-            const totalLessons = await Lesson.find(query).countDocuments()
+            const posts = await Post.find(query).sort({ [sort]: order || -1 })
+            const totalPosts = await Post.find(query).countDocuments()
             res.json({
-                lessons,
-                totalLessons
+                posts,
+                totalPosts
             });
         } catch (error) {
             next(error);
         }
     }
 
-    // async getAllChaptersByCourseId(req, res, next) {
-    //     try {
-    //         const lessons = await Lesson.find({ chapter: { $regex: new RegExp(req.query.course_id) } })
-    //         console.log(lessons);
-    //     } catch (error) {
-    //         next(error)
-    //     }
-    // }
-
-    // [GET] /lessons/count
     async countAllPosts(req, res, next) {
         try {
-            const totalLessons = await Lesson.countDocuments()
-            res.json(totalLessons);
+            const totalPosts = await Post.countDocuments()
+            res.json(totalPosts);
         } catch (error) {
             next(error);
         }
     }
 
-    // [GET] /lessons/trash
+    // [GET] /posts/trash
     async getAllTrashPosts(req, res, next) {
         const { page = 1 } = req.query
         const skip = (page - 1) * 10
 
         try {
-            const lessons = await Lesson.find({ isDeleted: true }).skip(skip).limit(10).sort({ deletedAt: -1 }).populate({
+            const posts = await Post.find({ isDeleted: true }).skip(skip).limit(10).sort({ deletedAt: -1 }).populate({
                 path: 'course',
                 populate: {
                     path: 'author',
                     select: 'photoURL displayName'
                 }
             })
-            const totalLessonsDeleted = await Lesson.find({ isDeleted: true }).countDocuments()
+            const totalPostsDeleted = await Post.find({ isDeleted: true }).countDocuments()
             res.json({
-                lessons,
-                totalLessonsDeleted
+                posts,
+                totalPostsDeleted
             });
         } catch (error) {
             next(error);
         }
     }
 
-    // [GET] /lessons/:id
+    // [GET] /posts/:id
     async getPostByPostId(req, res, next) {
         try {
-            const course = await Lesson.findOne({ _id: req.params.id }).populate('course', 'title');
+            const course = await Post.findOne({ _id: req.params.id }).populate('course', 'title');
             res.json(course)
         } catch (error) {
             next(error);
         }
     }
 
-    // [POST] /lessons
+    // [POST] /posts
     async addPost(req, res, next) {
         try {
-            const { title, description, author, content, role, course_id, chapter } = req.body;
-            let imageUrl;
+            console.log('Bắt đầu thêm bài viết');
+            const { author, content } = req.body;
+            console.log('Dữ liệu nhận được:', { author, content });
+
+            let mediaUrl;
+            const fileType = req.file ? req.file.mimetype : null;
 
             if (req.file) {
-                const result = await cloudinary.uploader.upload(req.file.path, {});
-                imageUrl = result.secure_url;
+                console.log('File nhận được:', req.file);
+                if (fileType.startsWith('image/')) {
+                    const result = await cloudinary.uploader.upload(req.file.path, {
+                        folder: 'posts/images'
+                    });
+                    mediaUrl = result.secure_url;
+                    console.log('Upload ảnh thành công:', mediaUrl);
+                } else if (fileType.startsWith('video/')) {
+                    const result = await cloudinary.uploader.upload(req.file.path, {
+                        resource_type: 'video',
+                        folder: 'posts/videos'
+                    });
+                    mediaUrl = result.secure_url;
+                    console.log('Upload video thành công:', mediaUrl);
+                } else {
+                    console.log('Định dạng file không hỗ trợ:', fileType);
+                }
             } else {
-                console.log('khong co file');
+                console.log('Không có file được upload.');
             }
 
-            const editorInfo = await Users.findById(req.body.updatedBy)
-            const newHistoryLesson = new HistoryLesson({
-                updatedBy: req.body.updatedBy,
-                updatedContent: `${editorInfo.displayName} thêm bài học ${title}`
-            })
-            await newHistoryLesson.save()
-
-            const newLesson = new Lesson({
-                title,
-                description,
+            const newPost = new Post({
                 author,
                 content,
-                role,
-                images: imageUrl || '',
-                course: course_id,
-                chapter: chapter
+                media: mediaUrl || '',
             });
-            await newLesson.save();
+            await newPost.save();
+            console.log('Bài viết đã lưu:', newPost);
 
-            const savedLesson = await Lesson.findById(newLesson._id).populate({
-                path: 'course',
-                populate: {
-                    path: 'author',
-                    select: 'photoURL displayName'
-                }
-            })
-            const savedNewHistoryLesson = await HistoryLesson.findById(newHistoryLesson._id).populate('updatedBy', 'displayName photoURL')
-            req.io.emit('lesson:create', savedLesson);
-            req.io.emit('historylesson:update', savedNewHistoryLesson);
-            res.json(newLesson);
+            const savedPost = await Post.findById(newPost._id).populate('author');
+            console.log('Bài viết đã lưu với author:', savedPost);
+            req.io.emit('post:create', savedPost);
+            console.log('Sự kiện phát thành công cho bài viết mới');
+            res.json(newPost);
         } catch (error) {
-            next(error);
+            console.error(error); // Để xem chi tiết lỗi trên console server
+            res.status(500).json({
+                message: 'Có lỗi xảy ra khi thêm bài viết.',
+                error: error.message // Hoặc một thuộc tính cụ thể của error
+            });
         }
     }
 
 
-
-    //[DELETE] /lessons/:id
+    //[DELETE] /posts/:id
     async softDeletePost(req, res, next) {
         try {
-            const newLessonDeleted = await Lesson.findOneAndUpdate({ _id: req.params.id }, {
+            const newPostDeleted = await Post.findOneAndUpdate({ _id: req.params.id }, {
                 isDeleted: true,
                 deletedBy: req.query.updatedBy,
                 deletedAt: new Date()
             })
 
-            const editorInfo = await Users.findById(req.query.updatedBy)
-            const newHistoryLesson = new HistoryLesson({
-                updatedBy: req.query.updatedBy,
-                updatedContent: `${editorInfo.displayName} cho vào thùng rác bài học ${newLessonDeleted.title}`
-            })
-            await newHistoryLesson.save()
+            // const editorInfo = await Users.findById(req.query.updatedBy)
+            // const newHistoryPost = new HistoryPost({
+            //     updatedBy: req.query.updatedBy,
+            //     updatedContent: `${editorInfo.displayName} cho vào thùng rác bài học ${newPostDeleted.title}`
+            // })
+            // await newHistoryPost.save()
 
-            const savedNewHistoryLesson = await HistoryLesson.findById(newHistoryLesson._id).populate('updatedBy', 'displayName photoURL')
-            const lessonDeleted = await Lesson.findById(req.params.id)
-            req.io.emit('historylesson:update', savedNewHistoryLesson);
-            req.io.emit('lesson:soft-delete', lessonDeleted)
-            res.json(lessonDeleted)
+            // const savedNewHistoryPost = await HistoryPost.findById(newHistoryPost._id).populate('updatedBy', 'displayName photoURL')
+            const postDeleted = await Post.findById(req.params.id)
+            // req.io.emit('historypost:update', savedNewHistoryPost);
+            req.io.emit('post:soft-delete', postDeleted)
+            res.json(postDeleted)
         } catch (error) {
             next(error)
         }
     }
 
-    // [POST] /lessons/restore/:id
+    // [POST] /posts/restore/:id
     async restorePost(req, res, next) {
         try {
-            const lessonRestored = await Lesson.findOneAndUpdate({ _id: req.params.id }, {
+            const postRestored = await Post.findOneAndUpdate({ _id: req.params.id }, {
                 isDeleted: false,
                 deletedAt: null,
                 deletedBy: null
             })
 
-            const editorInfo = await Users.findById(req.query.updatedBy)
-            const newHistoryLesson = new HistoryLesson({
-                updatedBy: req.query.updatedBy,
-                updatedContent: `${editorInfo.displayName} khôi phục bài học ${lessonRestored.title}`
-            })
-            await newHistoryLesson.save()
+            // const editorInfo = await Users.findById(req.query.updatedBy)
+            // const newHistoryPost = new HistoryPost({
+            //     updatedBy: req.query.updatedBy,
+            //     updatedContent: `${editorInfo.displayName} khôi phục bài học ${postRestored.title}`
+            // })
+            // await newHistoryPost.save()
 
-            const savedNewHistoryLesson = await HistoryLesson.findById(newHistoryLesson._id).populate('updatedBy', 'displayName photoURL')
-            req.io.emit('historylesson:update', savedNewHistoryLesson);
-            req.io.emit('lesson:restore', lessonRestored)
-            res.json(lessonRestored)
+            // const savedNewHistoryPost = await HistoryPost.findById(newHistoryPost._id).populate('updatedBy', 'displayName photoURL')
+            // req.io.emit('historypost:update', savedNewHistoryPost);
+            req.io.emit('post:restore', postRestored)
+            res.json(postRestored)
         } catch (error) {
             next(error)
         }
@@ -217,12 +191,12 @@ class PostController {
     // [PUT] /courses/:id
     async editPost(req, res, next) {
         try {
-            const editorInfo = await Users.findById(req.body.updatedBy)
-            const newHistoryLesson = new HistoryLesson({
-                updatedBy: req.body.updatedBy,
-                updatedContent: `${editorInfo.displayName} chỉnh sửa bài học ${req.body.title}`
-            })
-            await newHistoryLesson.save()
+            // const editorInfo = await Users.findById(req.body.updatedBy)
+            // const newHistoryPost = new HistoryPost({
+            //     updatedBy: req.body.updatedBy,
+            //     updatedContent: `${editorInfo.displayName} chỉnh sửa bài học ${req.body.title}`
+            // })
+            // await newHistoryPost.save()
 
             let imageUrl;
             if (req.file) {
@@ -232,7 +206,7 @@ class PostController {
                 console.log('khong co file');
             }
 
-            const response = await Lesson.findOneAndUpdate({ _id: req.params.id }, { ...req.body, images: imageUrl || req.body.images }, { new: true }).populate({
+            const response = await Post.findOneAndUpdate({ _id: req.params.id }, { ...req.body, images: imageUrl || req.body.images }, { new: true }).populate({
                 path: 'course',
                 populate: {
                     path: 'author',
@@ -240,9 +214,9 @@ class PostController {
                 }
             })
 
-            const savedNewHistoryLesson = await HistoryLesson.findById(newHistoryLesson._id).populate('updatedBy', 'displayName photoURL')
-            req.io.emit('historylesson:update', savedNewHistoryLesson);
-            req.io.emit('lesson:update', response)
+            // const savedNewHistoryPost = await HistoryPost.findById(newHistoryPost._id).populate('updatedBy', 'displayName photoURL')
+            // req.io.emit('historypost:update', savedNewHistoryPost);
+            req.io.emit('post:update', response)
             res.json(response)
         } catch (error) {
             next(error)
@@ -253,26 +227,26 @@ class PostController {
         try {
             switch (req.body.action) {
                 case 'soft-delete':
-                    await Lesson.updateMany({ _id: { $in: req.body.lessons_id } }, {
+                    await Post.updateMany({ _id: { $in: req.body.posts_id } }, {
                         isDeleted: true,
                         deletedBy: req.body.userId,
                         deletedAt: new Date()
                     });
 
-                    const lessonDeleted = await Lesson.find({ _id: { $in: req.body.lessons_id } })
-                    req.io.emit('lesson:soft-delete', lessonDeleted)
+                    const postDeleted = await Post.find({ _id: { $in: req.body.posts_id } })
+                    req.io.emit('post:soft-delete', postDeleted)
                     break;
                 case 'restore':
-                    await Lesson.updateMany({ _id: { $in: req.body.lessons_id } }, {
+                    await Post.updateMany({ _id: { $in: req.body.posts_id } }, {
                         isDeleted: false,
                         deletedAt: null,
                         deletedBy: null
                     });
-                    const lessonsRestored = await Lesson.find({ _id: { $in: req.body.lessons_id } })
-                    req.io.emit('lesson:restore', lessonsRestored)
+                    const postsRestored = await Post.find({ _id: { $in: req.body.posts_id } })
+                    req.io.emit('post:restore', postsRestored)
                     break;
                 case 'forceDelete':
-                    await Lesson.deleteMany({ _id: { $in: req.body.lessons_id } });
+                    await Post.deleteMany({ _id: { $in: req.body.posts_id } });
                     res.redirect('back');
                     break;
                 default:
@@ -284,18 +258,18 @@ class PostController {
         }
     }
 
-    //[GET] /lessons/history
+    //[GET] /posts/history
     async getAllHistoryPosts(req, res, next) {
         const { limit } = req.query
         try {
-            const allHistory = await HistoryLesson.find({}).populate('updatedBy', 'displayName photoURL').limit(limit).sort({ updatedAt: -1 })
+            const allHistory = await HistoryPost.find({}).populate('updatedBy', 'displayName photoURL').limit(limit).sort({ updatedAt: -1 })
             res.json(allHistory)
         } catch (error) {
             next(error)
         }
     }
 
-    //[POST] /lessons/import-csv
+    //[POST] /posts/import-csv
     async importPostsByCsv(req, res, next) {
         try {
             const jsonArray = await csv().fromFile(req.file.path);
@@ -305,45 +279,45 @@ class PostController {
                 return res.status(400).json({ message: 'File CSV không chứa dữ liệu' });
             }
 
-            const lessonsToInsert = jsonArray.map(async (lessonData) => {
-                if (!lessonData.title || !lessonData.description) {
+            const postsToInsert = jsonArray.map(async (postData) => {
+                if (!postData.title || !postData.description) {
                     throw new Error('Thiếu trường bắt buộc trong CSV');
                 }
                 //
-                const newLesson = new Lesson({
-                    title: lessonData.title,
-                    description: lessonData.description,
-                    images: lessonData.images || '',
-                    content: lessonData.content || '',
-                    course: lessonData.course || undefined
+                const newPost = new Post({
+                    title: postData.title,
+                    description: postData.description,
+                    images: postData.images || '',
+                    content: postData.content || '',
+                    course: postData.course || undefined
                 });
 
-                return await newLesson.save();
+                return await newPost.save();
             });
 
-            const importAuthor = await Users.findById(req.body.updatedBy)
+            // const importAuthor = await Users.findById(req.body.updatedBy)
 
-            const newHistoryLesson = new HistoryLesson({
-                updatedBy: req.body.updatedBy,
-                updatedContent: `${importAuthor.displayName} đã tải lên tệp ${req.file.filename}`,
-                type: 'Import CSV',
-                fileName: `${req.file.filename}`,
-                size: formatFileSize(req.file.size)
-            })
-            await newHistoryLesson.save()
+            // const newHistoryPost = new HistoryPost({
+            //     updatedBy: req.body.updatedBy,
+            //     updatedContent: `${importAuthor.displayName} đã tải lên tệp ${req.file.filename}`,
+            //     type: 'Import CSV',
+            //     fileName: `${req.file.filename}`,
+            //     size: formatFileSize(req.file.size)
+            // })
+            // await newHistoryPost.save()
 
-            const lessons = await Promise.all(lessonsToInsert);
-            const savedLessons = await Lesson.find({ _id: { $in: lessons.map(lesson => lesson._id) } }).populate({
+            const posts = await Promise.all(postsToInsert);
+            const savedPosts = await Post.find({ _id: { $in: posts.map(post => post._id) } }).populate({
                 path: 'course',
                 populate: {
                     path: 'author',
                     select: 'photoURL displayName'
                 }
             })
-            const savedNewHistoryLesson = await HistoryLesson.findById(newHistoryLesson._id).populate('updatedBy', 'displayName photoURL')
-            req.io.emit('lesson:create', savedLessons)
-            req.io.emit('historylesson:update', savedNewHistoryLesson);
-            res.json(lessons);
+            // const savedNewHistoryPost = await HistoryPost.findById(newHistoryPost._id).populate('updatedBy', 'displayName photoURL')
+            req.io.emit('post:create', savedPosts)
+            // req.io.emit('historypost:update', savedNewHistoryPost);
+            res.json(posts);
         } catch (error) {
             console.log('Lỗi:', error);
             next(error);
@@ -353,7 +327,7 @@ class PostController {
 
     //[POST] /courses/export-csv
     async exportPostsToCsv(req, res, next) {
-        const data = await Lesson.find({}).lean();
+        const data = await Post.find({}).lean();
         const fields = ['title', 'description', 'images', 'content', 'course'];
         const opts = { fields };
 
@@ -362,7 +336,7 @@ class PostController {
             const csv = parser.parse(data);
 
             // Tạo file CSV và lưu vào thư mục tạm
-            const filePath = path.join(__dirname, '../../../../exports/lessons/data.csv');
+            const filePath = path.join(__dirname, '../../../../exports/posts/data.csv');
             fs.writeFileSync(filePath, csv);
             console.log('File CSV đã được tạo thành công!');
 
@@ -380,42 +354,41 @@ class PostController {
                 });
             });
 
-            const exportAuthor = await Users.findById(req.body.updatedBy)
+            // const exportAuthor = await Users.findById(req.body.updatedBy)
 
-            const newHistoryLesson = new HistoryLesson({
-                updatedBy: req.body.updatedBy,
-                updatedContent: `${exportAuthor.displayName} đã tải xuống bản cập nhật bài học`,
-                type: 'Export CSV',
-                fileName: `All-Lessons at ${new Date().toLocaleString('vi-VN')}`
-            })
-            await newHistoryLesson.save()
+            // const newHistoryPost = new HistoryPost({
+            //     updatedBy: req.body.updatedBy,
+            //     updatedContent: `${exportAuthor.displayName} đã tải xuống bản cập nhật bài học`,
+            //     type: 'Export CSV',
+            //     fileName: `All-Posts at ${new Date().toLocaleString('vi-VN')}`
+            // })
+            // await newHistoryPost.save()
 
-            const savedNewHistoryLesson = await HistoryLesson.findById(newHistoryLesson._id).populate('updatedBy', 'displayName photoURL')
-            console.log(savedNewHistoryLesson);
-            req.io.emit('historylesson:update', savedNewHistoryLesson);
+            // const savedNewHistoryPost = await HistoryPost.findById(newHistoryPost._id).populate('updatedBy', 'displayName photoURL')
+            // req.io.emit('historypost:update', savedNewHistoryPost);
         } catch (err) {
             console.error('Lỗi khi tạo file CSV:', err);
             res.status(500).json({ message: 'Lỗi khi tạo file CSV' });
         }
     }
 
-    async getAllImportsPosts(req, res, next) {
-        try {
-            const historyImports = await HistoryLesson.find({ type: { $regex: new RegExp('Import CSV', 'i') } }).sort({ createdAt: -1 })
-            res.json(historyImports)
-        } catch (error) {
-            next(error)
-        }
-    }
+    // async getAllImportsPosts(req, res, next) {
+    //     try {
+    //         const historyImports = await HistoryPost.find({ type: { $regex: new RegExp('Import CSV', 'i') } }).sort({ createdAt: -1 })
+    //         res.json(historyImports)
+    //     } catch (error) {
+    //         next(error)
+    //     }
+    // }
 
-    async getAllExportsPosts(req, res, next) {
-        try {
-            const historyExports = await HistoryLesson.find({ type: { $regex: new RegExp('Export CSV', 'i') } }).sort({ createdAt: -1 })
-            res.json(historyExports)
-        } catch (error) {
-            next(error)
-        }
-    }
+    // async getAllExportsPosts(req, res, next) {
+    //     try {
+    //         const historyExports = await HistoryPost.find({ type: { $regex: new RegExp('Export CSV', 'i') } }).sort({ createdAt: -1 })
+    //         res.json(historyExports)
+    //     } catch (error) {
+    //         next(error)
+    //     }
+    // }
 }
 
 export default new PostController();

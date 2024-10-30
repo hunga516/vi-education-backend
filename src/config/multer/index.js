@@ -3,11 +3,11 @@ import { CloudinaryStorage } from 'multer-storage-cloudinary';
 import cloudinary from '../cloudinary/index.js';
 
 // Cấu hình lưu trữ của Cloudinary
-const cloudinaryStorageConfig = new CloudinaryStorage({
+const cloudinaryStorageConfig = new CloudinaryStorage({ //config này không nhận file nếu là video
     cloudinary: cloudinary,
     params: {
-        folder: 'courses',
-        allowed_formats: ['jpg', 'png', 'jpeg'],
+        folder: 'posts',
+        allowed_formats: ['jpg', 'png', 'jpeg', 'mp4', 'mov', 'avi'],
     },
 });
 
