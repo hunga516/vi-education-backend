@@ -29,7 +29,7 @@ class PostController {
         }
 
         try {
-            const posts = await Post.find(query).sort({ [sort]: order || -1 })
+            const posts = await Post.find(query).sort({ [sort]: order || -1 }).populate('author')
             const totalPosts = await Post.find(query).countDocuments()
             res.json({
                 posts,
