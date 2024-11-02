@@ -1,49 +1,45 @@
 import mongoose, { Types } from 'mongoose';
-import Posts from "../../models/Posts/Posts.js";
-import Comments from "../../models/Posts/Comments.js";
+import Comment from '../../models/Posts/Comment.js';
+import Post from '../../models/Posts/Post.js';
 
-class ClassController {
+class CommentController {
 
-    // [GET] /posts/comments
+    // [GET] /comments
     async getAllComments(req, res, next) {
+        const { post_id, limit = 0 } = req.query
+        let query = {}
+        if (post_id) {
+            query.post = post_id
+        }
+
         try {
-            const comments = await Comments.find({}).populate('post').populate('author').lean()
-            res.json(comments)
+            const comments = await Comment.find(query).populate('post').populate('author').limit(limit)
+            res.json({
+                post_id,
+                comments
+            })
         } catch (error) {
             next(error)
 
         }
     }
 
-    // [POST] /posts/:id/comment
+    // [POST] /comments
     async addComment(req, res, next) {
         try {
-            const comment = new Comments({
+            const newComment = new Comment({
                 content: req.body.content,
-                author: new Types.ObjectId(req.body.author),
-                post: new Types.ObjectId(req.body.post)
+                author: req.body.author,
+                post: req.body.post_id
             });
+            await newComment.save();
 
-            await comment.save();
-
-            // Cập nhật bài viết để thêm ID của bình luận vào mảng comments
-            await Posts.findByIdAndUpdate(req.body.post, { $push: { comments: comment._id } });
-
-            res.json(comment);
+            res.json(newComment);
         } catch (error) {
             next(error);
         }
     }
 
-    async getCommentsByPostId(req, res, next) {
-        try {
-            const post = await Posts.findById(req.params.postId).populate('comments')
-            res.status(200).json(post.comments)
-        } catch (error) {
-            next(error)
-        }
-    }
-
 }
 
-export default new ClassController();
+export default new CommentController();

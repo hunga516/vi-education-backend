@@ -3,6 +3,8 @@ import usersRoute from './users.route.js';
 import lessonsRoute from './lessons.route.js';
 import chaptersRoute from './chapter.route.js';
 import postsRoute from './posts.route.js';
+import commentsRoute from './comments.route.js';
+import reactionsRoute from './reactions.route.js';
 
 function route(app) {
     app.use('/users', usersRoute);
@@ -10,6 +12,8 @@ function route(app) {
     app.use('/chapters', chaptersRoute);
     app.use('/lessons', lessonsRoute);
     app.use('/posts', postsRoute);
+    app.use('/comments', commentsRoute);
+    app.use('/reactions', reactionsRoute);
 }
 
 export default route;

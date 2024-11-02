@@ -12,6 +12,7 @@ const LessonSchema = new mongoose.Schema({
     content: { type: String },
     slug: { type: String, slug: 'title', parse: true },
     learnCount: { type: Number, default: 0 },
+    lessonOrder: { type: Number },
     course: { type: Schema.Types.ObjectId, ref: "Course" },
     chapter: { type: String },
     isDeleted: { type: Boolean, default: false },

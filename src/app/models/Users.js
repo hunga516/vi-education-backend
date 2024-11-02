@@ -10,6 +10,7 @@ const UsersSchema = new Schema({
     role: { type: String, default: "user" },
     followCount: { type: Number, default: 0 },
     coursesLearn: [{ type: Schema.Types.ObjectId, ref: "Course" }],
+    lessonsLearned: [{ type: Schema.Types.ObjectId, ref: "Lesson" }],
     isDeleted: { type: Boolean, default: false },
     deletedBy: { type: Schema.Types.ObjectId, ref: 'Users' },
     deletedReason: { type: String },

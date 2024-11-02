@@ -1,6 +1,8 @@
 import mongoose, { Schema } from 'mongoose';
 import mongooseSequence from 'mongoose-sequence';
 import moment from 'moment';
+import 'moment/locale/vi.js';
+
 
 const PostSchema = new mongoose.Schema({
     postId: { type: Number },
@@ -20,7 +22,7 @@ PostSchema.methods.toJSON = function () {
     const post = this.toObject();
 
     if (post.createdAt) {
-        post.createdAt = moment(post.createdAt).format('DD-MM-YYYY');
+        post.createdAt = moment(post.createdAt).fromNow();
     }
     if (post.updatedAt) {
         post.updatedAt = moment(post.updatedAt).format('DD-MM-YYYY');

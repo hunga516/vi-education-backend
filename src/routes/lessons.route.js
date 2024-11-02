@@ -13,10 +13,15 @@ router.post('/import-csv', uploadDisk.single('files'), lessonController.importLe
 router.get('/import-csv', lessonController.getAllImportsLessons);
 router.post('/export-csv', uploadDisk.single('files'), lessonController.exportLessonsToCsv);
 router.get('/export-csv', lessonController.getAllExportsLessons);
+router.get('/check-user-eligibility', lessonController.checkUserEligibility);
+router.get('/lessons-learned', lessonController.getLessonsLearnedByUser);
 router.delete('/:id', lessonController.softDeleteLesson);
+router.post('/:id/set-lesson-learned', lessonController.setLessonLearned);
 router.put('/:id', uploadCloud.single('images'), lessonController.editLesson);
 router.get('/:id', lessonController.getLessonByLessonId);
 router.post('/', uploadCloud.single('images'), lessonController.addLesson);
 router.get('/', lessonController.getAllLessons);
+
+
 
 export default router;

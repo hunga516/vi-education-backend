@@ -18,7 +18,7 @@ const __dirname = path.dirname(__filename);
 class LessonController {
     // [GET] /lessons
     async getAllLessons(req, res, next) {
-        const { _id, sort = "lessonId", order, title, description, chapter, chapters, page = 1, course_id } = req.query
+        const { _id, sort = "lessonId", order, title, description, chapter, chapters, page = 1, course_id, lessonOrder } = req.query
         const skip = (page - 1) * 10 //number of limit is 10
 
         let query = { isDeleted: false }
@@ -116,9 +116,9 @@ class LessonController {
     // [POST] /lessons
     async addLesson(req, res, next) {
         try {
-            const { title, description, author, content, role, course_id, chapter } = req.body;
-            let imageUrl;
+            const { title, description, author, content, role, course_id, chapter, insertAfterOrder } = req.body;
 
+            let imageUrl;
             if (req.file) {
                 const result = await cloudinary.uploader.upload(req.file.path, {});
                 imageUrl = result.secure_url;
@@ -126,24 +126,39 @@ class LessonController {
                 console.log('khong co file');
             }
 
-            const editorInfo = await Users.findById(req.body.updatedBy)
-            const newHistoryLesson = new HistoryLesson({
-                updatedBy: req.body.updatedBy,
-                updatedContent: `${editorInfo.displayName} thêm bài học ${title}`
-            })
-            await newHistoryLesson.save()
+            let newLesson;
+            if (insertAfterOrder) {
+                await Lesson.updateMany({ course: course_id, lessonOrder: { $gt: insertAfterOrder } }, { $inc: { lessonOrder: 1 } })
+                newLesson = new Lesson({
+                    title,
+                    description,
+                    author,
+                    content,
+                    role,
+                    images: imageUrl || '',
+                    course: course_id,
+                    chapter: chapter,
+                    lessonOrder: Number(insertAfterOrder) + 1
+                });
+            } else {
+                const lastLesson = await Lesson.findOne({ course: course_id }).sort({ lessonOrder: -1 })
+                const nextOrder = lastLesson ? lastLesson.lessonOrder + 1 : 1; // Tăng order hoặc bắt đầu từ 1 nếu chưa có bài học nào
 
-            const newLesson = new Lesson({
-                title,
-                description,
-                author,
-                content,
-                role,
-                images: imageUrl || '',
-                course: course_id,
-                chapter: chapter
-            });
+
+                newLesson = new Lesson({
+                    title,
+                    description,
+                    author,
+                    content,
+                    role,
+                    images: imageUrl || '',
+                    course: course_id,
+                    chapter: chapter,
+                    lessonOrder: nextOrder
+                });
+            }
             await newLesson.save();
+
 
             const savedLesson = await Lesson.findById(newLesson._id).populate({
                 path: 'course',
@@ -152,7 +167,15 @@ class LessonController {
                     select: 'photoURL displayName'
                 }
             })
+
+            const editorInfo = await Users.findById(req.body.updatedBy)
+            const newHistoryLesson = new HistoryLesson({
+                updatedBy: req.body.updatedBy,
+                updatedContent: `${editorInfo.displayName} thêm bài học ${title}`
+            })
+            await newHistoryLesson.save()
             const savedNewHistoryLesson = await HistoryLesson.findById(newHistoryLesson._id).populate('updatedBy', 'displayName photoURL')
+
             req.io.emit('lesson:create', savedLesson);
             req.io.emit('historylesson:update', savedNewHistoryLesson);
             res.json(newLesson);
@@ -412,6 +435,35 @@ class LessonController {
         try {
             const historyExports = await HistoryLesson.find({ type: { $regex: new RegExp('Export CSV', 'i') } }).sort({ createdAt: -1 })
             res.json(historyExports)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    async setLessonLearned(req, res, next) {
+        try {
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    async checkUserEligibility(req, res, next) {
+        try {
+
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    async getLessonsLearnedByUser(req, res, next) {
+        try {
+            const user = await Users.findById(req.query.user_id).populate('lessonsLearned')
+            const currentLesson = await Lesson.findById(req.query.lessons_id)
+
+            if (!user.lessonsLearned.includes(req.query.lessons_id)) {
+                res.status(400).json({ message: "Bạn cần hoàn thành các khoá trước đó" })
+            }
+
         } catch (error) {
             next(error)
         }
