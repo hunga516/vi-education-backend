@@ -5,6 +5,7 @@ import chaptersRoute from './chapter.route.js';
 import postsRoute from './posts.route.js';
 import commentsRoute from './comments.route.js';
 import reactionsRoute from './reactions.route.js';
+import takenotesRoute from './takenote.route.js';
 
 function route(app) {
     app.use('/users', usersRoute);
@@ -14,6 +15,7 @@ function route(app) {
     app.use('/posts', postsRoute);
     app.use('/comments', commentsRoute);
     app.use('/reactions', reactionsRoute);
+    app.use('/takenotes', takenotesRoute);
 }
 
 export default route;
