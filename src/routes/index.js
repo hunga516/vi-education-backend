@@ -6,6 +6,8 @@ import postsRoute from './posts.route.js';
 import commentsRoute from './comments.route.js';
 import reactionsRoute from './reactions.route.js';
 import takenotesRoute from './takenote.route.js';
+import roomsRoute from './room.route.js';
+import messagesRoute from './message.route.js';
 
 function route(app) {
     app.use('/users', usersRoute);
@@ -16,6 +18,8 @@ function route(app) {
     app.use('/comments', commentsRoute);
     app.use('/reactions', reactionsRoute);
     app.use('/takenotes', takenotesRoute);
+    app.use('/rooms', roomsRoute);
+    app.use('/messages', messagesRoute);
 }
 
 export default route;
