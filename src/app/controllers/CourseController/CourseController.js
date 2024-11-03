@@ -78,7 +78,7 @@ class CourseController {
     // [GET] /courses/:id
     async getCourseByCourseId(req, res, next) {
         try {
-            const course = await Course.findOne({ _id: req.params.id }).populate('author', 'displayName photoURL email');
+            const course = await Course.findOne({ _id: req.params.id }).populate('author', '');
             res.json(course)
         } catch (error) {
             next(error);

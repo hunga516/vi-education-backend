@@ -32,7 +32,9 @@ class MessageController {
             });
             await newMessage.save();
 
-            res.json(newMessage);
+            const savedMessage = await Message.findOne({ _id: newMessage._id }).populate('author')
+            res.json(savedMessage);
+            req.io.emit('message:create', savedMessage)
         } catch (error) {
             next(error);
         }

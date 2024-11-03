@@ -24,14 +24,19 @@ class RoomController {
 
     // [POST] /rooms
     async addRoom(req, res, next) {
-        const { title, member } = req.body
+        const { title, members } = req.body; // Đổi 'member' thành 'members' cho nhất quán
+
         try {
-            // const members = Room.findOne({ title })
+            // Kiểm tra xem 'members' có phải là mảng không
+            if (!Array.isArray(members)) {
+                return res.status(400).json({ message: "Members must be an array of user IDs." });
+            }
 
             const newRoom = new Room({
                 title,
-                members: member
+                members // sử dụng 'members' là mảng chứa ObjectId
             });
+
             await newRoom.save();
 
             res.json(newRoom);
@@ -39,7 +44,6 @@ class RoomController {
             next(error);
         }
     }
-
 }
 
 export default new RoomController();
