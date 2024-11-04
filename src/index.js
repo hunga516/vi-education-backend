@@ -27,7 +27,7 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: `${process.env.REACT_FE_URL}`,
+        origin: `${process.env.REACT_APP_FRONTED_URL}`,
         methods: ['GET', 'POST']
     },
 })
