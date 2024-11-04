@@ -32,6 +32,7 @@ const io = new Server(server, {
     }
 });
 
+
 const users = {};
 
 io.on('connection', (socket) => {
@@ -91,7 +92,7 @@ app.use((req, res, next) => {
 })
 
 // Enable CORS
-
+app.use(cors());
 
 // Method POST Override
 app.use(methodOverride('_method'));
