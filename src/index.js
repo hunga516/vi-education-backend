@@ -27,11 +27,12 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: 'https://vi-education.vercel.app', // Xác định trực tiếp domain của frontend
-        methods: ['GET', 'POST']
-    }
+        origin: 'https://vi-education.vercel.app',
+        methods: ['GET', 'POST'],
+        credentials: true
+    },
+    transports: ['polling'],
 });
-
 
 const users = {};
 
