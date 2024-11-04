@@ -91,12 +91,6 @@ app.use((req, res, next) => {
 })
 
 // Enable CORS
-app.use(cors({
-    origin: 'https://vi-education.vercel.app', // Chỉ định nguồn của frontend
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true
-}));
 
 
 // Method POST Override
