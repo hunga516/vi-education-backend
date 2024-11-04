@@ -27,12 +27,11 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: 'https://vi-education.vercel.app',
-        methods: ['GET', 'POST'],
-        credentials: true
+        // origin: 'http://localhost:3000',
+        origin: 'http://localhost:3000',
+        methods: ['GET', 'POST']
     },
-    transports: ['polling'],
-});
+})
 
 const users = {};
 
@@ -79,12 +78,6 @@ io.on('connection', (socket) => {
         delete users[socket.id]; // Xóa user khi ngắt kết nối
     });
 });
-
-
-
-
-
-
 
 
 app.use((req, res, next) => {
