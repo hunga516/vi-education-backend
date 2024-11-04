@@ -27,12 +27,10 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: `${process.env.REACT_APP_FRONTED_URL}`,
+        origin: 'https://vi-education.vercel.app', // Xác định trực tiếp domain của frontend
         methods: ['GET', 'POST']
-    },
-})
-
-
+    }
+});
 
 const users = {};
 
@@ -93,7 +91,13 @@ app.use((req, res, next) => {
 })
 
 // Enable CORS
-app.use(cors());
+app.use(cors({
+    origin: 'https://vi-education.vercel.app', // Chỉ định nguồn của frontend
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
+}));
+
 
 // Method POST Override
 app.use(methodOverride('_method'));
