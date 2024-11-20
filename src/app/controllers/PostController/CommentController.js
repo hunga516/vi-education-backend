@@ -13,7 +13,7 @@ class CommentController {
         }
 
         try {
-            const comments = await Comment.find(query).populate('post').populate('author').limit(limit)
+            const comments = await Comment.find(query).populate('post').populate('author').limit(limit).sort({ createdAt: "desc" })
             res.json({
                 post_id,
                 comments
@@ -34,7 +34,10 @@ class CommentController {
             });
             await newComment.save();
 
+            const savedComment = await Comment.findById(newComment._id).populate('author')
+
             res.json(newComment);
+            req.io.emit('comments:create', savedComment)
         } catch (error) {
             next(error);
         }
