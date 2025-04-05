@@ -323,14 +323,19 @@ class CourseController {
     async exportCoursesToCsv(req, res, next) {
         const data = await Course.find({}).lean();
         const fields = ['title', 'description', 'images', 'author', 'content', 'role', 'courseId'];
-        const opts = { fields };
+        const opts = {
+            fields,
+            quote: '"',
+            escapedQuote: '""',
+            excelStrings: true
+        };
 
         try {
             const parser = new Parser(opts);
             const csv = parser.parse(data);
 
             // Tạo file CSV và lưu vào thư mục tạm
-            const filePath = path.join('/tmp', 'data.csv');
+            const filePath = path.join(__dirname, '../../../../exports/courses/data.csv');
             fs.writeFileSync(filePath, csv);
             console.log('File CSV đã được tạo thành công!');
 
