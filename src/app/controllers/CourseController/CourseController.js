@@ -330,7 +330,7 @@ class CourseController {
             const csv = parser.parse(data);
 
             // Tạo file CSV và lưu vào thư mục tạm
-            const filePath = path.join(__dirname, '../../../../exports/courses/data.csv');
+            const filePath = path.join('/tmp', 'data.csv');
             fs.writeFileSync(filePath, csv);
             console.log('File CSV đã được tạo thành công!');
 
